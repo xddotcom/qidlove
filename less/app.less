@@ -9,3 +9,71 @@
 @import "font-awesome/font-awesome.less";
 
 //********************************************//
+
+@pink: #fc9d9a;
+
+@-webkit-keyframes bulle_flow {
+    0% { -webkit-transform: translate3d(0, 0, 0); }
+    100% { -webkit-transform: translate3d(0, 10px, 0); }
+}
+
+@keyframes bulle_flow {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(0, 10px, 0); }
+}
+
+.view {
+    width: 100%;
+    min-height: 500px;
+}
+
+#hero {
+    background: @pink url(../img/dotted.png) repeat;
+    padding-top: 100px;
+    .announce-text {
+        margin: 20px 5px;
+        padding: 10px 20px;
+        border-top: 1px solid desaturate(@pink, 50%);
+        border-bottom: 1px solid desaturate(@pink, 50%);
+        color: #FFF;
+    }
+    .bulle {
+        .size(200px, 200px);
+        padding: 50px 30px;
+        margin: 0 auto;
+        color: #FFF;
+        position: relative;
+        background: url(../img/bulle_bleue.png) no-repeat center;
+        background-size: contain;
+        .animation(bulle_flow 1s alternate infinite);
+    }
+}
+
+#bigday {
+    background: url(../img/thebigday.png) no-repeat center;
+    background-size: cover;
+    height: 700px;
+    padding: 300px 0;
+    > h1 {
+        font-size: 80px;
+        color: #ddd;
+        font-weight: bold;
+    }
+}
+
+#map-canvas {
+    .size(100%, 500px);
+}
+
+#where {
+    position: relative;
+    > address {
+        position: absolute;
+        z-index: 1;
+        top: 100px;
+        left: 20%;
+        .square(200px);
+        background: red;
+        border-radius: 50%;
+    }
+}
