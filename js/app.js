@@ -21,19 +21,25 @@ $(function() {
         var topLine = circlePos.top - $(window).height();
         var windowScroll = $(window).scrollTop() - 100;
         if (topLine < windowScroll && windowScroll < bottomLine) {
-            if (!$circle.hasClass('showing')) {
-                $circle.addClass('showing');
+            if (!$circle.hasClass('animating')) {
+                $circle.addClass('animating');
                 $circle.animate({
                     opacity : 1,
                     top : 50
+                }, 500, function() {
+                    $circle.removeClass('animating');
                 });
             }
         } else {
-            $circle.removeClass('showing');
-            $circle.animate({
-                opacity : 0,
-                top : 0
-            });
+            if (!$circle.hasClass('animating')) {
+                $circle.addClass('animating');
+                $circle.animate({
+                    opacity : 0,
+                    top : 0
+                }, 500, function() {
+                    $circle.removeClass('animating');
+                });
+            }
         }
     }
 

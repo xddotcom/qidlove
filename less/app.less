@@ -17,10 +17,30 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'lane';
+    src: url('../fonts/LANENAR.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'wide';
+    src: url('../fonts/DISCO.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @pink: #fc9d9a;
+@blue: #506873;
+@violet: #633E54;
 
 .pink-text {
     color: lighten(@pink, 0%);
+}
+
+.signature {
+    font-family: titan, sans-serif;
 }
 
 @-webkit-keyframes bulle_flow {
@@ -36,6 +56,7 @@
 .view {
     width: 100%;
     min-height: 500px;
+    overflow-x: hidden;
 }
 
 #hero {
@@ -78,7 +99,7 @@
 }
 
 #bigday {
-    background: url(../img/thebigday.png) no-repeat center;
+    background: url(../img/thebigday.jpg) no-repeat center;
     background-size: cover;
     height: 700px;
     padding: 300px 0;
@@ -87,9 +108,10 @@
     }
     > h1 {
         font-size: 100px;
-        color: #eee;
+        color: #f0f0f0;
         font-weight: bold;
         font-family: 'titan', sans-serif;
+        text-shadow: 0 10px 10px rgba(0, 0, 0, .5);
     }
 }
 
@@ -111,14 +133,15 @@
         left: 20%;
         .square(250px);
         border-radius: 50%;
-        border: 20px solid @pink;
-        border-color: rgba(red(@pink), green(@pink), blue(@pink), .3);
+        border: 20px solid @blue;
+        border-color: rgba(red(@blue), green(@blue), blue(@blue), .3);
         overflow: hidden;
     }
     address {
         .square(100%);
         padding: 60px 20px;
-        background: #506873 url(../img/dotted.png) repeat;
+        background: @blue url(../img/dotted.png) repeat;
+        background-color: rgba(red(@blue), green(@blue), blue(@blue), .9);
         color: #fff;
         h4 {
             margin-bottom: 30px;
@@ -126,5 +149,33 @@
     }
     .anchorBL {
         display: none !important;
+    }
+}
+
+#information {
+    background: @violet url(../img/etoiles.png) repeat center;
+    color: #f0f0f0;
+    padding: 30px 0;
+    .subtitle {
+        margin-top: 40px;
+    }
+}
+
+#contact {
+    padding: 20px 0;
+    .copyright {
+        font-family: wide, sans-serif;
+        font-size: 20px;
+    }
+    .thanks {
+        max-width: 305px;
+        margin: 20px auto;
+        padding: 20px 0 10px;
+        border-top: 1px solid lighten(@pink, 10%);
+        border-bottom: 1px solid lighten(@pink, 10%);
+    }
+    article {
+        max-width: 500px;
+        .center-block();
     }
 }
