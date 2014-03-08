@@ -1,21 +1,42 @@
 $(function() {
     function showMap() {
-        var map = new BMap.Map('map-canvas', {
-            mapType: BMAP_NORMAL_MAP
+        var map = new BMap.Map('map-canvas');
+        var point = new BMap.Point(120.63407, 29.969563);
+        map.centerAndZoom(point, 16);
+        map.setMapStyle({
+            style : "normal"
         });
-        var point = new BMap.Point(116.404, 39.915);
-        map.centerAndZoom(point,15);
+        var marker = new BMap.Marker(new BMap.Point(120.642703, 29.970088));
+        map.addOverlay(marker);
+        map.addControl(new BMap.NavigationControl());
         //map.enableScrollWheelZoom();
     }
+
     function dropAddressCircle() {
-        var circlePos = $('#where>address').offset();
-        if (circlePos.top < $(window).scrollTop() + $(window).height()) {
-            //console.log(123);
+        var $circle = $('#where>.address-wrapper');
+        var circlePos = $circle.offset();
+        var bottomLine = circlePos.top;
+        var topLine = circlePos.top - $(window).height();
+        var windowScroll = $(window).scrollTop() - 100;
+        if (topLine < windowScroll && windowScroll < bottomLine) {
+            if (!$circle.hasClass('showing')) {
+                $circle.addClass('showing');
+                $circle.animate({
+                    opacity : 1,
+                    top : 150
+                });
+            }
+        } else {
+            $circle.removeClass('showing');
+            $circle.css({
+                opacity : 0,
+                top : 0
+            });
         }
     }
-    
+
     /**********************************/
-    
+
     $(window).scroll(dropAddressCircle);
     showMap();
 });

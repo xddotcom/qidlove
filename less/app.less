@@ -10,7 +10,18 @@
 
 //********************************************//
 
+@font-face {
+    font-family: 'titan';
+    src: url('../fonts/TitanOne-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @pink: #fc9d9a;
+
+.pink-text {
+    color: lighten(@pink, 0%);
+}
 
 @-webkit-keyframes bulle_flow {
     0% { -webkit-transform: translate3d(0, 0, 0); }
@@ -36,16 +47,33 @@
         border-top: 1px solid desaturate(@pink, 50%);
         border-bottom: 1px solid desaturate(@pink, 50%);
         color: #FFF;
+        line-height: 1.5;
     }
     .bulle {
-        .size(200px, 200px);
-        padding: 50px 30px;
+        .size(250px, 250px);
+        padding: 60px 30px;
         margin: 0 auto;
         color: #FFF;
         position: relative;
         background: url(../img/bulle_bleue.png) no-repeat center;
         background-size: contain;
         .animation(bulle_flow 1s alternate infinite);
+        margin-left: -50px;
+        margin-top: -50px;
+        @media (max-width: @screen-xs-max) {
+            margin-left: auto;
+            margin-top: 0;
+        }
+        h3 {
+            margin-top: 9px;
+        }
+    }
+    .xd-and-uki {
+        .center-block();
+        width: 50%;
+        @media (max-width: @screen-xs-max) {
+            width: 90%;
+        }
     }
 }
 
@@ -55,25 +83,40 @@
     height: 700px;
     padding: 300px 0;
     > h1 {
-        font-size: 80px;
-        color: #ddd;
+        font-size: 100px;
+        color: #eee;
         font-weight: bold;
+        font-family: 'titan', sans-serif;
     }
 }
 
 #map-canvas {
-    .size(100%, 500px);
+    .size(100%, 600px);
 }
 
 #where {
     position: relative;
-    > address {
+    .address-wrapper {
         position: absolute;
         z-index: 1;
-        top: 100px;
-        left: 20%;
-        .square(200px);
-        background: red;
+        top: 150px;
+        left: 10%;
+        .square(250px);
         border-radius: 50%;
+        border: 20px solid @pink;
+        border-color: rgba(red(@pink), green(@pink), blue(@pink), .3);
+        overflow: hidden;
+    }
+    address {
+        .square(100%);
+        padding: 60px 20px;
+        background: #506873 url(../img/dotted.png) repeat;
+        color: #fff;
+        h4 {
+            margin-bottom: 30px;
+        }
+    }
+    .anchorBL {
+        display: none !important;
     }
 }
