@@ -10,6 +10,8 @@ $(function() {
         map.addOverlay(marker);
         map.addControl(new BMap.NavigationControl());
         //map.enableScrollWheelZoom();
+        //map.disableDragging();
+        map.disableDoubleClickZoom();
     }
 
     function dropAddressCircle() {
@@ -23,12 +25,12 @@ $(function() {
                 $circle.addClass('showing');
                 $circle.animate({
                     opacity : 1,
-                    top : 150
+                    top : 50
                 });
             }
         } else {
             $circle.removeClass('showing');
-            $circle.css({
+            $circle.animate({
                 opacity : 0,
                 top : 0
             });
@@ -38,5 +40,5 @@ $(function() {
     /**********************************/
 
     $(window).scroll(dropAddressCircle);
-    showMap();
+    //showMap();
 });

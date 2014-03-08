@@ -82,6 +82,9 @@
     background-size: cover;
     height: 700px;
     padding: 300px 0;
+    @media (max-width: @screen-xs-max) {
+        padding-top: 150px;
+    }
     > h1 {
         font-size: 100px;
         color: #eee;
@@ -92,6 +95,11 @@
 
 #map-canvas {
     .size(100%, 600px);
+    @media (max-width: @screen-xs-max) {
+        width: 100%;
+    }
+    background: url('../img/map.png') no-repeat bottom right;
+    //background-size: cover;
 }
 
 #where {
@@ -99,8 +107,8 @@
     .address-wrapper {
         position: absolute;
         z-index: 1;
-        top: 150px;
-        left: 10%;
+        top: 50px;
+        left: 20%;
         .square(250px);
         border-radius: 50%;
         border: 20px solid @pink;
