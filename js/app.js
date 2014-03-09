@@ -13,7 +13,7 @@ $(function() {
         //map.disableDragging();
         map.disableDoubleClickZoom();
     }
-    
+
     function displayAddressWrapper() {
         var $circle = $('#where>.address-wrapper');
         if (!$circle.hasClass('animating')) {
@@ -26,7 +26,7 @@ $(function() {
             });
         }
     }
-    
+
     function hideAddressWrapper() {
         var $circle = $('#where>.address-wrapper');
         if (!$circle.hasClass('animating')) {
@@ -39,7 +39,7 @@ $(function() {
             });
         }
     }
-    
+
     function dropAddressCircle() {
         var topLineGone = $('#where').offset().top;
         var topLineAppear = topLineGone - $(window).height();
@@ -51,12 +51,12 @@ $(function() {
             hideAddressWrapper();
         }
     }
-    
+
     /**********************************/
-    
+
     $('#where>.address-wrapper').pin({
-        containerSelector: "#where",
-        minWidth: 360
+        containerSelector : "#where",
+        minWidth : 360
     });
     //$(window).scroll(dropAddressCircle);
     //showMap();

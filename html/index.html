@@ -18,7 +18,31 @@
     <link rel="stylesheet" href="css/app.css">
 
     <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script>
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+            var message = {
+                "img_url" : 'http://qidlove.ukisama.com/img/thebigday.jpg',
+                "img_width" : "640",
+                "img_height" : "640",
+                "link" : 'http://qidlove.ukisama.com/',
+                "desc" : "QiQi&XD非常高兴的宣布他们坠入了爱河！他们无意间发现生活是如此美妙，于是悄悄地开始筹划一场空前盛(jiǎn)大(dān)的婚礼……",
+                "title" : "QiQi & XD's Wedding Ceremony"
+            };
+            WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+                WeixinJSBridge.invoke('sendAppMessage', message);
+            });
+            WeixinJSBridge.on('menu:share:timeline', function(argv) {
+                WeixinJSBridge.invoke('shareTimeline', message);
+            });
+            WeixinJSBridge.on('menu:share:weibo', function(argv) {
+                WeixinJSBridge.invoke('shareWeibo', {
+                    "content" : descContent,
+                    "url" : lineLink,
+                });
+            });
+        }, false);
 
+    </script>
 </head>
 <body>
 <!--[if lt IE 7]>
