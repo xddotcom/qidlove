@@ -34,6 +34,7 @@
 @pink: #fc9d9a;
 @blue: #506873;
 @violet: #633E54;
+@yellow: #bfa260;
 
 .pink-text {
     color: lighten(@pink, 0%);
@@ -55,7 +56,7 @@
 
 .view {
     width: 100%;
-    min-height: 500px;
+    //min-height: 500px;
     overflow-x: hidden;
 }
 
@@ -98,33 +99,92 @@
     }
 }
 
+#couple {
+    background: @blue;
+    color: #fff;
+    padding: 40px 0;
+    p { line-height: 1.4; }
+    > header {
+        margin-bottom: 30px;
+        > h1 {
+            font-family: titan, sans-serif;
+            font-size: 50px;
+        }
+    }
+}
+
+#story {
+    background: @yellow;
+    color: #fff;
+    padding: 40px 0 20px;
+    > header {
+        margin-bottom: 30px;
+        > h1 {
+            font-family: titan, sans-serif;
+            font-size: 50px;
+        }
+    }
+    .story-item {
+        span, img {
+            display: inline-block;
+            vertical-align: middle;;
+        }
+        img {
+            width: 60%;
+        }
+        span {
+            font-size: 16px;
+            color: #fff;
+            width: 40%;
+            padding: 5px;
+        }
+        &.type1 { background: #16A085; }
+        &.type2 { background: #34495E; }
+        &.type3 { background: #E74C3C; }
+        &.type4 { background: #9B59B6; }
+        &.type5 { background: @pink; }
+    }
+    .btn-next {
+        margin-top: 20px;
+        width: 50px;
+        .center-block();
+        cursor: pointer;
+        .transition(all .35s ease-in-out);
+        &:hover {
+            .translate3d(0; 10px; 0);
+        }
+    }
+}
+
 #bigday {
     background: url(../img/thebigday.jpg) no-repeat center;
     background-size: cover;
     height: 700px;
     padding-top: 250px;
-    @media (max-width: @screen-xs-max) {
-        padding-top: 150px;
-    }
+    position: relative;
     > h1 {
         font-size: 100px;
         color: #f0f0f0;
         font-weight: bold;
-        font-family: 'titan', sans-serif;
-        //text-shadow: -5px -5px 0 rgba(0, 0, 0, .5);
+        font-family: titan, sans-serif;
+        position: absolute;
+        left: 10%;
+        bottom: 10px;
+        width: 80%;
     }
-}
-
-#map-canvas {
-    .size(100%, 600px);
     @media (max-width: @screen-xs-max) {
-        width: 100%;
+        padding-top: 150px;
+        > h1 {
+            font-size: 50px;
+            width: 50%;
+        }
     }
-    background: url('../img/map.png') no-repeat bottom right;
-    //background-size: cover;
 }
 
 #where {
+    height: 600px;
+    background: url('../img/map.png') no-repeat bottom right;
+    background-size: cover;
     position: relative;
     .address-wrapper {
         position: absolute;

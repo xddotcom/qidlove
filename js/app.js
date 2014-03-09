@@ -13,38 +13,51 @@ $(function() {
         //map.disableDragging();
         map.disableDoubleClickZoom();
     }
-
-    function dropAddressCircle() {
+    
+    function displayAddressWrapper() {
         var $circle = $('#where>.address-wrapper');
-        var circlePos = $circle.offset();
-        var bottomLine = circlePos.top;
-        var topLine = circlePos.top - $(window).height();
-        var windowScroll = $(window).scrollTop() - 100;
-        if (topLine < windowScroll && windowScroll < bottomLine) {
-            if (!$circle.hasClass('animating')) {
-                $circle.addClass('animating');
-                $circle.animate({
-                    opacity : 1,
-                    top : 50
-                }, 500, function() {
-                    $circle.removeClass('animating');
-                });
-            }
-        } else {
-            if (!$circle.hasClass('animating')) {
-                $circle.addClass('animating');
-                $circle.animate({
-                    opacity : 0,
-                    top : 0
-                }, 500, function() {
-                    $circle.removeClass('animating');
-                });
-            }
+        if (!$circle.hasClass('animating')) {
+            $circle.addClass('animating');
+            $circle.animate({
+                opacity : 1,
+                top : 50
+            }, 500, function() {
+                $circle.removeClass('animating');
+            });
         }
     }
-
+    
+    function hideAddressWrapper() {
+        var $circle = $('#where>.address-wrapper');
+        if (!$circle.hasClass('animating')) {
+            $circle.addClass('animating');
+            $circle.animate({
+                opacity : 0,
+                top : 0
+            }, 0, function() {
+                $circle.removeClass('animating');
+            });
+        }
+    }
+    
+    function dropAddressCircle() {
+        var topLineGone = $('#where').offset().top;
+        var topLineAppear = topLineGone - $(window).height();
+        var bottomLineGone = topLineGone + $('#where').outerHeight();
+        var windowScroll = $(window).scrollTop();
+        if (topLineAppear < windowScroll && windowScroll < topLineGone) {
+            displayAddressWrapper();
+        } else {
+            hideAddressWrapper();
+        }
+    }
+    
     /**********************************/
-
-    $(window).scroll(dropAddressCircle);
+    
+    $('#where>.address-wrapper').pin({
+        containerSelector: "#where",
+        minWidth: 360
+    });
+    //$(window).scroll(dropAddressCircle);
     //showMap();
 });
