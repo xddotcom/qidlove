@@ -63,7 +63,10 @@
         margin-bottom: 50px;
         > h1 {
             font-family: titan, sans-serif;
-            font-size: 50px;
+            font-size: 70px;
+            @media (max-width: @screen-xs-max) {
+                font-size: 36px;
+            }
         }
     }
 }
@@ -89,7 +92,7 @@
         background-size: contain;
         .animation(bulle_flow 1s alternate infinite);
         margin-left: -50px;
-        margin-top: -50px;
+        margin-top: -100px;
         @media (max-width: @screen-xs-max) {
             margin-left: auto;
             margin-top: 0;
@@ -187,15 +190,14 @@
         left: 20%;
         .square(250px);
         border-radius: 50%;
-        border: 20px solid @blue;
-        border-color: rgba(red(@blue), green(@blue), blue(@blue), .3);
+        border: 25px solid #2d3b44;
+        //border-color: rgba(45, 59, 68, .3);
         overflow: hidden;
     }
     address {
         .square(100%);
-        padding: 60px 15px;
-        background: @blue url(../img/dotted.png) repeat;
-        background-color: rgba(red(@blue), green(@blue), blue(@blue), .9);
+        padding: 40px 15px;
+        background: @pink url(../img/dotted.png) repeat;
         color: #fff;
         h4 {
             margin-bottom: 30px;
@@ -215,8 +217,15 @@
     }
     .subtitle {
         margin-top: 40px;
+        &.wide {
+            font-family: wide, sans-serif;
+            font-weight: bold;
+        }
     }
-    dl { .clearfix(); }
+    dl {
+        .clearfix();
+        margin-bottom: 10px;
+    }
     dt {
         float: left;
         width: 90px;
