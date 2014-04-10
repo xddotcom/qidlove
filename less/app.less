@@ -84,7 +84,10 @@
 }
 
 #hero {
-    height: 300px;
+    padding-top: 40%;
+    @media (max-width: @screen-xs-max) {
+        padding-top: 100%;
+    }
     position: relative;
     .carousel {
         position: absolute;
