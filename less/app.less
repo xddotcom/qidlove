@@ -58,6 +58,14 @@
 @violet: #633E54;
 @yellow: #bfa260;
 
+.view-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .pink-text {
     color: lighten(@pink, 0%);
 }
@@ -66,9 +74,15 @@
     font-family: titan, sans-serif;
 }
 
+.img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .view {
     width: 100%;
-    //min-height: 500px;
+    min-height: 500px;
     overflow-x: hidden;
     > header {
         margin-top: 50px;
@@ -84,10 +98,10 @@
 }
 
 #hero {
-    padding-top: 40%;
+    /*padding-top: 40%;
     @media (max-width: @screen-xs-max) {
         padding-top: 100%;
-    }
+    }*/
     position: relative;
     .carousel {
         position: absolute;
@@ -106,6 +120,44 @@
         background-image: url('../img/thestory3.jpg');
         .animation(fadeout 5s alternate infinite);
     }
+}
+
+#thegirl {
+    background: @pink;
+    .img {
+        .square(100px);
+        .center-block();
+        margin-top: 200px;
+        background-image: url('../img/thegirl/1.jpg');
+        .transition(opacity .5s ease-in-out);
+        &.invisible {
+            opacity: 0;
+        }
+    }
+}
+
+#thebigday {
+    background: @blue;
+}
+
+#proposal {
+    background: @pink;
+}
+
+#goodnight {
+    background: @blue;
+}
+
+#goodmorning {
+    background: @pink;
+}
+
+#lavie {
+    background: @blue;
+}
+
+#honeymoon {
+    background: @pink;
 }
 
 #contact {
