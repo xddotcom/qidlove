@@ -30,8 +30,8 @@ $(function() {
                 '-webkit-transform': translate,
                 'transform': translate
             });
-            scroller.disable();
-            setTimeout(function() { scroller.enable(); }, 10000);
+            //scroller.disable();
+            //setTimeout(function() { scroller.enable(); }, 10000);
         },
         onLeave: function() {
             var $timeline = this.$('.timeline');
@@ -44,7 +44,12 @@ $(function() {
     }))({el: $('#thebigday')});
     
     var ProposalView = new (SectionView.extend({
-        
+        onEnter: function() {
+            this.$('.rose-cover').removeClass('invisible');
+        },
+        onLeave: function() {
+            this.$('.rose-cover').addClass('invisible');
+        }
     }))({el: $('#proposal')});
     
     var GoodNightView = new (SectionView.extend({

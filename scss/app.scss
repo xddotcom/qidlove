@@ -208,7 +208,27 @@ body {
 }
 
 #proposal {
-    background: $pink;
+    .rose-cover {
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 50%;
+        @include transition-transform(2s ease-in-out .5s);
+        &.top {
+            @include translate3d(0, -100%, 0);
+            background-image: url("../img/rose-top.jpg");
+            background-position: center bottom;
+        }
+        &.bottom {
+            @include translate3d(0, 100%, 0);
+            background-image: url("../img/rose-bottom.jpg");
+            background-position: center top;
+        }
+        &.invisible {
+            @include transition-transform(0 linear);
+            @include translate3d(0, 0, 0);
+        }
+    }
 }
 
 #goodnight {
