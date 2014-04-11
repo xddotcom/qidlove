@@ -1,3 +1,4 @@
+
 $(function() {
     
     var scroller;
@@ -12,11 +13,24 @@ $(function() {
     }))({el: $('#hero')});
     
     var TheGirlView = new (SectionView.extend({
+        initialize: function() {
+            _.bindAll(this, 'switchGirlPhoto', 'resetGirlPhoto');
+        },
+        switchGirlPhoto: function() {
+            this.$('.img-the-girl').addClass('switch');
+        },
+        resetGirlPhoto: function() {
+            this.$('.img-the-girl').removeClass('switch');
+        },
         onEnter: function() {
-            this.$('.img').removeClass('invisible');
+            this.$('.shy-girl').addClass('invisible');
+            this.$('.love-cross').addClass('crossed');
+            //scroller.on('scrollStart', this.switchGirlPhoto);
+            //scroller.on('scrollEnd', this.resetGirlPhoto);
         },
         onLeave: function() {
-            this.$('.img').addClass('invisible');
+            this.$('.shy-girl').removeClass('invisible');
+            this.$('.love-cross').removeClass('crossed');
         }
     }))({el: $('#thegirl')});
     
@@ -25,7 +39,7 @@ $(function() {
             var $timeline = this.$('.timeline');
             var gap = $timeline.outerHeight() - this.$el.innerHeight();
             var translate = 'translate3d(0, ' + (-gap) + 'px, 0)';
-            $timeline.removeClass('invisible').addClass('animate');
+            $timeline.addClass('animate');
             $timeline.css({
                 '-webkit-transform': translate,
                 'transform': translate
@@ -35,7 +49,7 @@ $(function() {
         },
         onLeave: function() {
             var $timeline = this.$('.timeline');
-            $timeline.addClass('invisible').removeClass('animate');
+            $timeline.removeClass('animate');
             $timeline.css({
                 '-webkit-transform': 'translate3d(0, 0, 0)',
                 'transform': 'translate3d(0, 0, 0)'
@@ -45,10 +59,10 @@ $(function() {
     
     var ProposalView = new (SectionView.extend({
         onEnter: function() {
-            this.$('.rose-cover').removeClass('invisible');
+            this.$('.rose-cover').addClass('animate');
         },
         onLeave: function() {
-            this.$('.rose-cover').addClass('invisible');
+            this.$('.rose-cover').removeClass('animate');
         }
     }))({el: $('#proposal')});
     
@@ -61,7 +75,14 @@ $(function() {
     }))({el: $('#goodmorning')});
     
     var LaVieView = new (SectionView.extend({
-        
+        onEnter: function() {
+            this.$('.cover').addClass('flip');
+            this.$('.bouquet').addClass('slidein');
+        },
+        onLeave: function() {
+            this.$('.cover').removeClass('flip');
+            this.$('.bouquet').removeClass('slidein');
+        }
     }))({el: $('#lavie')});
     
     var HoneymoonView = new (SectionView.extend({
@@ -79,9 +100,14 @@ $(function() {
         momentum: false,
         bounce: false,
         snap: true,
-        snapThreshold: 0.001,
         snapSpeed: 500,
-        mouseWheel: true
+        mouseWheel: true,
+        indicators: [{
+            el: document.getElementById('nightsky'),
+            resize: false,
+            ignoreBoundaries: true,
+            speedRatioY: 0.5
+        }]
     });
     var sectionList = [HeroView, TheGirlView, TheBigDayView, ProposalView,
                        GoodNightView, GoodMorningView, LaVieView, HoneymoonView, ContactView];
@@ -91,4 +117,6 @@ $(function() {
         sectionList[page+1] && sectionList[page+1].onLeave();
         sectionList[page-1] && sectionList[page-1].onLeave();
     });
+    
+    scroller.goToPage(0, 1);
 });

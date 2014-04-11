@@ -31,6 +31,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'greatvibes';
+    src: url('../fonts/GreatVibes.woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 @mixin keyframes_of_flow($vendor) {
     0% { #{vendor}transform: translate3d(0, 0, 0); }
@@ -84,18 +91,15 @@ $yellow: #bfa260;
     background-position: center;
 }
 
-body {
-    background: url(../img/body-bg-gray.jpg) repeat;
-}
-
 .view {
+    background: url(../img/body-bg-gray.jpg) repeat;
     width: 100%;
-    min-height: 500px;
+    height: 0;
     overflow: hidden;
     position: relative;
     > header {
-        padding-top: 50px;
-        padding-bottom: 50px;
+        padding-top: 20px;
+        padding-bottom: 20px;
         > h1 {
             font-family: titan, sans-serif;
             font-size: 70px;
@@ -118,27 +122,73 @@ body {
         background-repeat: no-repeat;
     }
     .carousel-in {
-        //background-image: url('../img/thestory4.jpg');
-        background-color: $yellow;
+        background-image: url('../img/lavande1.jpg');
         @include animation(fadein 5s alternate infinite);
     }
     .carousel-out {
-        //background-image: url('../img/thestory3.jpg');
-        background-color: $violet;
+        background-image: url('../img/lavande2.jpg');
         @include animation(fadeout 5s alternate infinite);
     }
 }
 
 #thegirl {
     background: $pink;
+    .shy-girl {
+        position: absolute;
+        z-index: 1;
+        @include square(100%);
+        background: url("../img/thegirl/2.jpg") no-repeat center;
+        background-size: cover;
+        @include transition(all 1s ease-in-out);
+    }
     .img {
-        @include square(100px);
+        width: 50%;
+        padding-top: 50%;
         @include center-block();
-        margin-top: 200px;
-        background-image: url('../img/thegirl/1.jpg');
-        @include transition(opacity .5s ease-in-out);
-        &.invisible {
-            opacity: 0;
+        border-radius: 50%;
+        box-shadow: 0 0 5px 0 #fff;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .img-the-girl {
+        width: 50%;
+        background-image: url("../img/thegirl/4.jpg");
+        //&.switch { background-image: url("../img/thegirl/2.jpg"); }
+    }
+    .img-the-boy {
+        width: 50%;
+        background-image: url("../img/thegirl/5.jpg");
+    }
+    .heart {
+        opacity: 0;
+        width: 10%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 45%;
+        background: url("../img/heart-cross-pink.png") no-repeat center;
+        background-size: contain;
+    }
+    .love-cross {
+        width: 100%;
+        position: relative;
+        &.crossed {
+            .img {
+                @include transition-transform(1s ease-in-out);
+            }
+            .img-the-girl {
+                @include translate3d(-10%, 0, 0);
+            }
+            .img-the-boy {
+                @include translate3d(10%, 0, 0);
+            }
+            .heart {
+                opacity: 1;
+                @include transition(.5s ease-in-out .5s);
+            }
         }
     }
 }
@@ -157,19 +207,18 @@ body {
         position: relative;
         padding: 10px;
         &.animate {
-            @include transition-transform(10s linear 1s);
+            @include transition-transform(10s linear);
+            .post { @include translate3d(0, 0, 0); }
         }
     }
     .post {
         width: 100%;
         margin-top: 20px;
         margin-bottom: 10px;
+        //@include translate3d(20px, 0, 0);
         @include transition(all .35s ease-in-out);
         &.odd { float: left; }
         &.even { float: right; }
-    }
-    .timeline.invisible .post {
-        @include translate3d(20px, 0, 0);
     }
     .post-box {
         min-height: 100px;
@@ -213,34 +262,112 @@ body {
         background-size: cover;
         width: 100%;
         height: 50%;
-        @include transition-transform(2s ease-in-out .5s);
         &.top {
-            @include translate3d(0, -100%, 0);
             background-image: url("../img/rose-top.jpg");
             background-position: center bottom;
         }
         &.bottom {
-            @include translate3d(0, 100%, 0);
             background-image: url("../img/rose-bottom.jpg");
             background-position: center top;
         }
-        &.invisible {
-            @include transition-transform(0 linear);
-            @include translate3d(0, 0, 0);
+        &.animate {
+            @include transition-transform(2s ease-in-out .2s);
+            &.top {
+                @include translate3d(0, -100%, 0);
+            }
+            &.bottom {
+                @include translate3d(0, 100%, 0);
+            }
         }
     }
 }
 
 #goodnight {
     background: $blue;
+    #nightsky {
+        width: 100%;
+        height: 200%;
+    }
+    .nightsky-image {
+        width: 100%;
+        height: 1800%;
+        background: url("../img/nightsky-infinite.jpg") repeat top;
+        background-size: contain;
+    }
 }
 
 #goodmorning {
     background: $pink;
+    > header {
+        background: #fafafa;
+        position: relative;
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -20px;
+            width: 100%;
+            height: 20px;
+            background: url("../img/rip.png") no-repeat center top;
+            background-size: cover;
+        }
+    }
 }
 
 #lavie {
-    background: $blue;
+    .cover {
+        width: 100%;
+        height: 50%;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        @include perspective(1000px);
+        @include scale(0);
+    }
+    .cover-bottom {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        background: url("../img/cover-page-light.jpg") no-repeat;
+        background-size: 100% 100%;
+        //box-shadow: 0 -2px 6px 0 #000;
+    }
+    .cover-top {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        background: #fff url("../img/cover-page-dark.jpg") no-repeat;
+        background-size: 100% 100%;
+        //box-shadow: 0 0 2px 0 #000;
+        @include rotateX(-180deg);
+        @include transform-origin(center bottom);
+    }
+    .cover.flip {
+        @include scale(1);
+        @include transition-transform(1s linear .2s);
+        .cover-top {
+            @include transition-transform(1s linear .3s);
+            @include rotateX(0deg);
+        }
+    }
+    .bouquet {
+        position: absolute;
+        z-index: 1;
+        height: 300px;
+        width: 150px;
+        left: 0;
+        top: 0;
+        @include translate3d(-100%, 0, 0);
+        &.slidein {
+            @include transition-transform(.5s linear 1.2s);
+            @include translate3d(0, 0, 0);
+        }
+    }
+    .title {
+        font-size: 50px;
+        font-family: greatvibes;
+        margin-left: 150px;
+        color: #f0f0f0;
+    }
 }
 
 #honeymoon {
