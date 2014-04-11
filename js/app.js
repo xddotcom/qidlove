@@ -1,5 +1,7 @@
 $(function() {
     
+    var scroller;
+    
     var SectionView = Backbone.View.extend({
         onEnter: function() {},
         onLeave: function() {}
@@ -19,7 +21,26 @@ $(function() {
     }))({el: $('#thegirl')});
     
     var TheBigDayView = new (SectionView.extend({
-        
+        onEnter: function() {
+            var $timeline = this.$('.timeline');
+            var gap = $timeline.outerHeight() - this.$el.innerHeight();
+            var translate = 'translate3d(0, ' + (-gap) + 'px, 0)';
+            $timeline.removeClass('invisible').addClass('animate');
+            $timeline.css({
+                '-webkit-transform': translate,
+                'transform': translate
+            });
+            scroller.disable();
+            setTimeout(function() { scroller.enable(); }, 10000);
+        },
+        onLeave: function() {
+            var $timeline = this.$('.timeline');
+            $timeline.addClass('invisible').removeClass('animate');
+            $timeline.css({
+                '-webkit-transform': 'translate3d(0, 0, 0)',
+                'transform': 'translate3d(0, 0, 0)'
+            });
+        }
     }))({el: $('#thebigday')});
     
     var ProposalView = new (SectionView.extend({

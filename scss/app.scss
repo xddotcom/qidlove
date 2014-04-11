@@ -58,6 +58,10 @@ $blue: #506873;
 $violet: #633E54;
 $yellow: #bfa260;
 
+.invisible {
+    opacity: 0;
+}
+
 .view-wrapper {
     position: fixed;
     top: 0;
@@ -80,13 +84,18 @@ $yellow: #bfa260;
     background-position: center;
 }
 
+body {
+    background: url(../img/body-bg-gray.jpg) repeat;
+}
+
 .view {
     width: 100%;
     min-height: 500px;
-    overflow-x: hidden;
+    overflow: hidden;
+    position: relative;
     > header {
-        margin-top: 50px;
-        margin-bottom: 50px;
+        padding-top: 50px;
+        padding-bottom: 50px;
         > h1 {
             font-family: titan, sans-serif;
             font-size: 70px;
@@ -98,10 +107,6 @@ $yellow: #bfa260;
 }
 
 #hero {
-    /*padding-top: 40%;
-    @media (max-width: $screen-xs-max) {
-        padding-top: 100%;
-    }*/
     position: relative;
     .carousel {
         position: absolute;
@@ -139,7 +144,67 @@ $yellow: #bfa260;
 }
 
 #thebigday {
-    background: $blue;
+    .line {
+        position: absolute;
+        top: 0;
+        left: 40px;
+        height: 100%;
+        width: 2px;
+        background: rgba(150, 150, 150, .3);
+    }
+    .timeline {
+        @include clearfix();
+        position: relative;
+        padding: 10px;
+        &.animate {
+            @include transition-transform(10s linear 1s);
+        }
+    }
+    .post {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        @include transition(all .35s ease-in-out);
+        &.odd { float: left; }
+        &.even { float: right; }
+    }
+    .timeline.invisible .post {
+        @include translate3d(20px, 0, 0);
+    }
+    .post-box {
+        min-height: 100px;
+        position: relative;
+        background-clip: padding-box;
+        background-color: #fff;
+        border-radius: 3px;
+        margin-left: 50px;
+        padding: 20px;
+        &::before {
+            display: block;
+            content: "";
+            position: absolute;
+            background-color: #fff;
+            border-style: solid none none solid;
+            border-width: 0 0 1px;
+            height: 15px;
+            width: 15px;
+            left: -8px;
+            @include rotate(-315deg);
+        }
+        &::after {
+            display: block;
+            content: "";
+            position: absolute;
+            background-clip: padding-box;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            border: 5px solid $pink;
+            height: 8px;
+            width: 8px;
+            top: 22px;
+            left: -24px;
+        }
+    }
 }
 
 #proposal {
@@ -159,7 +224,21 @@ $yellow: #bfa260;
 }
 
 #honeymoon {
-    background: $pink;
+    > header {
+        height: 200px;
+        background: url(../img/sunset.jpg) no-repeat left center;
+        background-size: cover;
+        position: relative;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, .7);
+        }
+    }
 }
 
 #contact {
