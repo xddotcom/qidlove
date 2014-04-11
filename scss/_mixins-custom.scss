@@ -1,0 +1,20 @@
+// CSS3 webkit flexbox
+@mixin flexible($flex: 1, $orient: horizontal) {
+    @if ($orient == horizontal) {
+        width: 1px;
+    } @else {
+        height: 1px;
+    }
+    -webkit-box-flex: $flex;
+}
+
+@mixin flex-box($orient: vertical, $direction: normal, $pack: center, $align: center) {
+    display: -webkit-box;
+    -webkit-box-orient: $orient;    
+    -webkit-box-direction: $direction;
+    -webkit-box-pack: $pack;
+    -webkit-box-align: $align;
+    > .flexible {
+        @include flexible(1, $orient);
+    }
+}
