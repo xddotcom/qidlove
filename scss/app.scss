@@ -40,8 +40,8 @@
 
 
 @mixin keyframes_of_flow($vendor) {
-    0% { #{vendor}transform: translate3d(0, 0, 0); }
-    100% { #{vendor}transform: translate3d(0, 10px, 0); }
+    0% { #{$vendor}transform: translate3d(0, 0, 0); }
+    100% { #{$vendor}transform: translate3d(0, 10px, 0); }
 }
 
 @-webkit-keyframes bulle_flow { @include keyframes_of_flow('-webkit-'); }
