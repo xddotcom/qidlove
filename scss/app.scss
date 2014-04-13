@@ -40,8 +40,8 @@
 
 
 @mixin keyframes_of_flow($vendor) {
-    0% { #{vendor}transform: translate3d(0, 0, 0); }
-    100% { #{vendor}transform: translate3d(0, 10px, 0); }
+    0% { #{$vendor}transform: translate3d(0, 0, 0); }
+    100% { #{$vendor}transform: translate3d(0, 10px, 0); }
 }
 
 @-webkit-keyframes bulle_flow { @include keyframes_of_flow('-webkit-'); }
@@ -99,8 +99,9 @@ $yellow: #bfa260;
     position: relative;
     > header {
         padding-top: 20px;
-        padding-bottom: 20px;
+        padding-bottom: 30px;
         > h1 {
+            margin: 0;
             font-family: titan, sans-serif;
             font-size: 70px;
             @media (max-width: $screen-xs-max) {
@@ -131,8 +132,39 @@ $yellow: #bfa260;
     }
 }
 
+#wedding {
+    background: $pink url(../img/dotted.png) repeat;
+    .announce-text {
+        padding: 20px;
+        //border-top: 1px solid desaturate($pink, 50%);
+        //border-bottom: 1px solid desaturate($pink, 50%);
+        color: #FFF;
+        line-height: 1.5;
+    }
+    .bulle {
+        @include square(250px);
+        padding: 60px 30px;
+        margin: 0 auto;
+        color: #FFF;
+        position: relative;
+        background: url(../img/bulle_bleue.png) no-repeat center;
+        background-size: contain;
+        @include animation(bulle_flow 1s alternate infinite);
+        margin-left: -50px;
+        margin-top: -100px;
+        @media (max-width: $screen-xs-max) {
+            margin-left: auto;
+            margin-top: 0;
+        }
+        h3 {
+            margin-top: 9px;
+        }
+    }
+}
+
 #thegirl {
-    background: $pink;
+    background: $blue;
+    color: #fff;
     .shy-girl {
         position: absolute;
         z-index: 1;
@@ -146,9 +178,7 @@ $yellow: #bfa260;
         padding-top: 50%;
         @include center-block();
         border-radius: 50%;
-        box-shadow: 0 0 5px 0 #fff;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        //box-shadow: 0 0 5px 0 $blue;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -156,7 +186,6 @@ $yellow: #bfa260;
     .img-the-girl {
         width: 50%;
         background-image: url("../img/thegirl/4.jpg");
-        //&.switch { background-image: url("../img/thegirl/2.jpg"); }
     }
     .img-the-boy {
         width: 50%;
@@ -191,10 +220,17 @@ $yellow: #bfa260;
             }
         }
     }
+    .aboutus {
+        width: 50%;
+        font-size: $font-size-small;
+        padding: 20px;
+        text-align: center;
+    }
 }
 
 #thebigday {
     .line {
+        z-index: 0;
         position: absolute;
         top: 0;
         left: 40px;
@@ -207,27 +243,24 @@ $yellow: #bfa260;
         position: relative;
         padding: 10px;
         &.animate {
-            @include transition-transform(10s linear);
+            @include transition-transform(10s linear 1s);
             .post { @include translate3d(0, 0, 0); }
         }
     }
     .post {
+        z-index: 1;
+        position: relative;
         width: 100%;
         margin-top: 20px;
         margin-bottom: 10px;
-        //@include translate3d(20px, 0, 0);
-        @include transition(all .35s ease-in-out);
-        &.odd { float: left; }
-        &.even { float: right; }
     }
     .post-box {
-        min-height: 100px;
         position: relative;
         background-clip: padding-box;
         background-color: #fff;
         border-radius: 3px;
         margin-left: 50px;
-        padding: 20px;
+        padding: 10px;
         &::before {
             display: block;
             content: "";
@@ -250,123 +283,21 @@ $yellow: #bfa260;
             border: 5px solid $pink;
             height: 8px;
             width: 8px;
-            top: 22px;
+            top: 13px;
             left: -24px;
         }
     }
-}
-
-#proposal {
-    .rose-cover {
-        background-repeat: no-repeat;
-        background-size: cover;
+    .post-time {
+        display: inline-block;
+        margin: 0 10px;
+        padding: 10px 15px;
+        background: $pink;
+        color: #fff;
+        border-radius: 10px;
+    }
+    .post-image {
         width: 100%;
-        height: 50%;
-        &.top {
-            background-image: url("../img/rose-top.jpg");
-            background-position: center bottom;
-        }
-        &.bottom {
-            background-image: url("../img/rose-bottom.jpg");
-            background-position: center top;
-        }
-        &.animate {
-            @include transition-transform(2s ease-in-out .2s);
-            &.top {
-                @include translate3d(0, -100%, 0);
-            }
-            &.bottom {
-                @include translate3d(0, 100%, 0);
-            }
-        }
-    }
-}
-
-#goodnight {
-    background: $blue;
-    #nightsky {
-        width: 100%;
-        height: 200%;
-    }
-    .nightsky-image {
-        width: 100%;
-        height: 1800%;
-        background: url("../img/nightsky-infinite.jpg") repeat top;
-        background-size: contain;
-    }
-}
-
-#goodmorning {
-    background: $pink;
-    > header {
-        background: #fafafa;
-        position: relative;
-        &::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -20px;
-            width: 100%;
-            height: 20px;
-            background: url("../img/rip.png") no-repeat center top;
-            background-size: cover;
-        }
-    }
-}
-
-#lavie {
-    .cover {
-        width: 100%;
-        height: 50%;
-        -webkit-transform-style: preserve-3d;
-        transform-style: preserve-3d;
-        @include perspective(1000px);
-        @include scale(0);
-    }
-    .cover-bottom {
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
-        background: url("../img/cover-page-light.jpg") no-repeat;
-        background-size: 100% 100%;
-        //box-shadow: 0 -2px 6px 0 #000;
-    }
-    .cover-top {
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
-        background: #fff url("../img/cover-page-dark.jpg") no-repeat;
-        background-size: 100% 100%;
-        //box-shadow: 0 0 2px 0 #000;
-        @include rotateX(-180deg);
-        @include transform-origin(center bottom);
-    }
-    .cover.flip {
-        @include scale(1);
-        @include transition-transform(1s linear .2s);
-        .cover-top {
-            @include transition-transform(1s linear .3s);
-            @include rotateX(0deg);
-        }
-    }
-    .bouquet {
-        position: absolute;
-        z-index: 1;
-        height: 300px;
-        width: 150px;
-        left: 0;
-        top: 0;
-        @include translate3d(-100%, 0, 0);
-        &.slidein {
-            @include transition-transform(.5s linear 1.2s);
-            @include translate3d(0, 0, 0);
-        }
-    }
-    .title {
-        font-size: 50px;
-        font-family: greatvibes;
-        margin-left: 150px;
-        color: #f0f0f0;
+        border-radius: 5px;
     }
 }
 
