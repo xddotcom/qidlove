@@ -90,6 +90,10 @@ $(function() {
     /*************************************************************/
     
     function startApp() {
+        $('img').each(function() {
+            var src = $(this).data('src');
+            src && $(this).attr('src', src);
+        });
         $('.view').css('height', $('.view-wrapper').innerHeight());
         scroller = new IScroll('.view-wrapper', {
             momentum: false,
