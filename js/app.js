@@ -70,21 +70,54 @@ $(function() {
     }))({el: $('#contact')});
     
     /*************************************************************/
-    
     $('.view').css('height', $('.view-wrapper').innerHeight());
-    scroller = new IScroll('.view-wrapper', {
+
+    var sectionList = [WeddingView, TheGirlView, TheBigDayView, HoneymoonView, ContactView];
+    //var sectionList = [HeroView, WeddingView, TheGirlView, TheBigDayView, HoneymoonView, ContactView];
+    
+    var initScroll=function(){
+        return new IScroll('.view-wrapper', {
+            momentum: false,
+            bounce: false,
+            snap: true,
+            snapSpeed: 500,
+            mouseWheel: true
+        });
+    }
+
+    var phoneScroll = new IScroll('.phoneScrollBar', {
         momentum: false,
+        scrollX: true,
+        scrollY: false,
         bounce: false,
-        snap: true,
+        snap: false,
         snapSpeed: 500,
         mouseWheel: true
     });
-    var sectionList = [HeroView, WeddingView, TheGirlView, TheBigDayView, HoneymoonView, ContactView];
-    scroller.on('scrollEnd', function() {
-        var page = scroller.currentPage.pageY;
-        sectionList[page] && sectionList[page].onEnter();
-        sectionList[page+1] && sectionList[page+1].onLeave();
-        sectionList[page-1] && sectionList[page-1].onLeave();
+    phoneScroll.scrollToElement('.call-button',0);
+
+    var removeHero = function(){
+        $('#hero').remove();
+        setTimeout(function(){
+            scroller=initScroll();
+            scroller.on('scrollEnd', function() {
+                var page = scroller.currentPage.pageY;
+                sectionList[page] && sectionList[page].onEnter();
+                sectionList[page+1] && sectionList[page+1].onLeave();
+                sectionList[page-1] && sectionList[page-1].onLeave();
+            });
+        },0);
+    };
+
+    phoneScroll.on('scrollEnd', function() {
+        if(this.x>=-20){
+            phoneScroll.scrollToElement('.call-button-dummy', 1000);
+            $('.view-wrapper-inner').one('webkitAnimationEnd',removeHero);
+            $('.view-wrapper-inner').addClass('init');          
+        }
+        else{
+            phoneScroll.scrollToElement('.call-button', 1000);
+        }
     });
-    
+    //$('.phoneScrollWrapper').on('webkitTransitionEnd', function() {   
 });

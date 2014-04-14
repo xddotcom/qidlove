@@ -65,6 +65,18 @@ $blue: #506873;
 $violet: #633E54;
 $yellow: #bfa260;
 
+@-webkit-keyframes init{
+    0% { -webkit-transform: translate3d(0, 0, 0); }
+    100% { -webkit-transform: translate3d(0, -510px, 0); }
+}
+
+.view-wrapper-inner.init{
+    -webkit-animation-name: init;
+    -webkit-animation-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);
+    //-webkit-animation-fill-mode:forwards;
+    -webkit-animation-duration: 500ms;
+}
+
 .invisible {
     opacity: 0;
 }
@@ -113,6 +125,39 @@ $yellow: #bfa260;
 
 #hero {
     position: relative;
+    background-image: url('../img/phone.png');
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:bottom center;
+    .phoneScrollBar{
+        height:76px;
+        width:261px;
+        position:absolute;
+        bottom:58px;
+        left:29px;
+        @include clearfix;
+    }
+    .phoneScrollWrapper{
+        position:relative;
+        height:76px;
+        width:445px;
+    }
+    .call-button-dummy{
+        width:185px;
+        height:73px;
+        float:left;
+        margin-top:2px;
+    }
+    .call-button{
+        width:260px;
+        height:73px;
+        background-image: url('../img/call.png');
+        background-position:2px center;
+        background-repeat:no-repeat;
+        background-size:contain;
+        float:left;
+        margin-top:2px;
+    }
     .carousel {
         position: absolute;
         @include square(100%);
