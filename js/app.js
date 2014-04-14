@@ -13,20 +13,9 @@ $(function() {
     }))({el: $('#hero')});
     
     var TheGirlView = new (SectionView.extend({
-        initialize: function() {
-            _.bindAll(this, 'switchGirlPhoto', 'resetGirlPhoto');
-        },
-        switchGirlPhoto: function() {
-            this.$('.img-the-girl').addClass('switch');
-        },
-        resetGirlPhoto: function() {
-            this.$('.img-the-girl').removeClass('switch');
-        },
         onEnter: function() {
             this.$('.shy-girl').addClass('invisible');
             this.$('.love-cross').addClass('crossed');
-            //scroller.on('scrollStart', this.switchGirlPhoto);
-            //scroller.on('scrollEnd', this.resetGirlPhoto);
         },
         onLeave: function() {
             this.$('.shy-girl').removeClass('invisible');
@@ -83,10 +72,6 @@ $(function() {
         }
     }))({el: $('#lavie')});
     
-    var ContactView = new (SectionView.extend({
-        
-    }))({el: $('#contact')});
-    
     /*************************************************************/
     
     function startApp() {
@@ -100,11 +85,11 @@ $(function() {
             bounce: false,
             snap: true,
             snapSpeed: 500,
+            snapThreshold: 0.1,
             mouseWheel: true,
             eventPassthrough: 'horizontal'
         });
-        var sectionList = [HeroView, TheGirlView, TheBigDayView, ProposalView,
-                           GoodMorningView, LaVieView, ContactView];
+        var sectionList = [HeroView, TheGirlView, TheBigDayView, ProposalView, GoodMorningView, LaVieView];
         scroller.on('scrollEnd', function() {
             var page = scroller.currentPage.pageY;
             sectionList[page] && sectionList[page].onEnter();
@@ -121,7 +106,7 @@ $(function() {
         "img/thecouple1.jpg", "img/thecouple2.jpg", "img/thecouple3.jpg", "img/thecouple4.jpg", "img/thecouple.png",
         "img/story-cover.jpg", "img/story-cover-text.jpg",
         "img/rose-bottom.jpg", "img/rose-top.jpg",
-        "img/ring.png", "img/nightsky.jpg",
+        "img/ring.png", "img/ring1.jpg", "img/ring2.jpg", "img/nightsky.jpg",
         "img/food1.jpg", "img/food2.jpg", "img/food3.jpg", "img/food4.jpg",
         "img/cover-page-dark.jpg", "img/cover-page-light.jpg",
         "img/bouquet.png", "img/amalfi.jpg"
@@ -129,8 +114,7 @@ $(function() {
     var l = imageList.length, i=0;
     function imageLoaded() {
         l--;
-        console.log(l);
-        $('.loading-text>span').text(l);
+        $('.loading-text>span').text(parseInt((1-l/imageList.length)*100) + '%');
         if (l == 0) {
             $('.loading-text').addClass('hidden');
             $('.view-wrapper').removeClass('hidden');
@@ -142,4 +126,20 @@ $(function() {
         image.onload = imageLoaded;
         image.src = imageList[i];
     }
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        var message = {
+            "img_url" : 'http://love.oatpie.com/dolphin/img/story-cover.jpg',
+            "img_width" : "640",
+            "img_height" : "640",
+            "link" : 'http://love.oatpie.com/dolphin/',
+            "desc" : "",
+            "title" : "天使与海豚的爱情故事"
+        };
+        WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+            WeixinJSBridge.invoke('sendAppMessage', message);
+        });
+        WeixinJSBridge.on('menu:share:timeline', function(argv) {
+            WeixinJSBridge.invoke('shareTimeline', message);
+        });
+    }, false);
 });
