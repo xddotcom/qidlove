@@ -60,15 +60,13 @@ $(function() {
     var ProposalView = new (SectionView.extend({
         onEnter: function() {
             this.$('.rose-cover').addClass('animate');
+            this.$('.the-ring').addClass('animate');
         },
         onLeave: function() {
             this.$('.rose-cover').removeClass('animate');
+            this.$('.the-ring').removeClass('animate');
         }
     }))({el: $('#proposal')});
-    
-    var GoodNightView = new (SectionView.extend({
-        
-    }))({el: $('#goodnight')});
     
     var GoodMorningView = new (SectionView.extend({
         
@@ -85,10 +83,6 @@ $(function() {
         }
     }))({el: $('#lavie')});
     
-    var HoneymoonView = new (SectionView.extend({
-        
-    }))({el: $('#honeymoon')});
-    
     var ContactView = new (SectionView.extend({
         
     }))({el: $('#contact')});
@@ -102,15 +96,10 @@ $(function() {
         snap: true,
         snapSpeed: 500,
         mouseWheel: true,
-        indicators: [{
-            el: document.getElementById('nightsky'),
-            resize: false,
-            ignoreBoundaries: true,
-            speedRatioY: 0.5
-        }]
+        eventPassthrough: 'horizontal'
     });
     var sectionList = [HeroView, TheGirlView, TheBigDayView, ProposalView,
-                       GoodNightView, GoodMorningView, LaVieView, HoneymoonView, ContactView];
+                       GoodMorningView, LaVieView, ContactView];
     scroller.on('scrollEnd', function() {
         var page = scroller.currentPage.pageY;
         sectionList[page] && sectionList[page].onEnter();
@@ -118,5 +107,5 @@ $(function() {
         sectionList[page-1] && sectionList[page-1].onLeave();
     });
     
-    scroller.goToPage(0, 1);
+    scroller.goToPage(0, 3);
 });
