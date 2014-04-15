@@ -80,7 +80,13 @@ $(function() {
                 mouseWheel : true
             });
         };
-        
+
+        if(/android/i.test(navigator.userAgent)){
+            $('.phoneScrollBar').css('bottom', $('.phoneScrollBar').css('margin-bottom'));
+            $('.phoneScrollBar').css('margin-bottom', 0);
+        }
+
+
         var phoneScroll = new IScroll('.phoneScrollBar', {
             momentum : false,
             scrollX : true,
@@ -144,6 +150,7 @@ $(function() {
         image.onload = imageLoaded;
         image.src = imageList[i];
     }
+
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
         var message = {
             "img_url" : 'http://love.oatpie.com/libra/img/story-cover.jpg',
@@ -153,6 +160,7 @@ $(function() {
             "desc" : "这是@Libra_雪er和@王禹清的婚礼邀请，我们喜欢你来见证我们的故事",
             "title" : "有关爱情的故事"
         };
+//        WeixinJSBridge.call('hideToolbar');
         WeixinJSBridge.on('menu:share:appmessage', function(argv) {
             WeixinJSBridge.invoke('sendAppMessage', message);
         });
