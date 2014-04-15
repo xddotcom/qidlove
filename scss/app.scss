@@ -114,7 +114,7 @@ $yellow: #bfa260;
         top: 0;
         left: 0;
         background-size: cover;
-        background-position: center;
+        background-position: center bottom;
         background-repeat: no-repeat;
     }
     .carousel-in {
@@ -139,7 +139,8 @@ $yellow: #bfa260;
         background: url("../img/thegirl5.jpg") no-repeat center;
         background-size: cover;
         @include transition(all 1s ease-in-out);
-        color: #fff;
+        padding-top: 50px;
+        color: $pink;
     }
     .img {
         width: 50%;
@@ -344,6 +345,9 @@ $yellow: #bfa260;
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, .7);
         overflow: scroll;
         -webkit-overflow-scrolling: touch;
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
     .gallery-inner {
         height: 100%;
