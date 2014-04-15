@@ -100,7 +100,7 @@ $(function() {
     }
     
     var imageList = [
-        "img/angel.jpg", "img/dolphin.jpg",
+        "img/angel.jpg", "img/dolphin.jpg", "img/avatar.jpg",
         "img/thegirl1.jpg", "img/thegirl2.jpg", "img/thegirl3.jpg", "img/thegirl4.jpg", "img/thegirl5.jpg",
         "img/thestory1.jpg", "img/thestory2.jpg", "img/thestory3.jpg",
         "img/heart-cross-pink.png",
@@ -129,12 +129,12 @@ $(function() {
     }
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
         var message = {
-            "img_url" : 'http://love.oatpie.com/dolphin/img/story-cover.jpg',
+            "img_url" : 'http://love.oatpie.com/dolphin/img/avatar.jpg',
             "img_width" : "640",
             "img_height" : "640",
             "link" : 'http://love.oatpie.com/dolphin/',
-            "desc" : "",
-            "title" : "天使与海豚的爱情故事"
+            "desc" : "致我们永不褪色的爱情",
+            "title" : "我钟爱的女子"
         };
         WeixinJSBridge.on('menu:share:appmessage', function(argv) {
             WeixinJSBridge.invoke('sendAppMessage', message);
