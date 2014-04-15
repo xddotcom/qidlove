@@ -65,17 +65,6 @@ $blue: #506873;
 $violet: #633E54;
 $yellow: #bfa260;
 
-@-webkit-keyframes init{
-    0% { -webkit-transform: translate3d(0, 0, 0); }
-    100% { -webkit-transform: translate3d(0, -510px, 0); }
-}
-
-.view-wrapper-inner.init{
-    -webkit-animation-name: init;
-    -webkit-animation-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);
-    //-webkit-animation-fill-mode:forwards;
-    -webkit-animation-duration: 500ms;
-}
 
 .invisible {
     opacity: 0;
@@ -129,34 +118,36 @@ $yellow: #bfa260;
     background-size:cover;
     background-repeat:no-repeat;
     background-position:bottom center;
-    .phoneScrollBar{
-        height:76px;
-        width:261px;
-        position:absolute;
-        bottom:58px;
-        left:29px;
+    .phoneScrollBar {
+        position: absolute;
+        padding-top: 23.75%;
+        width: 81.5625%;
+        left: 50%;
+        bottom: 0;
+        margin-bottom: 18.6%;
+        margin-left: -41.3%;
+    }
+    $wrapperWidth: 1.71;
+    .phoneScrollWrapper {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: percentage($wrapperWidth);
         @include clearfix;
     }
-    .phoneScrollWrapper{
-        position:relative;
-        height:76px;
-        width:445px;
-    }
-    .call-button-dummy{
-        width:185px;
-        height:73px;
-        float:left;
-        margin-top:2px;
+    .call-button-dummy {
+        width: percentage(1 - (1/$wrapperWidth));
+        height: 100%;
+        float: left;
     }
     .call-button{
-        width:260px;
-        height:73px;
+        width: percentage(1/$wrapperWidth);
+        height: 100%;
         background-image: url('../img/call.png');
         background-position:2px center;
         background-repeat:no-repeat;
         background-size:contain;
         float:left;
-        margin-top:2px;
     }
     .carousel {
         position: absolute;
@@ -214,7 +205,7 @@ $yellow: #bfa260;
         position: absolute;
         z-index: 1;
         @include square(100%);
-        background: url("../img/thegirl/2.jpg") no-repeat center;
+        background: url("../img/thecouple.jpg") no-repeat center;
         background-size: cover;
         @include transition(all 1s ease-in-out);
     }
@@ -230,11 +221,11 @@ $yellow: #bfa260;
     }
     .img-the-girl {
         width: 50%;
-        background-image: url("../img/thegirl/4.jpg");
+        background-image: url("../img/thegirl.jpg");
     }
     .img-the-boy {
         width: 50%;
-        background-image: url("../img/thegirl/5.jpg");
+        background-image: url("../img/theboy.jpg");
     }
     .heart {
         opacity: 0;
@@ -346,28 +337,44 @@ $yellow: #bfa260;
     }
 }
 
-#honeymoon {
-    > header {
-        height: 200px;
-        background: url(../img/sunset.jpg) no-repeat left center;
+#proposal {
+    background: url("../img/ring2.jpg") no-repeat center;
+    background-size: cover;
+    text-align: center;
+    .rose-cover {
+        position: absolute;
+        z-index: 1;
+        background-repeat: no-repeat;
         background-size: cover;
-        position: relative;
-        &::after {
-            content: "";
-            position: absolute;
+        width: 100%;
+        height: 50%;
+        &.top {
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, .7);
+            background-image: url("../img/rose-top.jpg");
+            background-position: center bottom;
+        }
+        &.bottom {
+            top: 50%;
+            background-image: url("../img/rose-bottom.jpg");
+            background-position: center top;
+        }
+        &.animate {
+            @include transition-transform(2s ease-in-out .2s);
+            &.top {
+                @include translate3d(0, -100%, 0);
+            }
+            &.bottom {
+                @include translate3d(0, 100%, 0);
+            }
         }
     }
-}
-
-#contact {
     .copyright {
+        position: absolute;
+        bottom: 0;
         font-family: wide, sans-serif;
         font-size: 20px;
+        width: 100%;
+        text-align: center;
     }
     .thanks {
         font-size: .9em;
