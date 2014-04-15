@@ -169,12 +169,12 @@ $yellow: #bfa260;
 }
 
 #wedding {
-    background: $pink url(../img/dotted.png) repeat;
+    background: url(../img/dotted.png) repeat, url(../img/caricatures.png) no-repeat bottom center;
+    background-size: auto, contain;
+    background-color: $pink;
     .announce-text {
-        padding: 20px;
-        //border-top: 1px solid desaturate($pink, 50%);
-        //border-bottom: 1px solid desaturate($pink, 50%);
-        color: #FFF;
+        padding: 0 20px;
+        color: #fff;
         line-height: 1.5;
     }
     .bulle {
@@ -186,24 +186,20 @@ $yellow: #bfa260;
         background: url(../img/bulle_bleue.png) no-repeat center;
         background-size: contain;
         @include animation(bulle_flow 1s alternate infinite);
-        margin-left: -50px;
-        margin-top: -100px;
-        @media (max-width: $screen-xs-max) {
-            margin-left: auto;
-            margin-top: 0;
-        }
-        h3 {
-            margin-top: 9px;
-        }
+        h3 { margin-top: 9px; }
     }
 }
 
 #thegirl {
     background: $blue;
     color: #fff;
+    font-size: 0.9em;
+    > header {
+        padding: 15px;
+    }
     .shy-girl {
         position: absolute;
-        z-index: 1;
+        z-index: 2;
         @include square(100%);
         background: url("../img/thecouple.jpg") no-repeat center;
         background-size: cover;
@@ -239,6 +235,7 @@ $yellow: #bfa260;
     }
     .love-cross {
         width: 100%;
+        @include center-block();
         position: relative;
         &.crossed {
             .img {
@@ -258,9 +255,21 @@ $yellow: #bfa260;
     }
     .aboutus {
         width: 50%;
-        font-size: $font-size-small;
-        padding: 20px;
+        padding: 10px 20px 5px;
         text-align: center;
+    }
+    .illus {
+        @include square(100px);
+        padding: 10px;
+    }
+    .illus1 {
+        @include rotate(-15deg);
+    }
+    .illus2 {
+        @include rotate(30deg);
+    }
+    .illus3 {
+        @include rotate(-25deg);
     }
 }
 
@@ -375,14 +384,13 @@ $yellow: #bfa260;
         font-size: 20px;
         width: 100%;
         text-align: center;
+        border-top: 1px solid lighten($pink, 10%);
+        padding-top: 10px;
     }
     .thanks {
         font-size: .9em;
         max-width: 300px;
         margin: 20px auto;
-        padding-top: 10px;
-        border-top: 1px solid lighten($pink, 10%);
-        border-bottom: 1px solid lighten($pink, 10%);
     }
     article {
         max-width: 500px;

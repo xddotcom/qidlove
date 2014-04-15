@@ -125,8 +125,8 @@ $(function() {
     }
     
     var imageList = [
-        "img/caricatures.png",
-        "img/thegirl.jpg", "img/theboy.jpg", "img/thecouple.jpg",
+        "img/avatar.jpg", "img/caricatures.png", "img/theboy.jpg", "img/thecouple.jpg",
+        "img/thegirl.jpg", "img/thegirl2.jpg", "img/thegirl3.jpg", "img/thegirl4.jpg",
         "img/levoyage/1.jpg", "img/levoyage/2.jpg", "img/levoyage/3.jpg", "img/levoyage/4.jpg", "img/levoyage/5.jpg",
         "img/heart-cross-pink.png",
         "img/call.png", "img/phone.png",
@@ -153,7 +153,7 @@ $(function() {
 
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
         var message = {
-            "img_url" : 'http://love.oatpie.com/libra/img/story-cover.jpg',
+            "img_url" : 'http://love.oatpie.com/libra/img/avatar.jpg',
             "img_width" : "640",
             "img_height" : "640",
             "link" : 'http://love.oatpie.com/libra/',
