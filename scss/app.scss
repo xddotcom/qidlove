@@ -358,7 +358,7 @@ $yellow: #bfa260;
             white-space: normal;
             position: relative;
             &::before {
-                content: "“";
+                content: "\"";
                 position: absolute;
                 top: 0;
                 left: 10px;
