@@ -103,13 +103,6 @@ $yellow: #bfa260;
     position: relative;
     > header {
         padding: 20px;
-        > h1 {
-            font-family: titan, sans-serif;
-            font-size: 70px;
-            @media (max-width: $screen-xs-max) {
-                font-size: 36px;
-            }
-        }
     }
 }
 
@@ -137,6 +130,7 @@ $yellow: #bfa260;
 #thegirl {
     background: $blue;
     color: #fff;
+    padding-top: 30px;
     .shy-girl {
         position: absolute;
         top: 0;
@@ -145,6 +139,7 @@ $yellow: #bfa260;
         background: url("../img/thegirl5.jpg") no-repeat center;
         background-size: cover;
         @include transition(all 1s ease-in-out);
+        color: #fff;
     }
     .img {
         width: 50%;
@@ -158,11 +153,11 @@ $yellow: #bfa260;
     }
     .img-the-girl {
         width: 50%;
-        background-image: url("../img/thegirl1.jpg");
+        background-image: url("../img/angel.jpg");
     }
     .img-the-boy {
         width: 50%;
-        background-image: url("../img/thegirl1.jpg");
+        background-image: url("../img/dolphin.jpg");
     }
     .heart {
         opacity: 0;
@@ -193,6 +188,9 @@ $yellow: #bfa260;
             }
         }
     }
+    .hesays {
+        padding: 0 20px;
+    }
 }
 
 #thebigday {
@@ -216,7 +214,7 @@ $yellow: #bfa260;
         position: relative;
         padding: 10px;
         &.animate {
-            @include transition-transform(20s linear 1s);
+            @include transition-transform(50s linear 3s);
             .post { @include translate3d(0, 0, 0); }
         }
     }
@@ -278,6 +276,10 @@ $yellow: #bfa260;
     background: url("../img/ring2.jpg") no-repeat center;
     background-size: cover;
     color: #fff;
+    > header {
+        p { margin-bottom: 5px; }
+        .emphisize { font-size: 1.5em; }
+    }
     .rose-cover {
         position: absolute;
         z-index: 1;
@@ -353,7 +355,7 @@ $yellow: #bfa260;
             vertical-align: top;
         }
         > span {
-            width: 200px;
+            width: 150px;
             padding: 50px 10px 10px 15px;
             white-space: normal;
             position: relative;
@@ -436,7 +438,6 @@ $yellow: #bfa260;
     }
     .copyright {
         position: absolute;
-        z-index: 10;
         top: 5px;
         right: 10px;
         font-family: wide, sans-serif;

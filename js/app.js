@@ -100,6 +100,7 @@ $(function() {
     }
     
     var imageList = [
+        "img/angel.jpg", "img/dolphin.jpg",
         "img/thegirl1.jpg", "img/thegirl2.jpg", "img/thegirl3.jpg", "img/thegirl4.jpg", "img/thegirl5.jpg",
         "img/thestory1.jpg", "img/thestory2.jpg", "img/thestory3.jpg",
         "img/heart-cross-pink.png",
