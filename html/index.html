@@ -6,8 +6,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>QiQi &amp; XD's Wedding Ceremony</title>
-    <meta name="description" content="QiQi & XD's Wedding Ceremony">
+    <title>Jimmy &amp; Sherry's Wedding Ceremony</title>
+    <meta name="description" content="Jimmy & Sherry's Wedding Ceremony">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
@@ -24,8 +24,8 @@
                 "img_width" : "640",
                 "img_height" : "640",
                 "link" : 'http://qidlove.ukisama.com/',
-                "desc" : "QiQi&XD非常高兴的宣布他们坠入了爱河！他们无意间发现生活是如此美妙，于是悄悄地开始筹划一场空前盛(jiǎn)大(dān)的婚礼……",
-                "title" : "QiQi & XD's Wedding Ceremony"
+                "desc" : "Jimmy & Sherry非常高兴的宣布他们坠入了爱河！他们无意间发现生活是如此美妙，于是悄悄地开始筹划一场空前盛(jiǎn)大(dān)的婚礼……",
+                "title" : "Jimmy & Sherry's Wedding Ceremony"
             };
             WeixinJSBridge.on('menu:share:appmessage', function(argv) {
                 WeixinJSBridge.invoke('sendAppMessage', message);
@@ -47,15 +47,18 @@
 <!--[if lt IE 7]>
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
-
+<h4 class="text-center loading-text">正在加载 <span></span></h4>
+<div class="view-wrapper hidden">
+    <div class="view-wrapper-inner">
 include "hero.html"
-include "nav.html"
-include "couple.html"
-include "story.html"
 include "bigday.html"
+include "couple.html"
 include "where.html"
 include "information.html"
+include "perfect-day.html"
 include "contact.html"
+    </div>
+</div>
 
 <script src="js/vendor/jquery-1.10.2.min.js"></script>
 <script src="js/vendor/underscore-min.js"></script>

@@ -69,11 +69,20 @@
             }
         }
     }
+    .green-span {
+        color: greenyellow;
+        font-weight: bold;
+    }
+    .container {
+        max-width: 720px;
+    }
 }
 
 #hero {
     background: @pink url(../img/dotted.png) repeat;
-    padding-top: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: #ffffff;
     .announce-text {
         margin: 20px 5px;
         padding: 10px 20px;
@@ -113,7 +122,8 @@
 #couple {
     background: @blue;
     color: #fff;
-    padding-bottom: 40px;
+    padding-bottom: 50px;
+    padding-top: 50px;
     p { line-height: 1.4; }
 }
 
@@ -153,10 +163,12 @@
     }
 }
 
-#bigday {
-    background: url(../img/thebigday.jpg) no-repeat center;
+#perfect-day {
+    background: @yellow;
+    color: #ffffff;
     background-size: cover;
-    height: 600px;
+    padding-bottom: 50px;
+//    height: 600px;
     position: relative;
     > h1 {
         font-size: 100px;
@@ -167,8 +179,10 @@
         left: 20px;
         bottom: 10px;
     }
+    .enjoy-food {
+        margin-top: 20px;
+    }
     @media (max-width: @screen-xs-max) {
-        padding-top: 150px;
         > h1 {
             text-align: center;
             font-size: 50px;
@@ -180,9 +194,10 @@
 
 #where {
     height: 600px;
-    background: url('../img/map.png') no-repeat bottom right;
+    background: url('../img/lu/xianhengjiudian.jpg') no-repeat bottom right;
     background-size: cover;
     position: relative;
+    padding-bottom: 50px;
     .address-wrapper {
         position: absolute;
         z-index: 1;
@@ -211,7 +226,7 @@
 #information {
     background: @violet url(../img/etoiles.png) repeat top center;
     color: #f0f0f0;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
     > header {
         margin-bottom: 0;
     }
@@ -233,10 +248,13 @@
     }
     dd {
         margin-left: 100px;
+        margin-bottom: 10px;
     }
 }
 
 #contact {
+    padding-bottom: 50px;
+    padding-top: 50px;
     .copyright {
         font-family: wide, sans-serif;
         font-size: 20px;
@@ -252,5 +270,23 @@
     article {
         max-width: 500px;
         .center-block();
+    }
+}
+
+#bigday {
+    position: relative;
+    background: url(../img/lu/image003.jpg) no-repeat center;
+    background-size: cover;
+    background-position: top;
+    color: #ffffff;
+    padding-top: 50px;
+    padding-bottom: 100px;
+    padding-bottom: 100%;
+    .bigday-container {
+        width: 100%;
+        position: absolute;
+        bottom: 0px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
