@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Jimmy &amp; Sherry's Wedding Ceremony</title>
     <meta name="description" content="Jimmy & Sherry's Wedding Ceremony">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    
+
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -20,23 +24,23 @@
     <script>
         document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
             var message = {
-                "img_url" : 'http://qidlove.ukisama.com/img/thebigday.jpg',
-                "img_width" : "640",
-                "img_height" : "640",
-                "link" : 'http://qidlove.ukisama.com/',
-                "desc" : "Jimmy & Sherry非常高兴的宣布他们坠入了爱河！他们无意间发现生活是如此美妙，于是悄悄地开始筹划一场空前盛(jiǎn)大(dān)的婚礼……",
-                "title" : "Jimmy & Sherry's Wedding Ceremony"
+                "img_url": 'http://qidlove.ukisama.com/img/thebigday.jpg',
+                "img_width": "640",
+                "img_height": "640",
+                "link": 'http://qidlove.ukisama.com/',
+                "desc": "Jimmy & Sherry非常高兴的宣布他们坠入了爱河！他们无意间发现生活是如此美妙，于是悄悄地开始筹划一场空前盛(jiǎn)大(dān)的婚礼……",
+                "title": "Jimmy & Sherry's Wedding Ceremony"
             };
-            WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+            WeixinJSBridge.on('menu:share:appmessage', function (argv) {
                 WeixinJSBridge.invoke('sendAppMessage', message);
             });
-            WeixinJSBridge.on('menu:share:timeline', function(argv) {
+            WeixinJSBridge.on('menu:share:timeline', function (argv) {
                 WeixinJSBridge.invoke('shareTimeline', message);
             });
-            WeixinJSBridge.on('menu:share:weibo', function(argv) {
+            WeixinJSBridge.on('menu:share:weibo', function (argv) {
                 WeixinJSBridge.invoke('shareWeibo', {
-                    "content" : descContent,
-                    "url" : lineLink,
+                    "content": descContent,
+                    "url": lineLink,
                 });
             });
         }, false);
@@ -45,9 +49,12 @@
 </head>
 <body>
 <!--[if lt IE 7]>
-    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to
+    improve your experience.</p>
 <![endif]-->
 <h4 class="text-center loading-text">正在加载 <span></span></h4>
+
 <div class="view-wrapper hidden">
     <div class="view-wrapper-inner">
 <section class="view" id="hero">
@@ -76,7 +83,7 @@
     </header>
     <div class="bigday-container">
         <div class="">
-            <h3 class="text-center">THE HONOR OF YOUR PRESENCE IS REQUESTED AT THE MARRIAGE OF</h3>
+            <h3 class="text-center hidden-xs">THE HONOR OF YOUR PRESENCE IS REQUESTED AT THE MARRIAGE OF</h3>
             <h3 class="text-center">THE BIG DAY</h3>
 
             <h3 class="text-center">2014.5.18 (SUNDAY)</h3>
@@ -271,6 +278,25 @@
     </div>
 </section>
 
+<section class="view text-center" id="contact">
+    <header>
+        <h1>Send your <span class="pink-text">Wishes</span></h1>
+    </header>
+    <article class="container">
+        <p>如果你是他们的微信好友，人人好友，微博好友，还愣在这里干嘛</p>
+        <p>如果你不是，参与话题发个祝福呗</p>
+        <h4><a class="pink-text" href="http://huati.weibo.com/k/qidlove">#qidlove</a></h4>
+        <p>他们没有二维码，也没有手机应用</p>
+    </article>
+    <div class="thanks">
+        <p>感谢 <a class="pink-text" href="http://weibo.com/oatpie">@盒子里的早餐故事</a> 为
+            <span class="signature pink-text">Jimmy &amp; Sherry</span> 持续供应早餐</p>
+        <p>感谢 <a class="pink-text" href="http://www.weibo.com/u/3058840707">@美位网</a> 尽管她也没有为
+            <span class="signature pink-text">Jimmy &amp; Sherry</span> 做什么事情</p>
+        <p>感谢在过去7年里 <span class="signature pink-text">Jimmy &amp; Sherry</span> 见过的或者没见过的人们</p>
+    </div>
+    <p class="copyright">SITE MADE WITH <span class="pink-text">LOVE</span></p>
+</section>
     </div>
 </div>
 
