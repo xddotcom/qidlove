@@ -51,15 +51,13 @@ $(function() {
     var ProposalView = new (SectionView.extend({
         onEnter: function() {
             this.$('.rose-cover').addClass('animate');
+            $('.copyright').removeClass('invisible');
         },
         onLeave: function() {
             this.$('.rose-cover').removeClass('animate');
+            $('.copyright').addClass('invisible');
         }
     }))({el: $('#proposal')});
-    
-    var ContactView = new (SectionView.extend({
-        
-    }))({el: $('#contact')});
     
     /*************************************************************/
    
@@ -160,7 +158,6 @@ $(function() {
             "desc" : "这是@Libra_雪er和@王禹清的婚礼邀请，我们喜欢你来见证我们的故事",
             "title" : "有关爱情的故事"
         };
-//        WeixinJSBridge.call('hideToolbar');
         WeixinJSBridge.on('menu:share:appmessage', function(argv) {
             WeixinJSBridge.invoke('sendAppMessage', message);
         });
