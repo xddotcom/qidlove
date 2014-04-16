@@ -15,7 +15,7 @@ $(function() {
     
     var TheGirlView = new (SectionView.extend({
         onEnter: function() {
-            //timelineBg.play();
+            timelineBg.play();
             this.$('.shy-girl').addClass('invisible');
             this.$('.love-cross').addClass('crossed');
         },
@@ -60,7 +60,16 @@ $(function() {
     }))({el: $('#wedding')});
     
     var LaVieView = new (SectionView.extend({
-        
+        events: {
+            'click .gallery img': 'previewImage'
+        },
+        previewImage: function(e) {
+            var $img = $(e.currentTarget);
+            window.WeixinJSBridge && window.WeixinJSBridge.invoke('imagePreview', {
+                current: $img[0].src,
+                urls: _.map($img.siblings('img').andSelf(), function(item) { return item.src; })
+            });
+        }
     }))({el: $('#lavie')});
     
     var WishView = new (SectionView.extend({
@@ -115,7 +124,7 @@ $(function() {
         "img/ring.png", "img/ring1.jpg", "img/ring2.jpg", "img/nightsky.jpg",
         "img/food1.jpg", "img/food2.jpg", "img/food3.jpg", "img/food4.jpg", "img/food5.jpg",
         "img/cover-page-dark.jpg", "img/cover-page-light.jpg",
-        "img/bouquet.png", "img/amalfi.jpg"
+        "img/bouquet.png", "img/amalfi.jpg", "img/registry.jpg"
     ];
     
     var l = imageList.length;
