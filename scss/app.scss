@@ -78,6 +78,18 @@ $yellow: #bfa260;
     min-height: 500px;
 }
 
+
+.copyright {
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-family: wide, sans-serif;
+    font-size: 18px;
+    text-align: center;
+}
+
 .pink-text {
     color: lighten($pink, 0%);
 }
@@ -440,12 +452,5 @@ $yellow: #bfa260;
             @include transition-transform(.5s linear 1.2s);
             @include translate3d(0, 0, 0);
         }
-    }
-    .copyright {
-        position: absolute;
-        top: 5px;
-        right: 10px;
-        font-family: wide, sans-serif;
-        font-size: 18px;
     }
 }

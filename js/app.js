@@ -65,10 +65,12 @@ $(function() {
         onEnter: function() {
             this.$('.cover').addClass('flip');
             this.$('.bouquet').addClass('slidein');
+            $('.copyright').removeClass('hidden');
         },
         onLeave: function() {
             this.$('.cover').removeClass('flip');
             this.$('.bouquet').removeClass('slidein');
+            $('.copyright').addClass('hidden');
         }
     }))({el: $('#wish')});
     
