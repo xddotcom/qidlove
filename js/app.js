@@ -68,7 +68,7 @@ $(function() {
         });
         $('.view').css('height', $('.view-wrapper').innerHeight());
         var sectionList = [WeddingView, TheGirlView, TheBigDayView, ProposalView];
-        
+         
         var initScroll = function() {
             return new IScroll('.view-wrapper', {
                 momentum : false,
@@ -78,7 +78,7 @@ $(function() {
                 mouseWheel : true
             });
         };
-
+        
         if(/android/i.test(navigator.userAgent)){
             $('.phoneScrollBar').css('bottom', $('.phoneScrollBar').css('margin-bottom'));
             $('.phoneScrollBar').css('margin-bottom', 0);
@@ -140,6 +140,7 @@ $(function() {
         if (l == 0) {
             $('.loading-text').addClass('hidden');
             $('.view-wrapper').removeClass('hidden');
+            $('#hero').removeClass('hidden');
             startApp();
         }
     }
