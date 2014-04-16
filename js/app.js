@@ -67,6 +67,7 @@ $(function() {
             src && $(this).attr('src', src);
         });
         $('.view').css('height', $('.view-wrapper').innerHeight());
+        $('#hero').css('height', '100%');
         var sectionList = [WeddingView, TheGirlView, TheBigDayView, ProposalView];
          
         var initScroll = function() {
