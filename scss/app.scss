@@ -115,7 +115,7 @@ $yellow: #bfa260;
     overflow: hidden;
     position: relative;
     > header {
-        padding: 20px;
+        padding: 10px 20px;
     }
 }
 
@@ -160,7 +160,7 @@ $yellow: #bfa260;
         position: relative;
         &.crossed {
             .img {
-                @include transition-transform(1s ease-in-out);
+                @include transition-transform(1s ease-in-out .5s);
             }
             .img-the-girl {
                 @include translate3d(-10%, 0, 0);
@@ -170,7 +170,7 @@ $yellow: #bfa260;
             }
             .heart {
                 opacity: 1;
-                @include transition(.5s ease-in-out .5s);
+                @include transition(.5s ease-in-out 1s);
             }
         }
     }
@@ -348,12 +348,13 @@ $yellow: #bfa260;
             width: 100%;
             height: 20px;
             background: url("../img/rip.png") no-repeat center top;
-            background-size: cover;
+            background-size: contain;
         }
     }
     .gallery {
-        height: 200px;
-        margin-top: 100px;
+        position: relative;
+        top: 15%;
+        height: 50%;
         background: #fff;
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, .7);
         overflow: scroll;
@@ -376,6 +377,8 @@ $yellow: #bfa260;
             padding: 50px 10px 10px 15px;
             white-space: normal;
             position: relative;
+            border-left: 1px solid #f0f0f0;
+            border-right: 1px solid #f0f0f0;
             &::before {
                 content: "\"";
                 position: absolute;
@@ -412,10 +415,14 @@ $yellow: #bfa260;
         background: #fff url("../img/cover-page-dark.jpg") no-repeat;
         background-size: 100% 100%;
         color: #f0f0f0;
-        padding: 160px 30px 20px 120px;
+        padding: 10px 20px;
         //box-shadow: 0 0 2px 0 #000;
         @include rotateX(-180deg);
         @include transform-origin(center bottom);
+        img {
+            @include center-block();
+            height: 100%;
+        }
     }
     .cover-bottom {
         overflow: hidden;
@@ -423,14 +430,9 @@ $yellow: #bfa260;
         height: 100%;
         background: url("../img/cover-page-light.jpg") no-repeat;
         background-size: 100% 100%;
-        padding: 20px;
+        padding: 40px;
         color: #555;
         //box-shadow: 0 -2px 6px 0 #000;
-        h1 { font-size: 50px; }
-        img {
-            @include center-block();
-            width: 80%;
-        }
     }
     .cover.flip {
         @include scale(1);

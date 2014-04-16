@@ -2,7 +2,7 @@
 $(function() {
     
     var scroller;
-    var timelineBg = new Audio();
+    var timelineBg = new Audio("img/timelinebg.mp3");
     
     var SectionView = Backbone.View.extend({
         onEnter: function() {},
@@ -15,7 +15,7 @@ $(function() {
     
     var TheGirlView = new (SectionView.extend({
         onEnter: function() {
-            timelineBg.play();
+            //timelineBg.play();
             this.$('.shy-girl').addClass('invisible');
             this.$('.love-cross').addClass('crossed');
         },
@@ -106,19 +106,19 @@ $(function() {
     
     var imageList = [
         "img/angel.jpg", "img/dolphin.jpg", "img/avatar.jpg",
-        "img/thegirl1.jpg", "img/thegirl2.jpg", "img/thegirl3.jpg", "img/thegirl4.jpg", "img/thegirl5.jpg",
+        "img/thegirl1.jpg", "img/thegirl2.jpg", "img/thegirl3.jpg", "img/thegirl4.jpg", "img/thegirl5.jpg", "img/thegirl6.jpg",
         "img/thestory1.jpg", "img/thestory2.jpg", "img/thestory3.jpg",
-        "img/heart-cross-pink.png",
-        "img/thecouple1.jpg", "img/thecouple2.jpg", "img/thecouple3.jpg", "img/thecouple4.jpg", "img/thecouple.png",
+        "img/heart-cross-pink.png", "img/thecouple.png",
+        "img/thecouple1.jpg", "img/thecouple2.jpg", "img/thecouple3.jpg", "img/thecouple4.jpg", "img/thecouple5.jpg",
         "img/story-cover.jpg", "img/story-cover-text.jpg",
         "img/rose-bottom.jpg", "img/rose-top.jpg",
         "img/ring.png", "img/ring1.jpg", "img/ring2.jpg", "img/nightsky.jpg",
-        "img/food1.jpg", "img/food2.jpg", "img/food3.jpg", "img/food4.jpg",
+        "img/food1.jpg", "img/food2.jpg", "img/food3.jpg", "img/food4.jpg", "img/food5.jpg",
         "img/cover-page-dark.jpg", "img/cover-page-light.jpg",
         "img/bouquet.png", "img/amalfi.jpg"
     ];
     
-    var l = imageList.length + 1;
+    var l = imageList.length;
     function imageLoaded() {
         l--;
         $('.loading-text>span').text(parseInt((1-l/imageList.length)*100) + '%');
@@ -129,8 +129,6 @@ $(function() {
         }
     }
     
-    timelineBg.oncanplay = imageLoaded;
-    timelineBg.src = "img/timelinebg.mp3";
     for (var i=0; i<imageList.length; i++) {
         var image = new Image();
         image.onload = imageLoaded;
