@@ -23,7 +23,7 @@ $(function() {
         }
     }))({el: $('#thegirl')});
     
-    var TheBigDayView = new (SectionView.extend({
+    var StoryView = new (SectionView.extend({
         onEnter: function() {
             var $timeline = this.$('.timeline');
             var gap = $timeline.outerHeight() - this.$el.innerHeight();
@@ -44,9 +44,9 @@ $(function() {
                 'transform': 'translate3d(0, 0, 0)'
             });
         }
-    }))({el: $('#thebigday')});
+    }))({el: $('#story')});
     
-    var ProposalView = new (SectionView.extend({
+    var WeddingView = new (SectionView.extend({
         onEnter: function() {
             this.$('.rose-cover').addClass('animate');
             this.$('.the-ring').addClass('animate');
@@ -55,13 +55,13 @@ $(function() {
             this.$('.rose-cover').removeClass('animate');
             this.$('.the-ring').removeClass('animate');
         }
-    }))({el: $('#proposal')});
-    
-    var GoodMorningView = new (SectionView.extend({
-        
-    }))({el: $('#goodmorning')});
+    }))({el: $('#wedding')});
     
     var LaVieView = new (SectionView.extend({
+        
+    }))({el: $('#lavie')});
+    
+    var WishView = new (SectionView.extend({
         onEnter: function() {
             this.$('.cover').addClass('flip');
             this.$('.bouquet').addClass('slidein');
@@ -70,7 +70,7 @@ $(function() {
             this.$('.cover').removeClass('flip');
             this.$('.bouquet').removeClass('slidein');
         }
-    }))({el: $('#lavie')});
+    }))({el: $('#wish')});
     
     /*************************************************************/
     
@@ -89,7 +89,7 @@ $(function() {
             mouseWheel: true,
             eventPassthrough: 'horizontal'
         });
-        var sectionList = [HeroView, TheGirlView, TheBigDayView, ProposalView, GoodMorningView, LaVieView];
+        var sectionList = [HeroView, TheGirlView, StoryView, WeddingView, LaVieView, WishView];
         scroller.on('scrollEnd', function() {
             var page = scroller.currentPage.pageY;
             sectionList[page] && sectionList[page].onEnter();
