@@ -2,6 +2,7 @@
 $(function() {
     
     var scroller;
+    var timelineBg = new Audio();
     
     var SectionView = Backbone.View.extend({
         onEnter: function() {},
@@ -14,6 +15,7 @@ $(function() {
     
     var TheGirlView = new (SectionView.extend({
         onEnter: function() {
+            timelineBg.play();
             this.$('.shy-girl').addClass('invisible');
             this.$('.love-cross').addClass('crossed');
         },
@@ -63,6 +65,7 @@ $(function() {
     
     var WishView = new (SectionView.extend({
         onEnter: function() {
+            timelineBg.pause();
             this.$('.cover').addClass('flip');
             this.$('.bouquet').addClass('slidein');
             $('.copyright').removeClass('hidden');
@@ -114,7 +117,8 @@ $(function() {
         "img/cover-page-dark.jpg", "img/cover-page-light.jpg",
         "img/bouquet.png", "img/amalfi.jpg"
     ];
-    var l = imageList.length, i=0;
+    
+    var l = imageList.length + 1;
     function imageLoaded() {
         l--;
         $('.loading-text>span').text(parseInt((1-l/imageList.length)*100) + '%');
@@ -124,11 +128,15 @@ $(function() {
             startApp();
         }
     }
-    for (i=0; i<imageList.length; i++) {
+    
+    timelineBg.oncanplay = imageLoaded;
+    timelineBg.src = "img/timelinebg.mp3";
+    for (var i=0; i<imageList.length; i++) {
         var image = new Image();
         image.onload = imageLoaded;
         image.src = imageList[i];
     }
+    
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
         var message = {
             "img_url" : 'http://love.oatpie.com/dolphin/img/avatar.jpg',
@@ -145,4 +153,5 @@ $(function() {
             WeixinJSBridge.invoke('shareTimeline', message);
         });
     }, false);
+    
 });
