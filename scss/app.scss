@@ -75,6 +75,7 @@ $yellow: #bfa260;
     left: 0;
     width: 100%;
     height: 100%;
+    min-height: 500px;
 }
 
 .pink-text {
@@ -138,9 +139,28 @@ $yellow: #bfa260;
         @include square(100%);
         background: url("../img/thegirl5.jpg") no-repeat center;
         background-size: cover;
-        @include transition(all 1s ease-in-out);
+        @include transition(all 1s ease-in-out .5s);
         padding-top: 50px;
         color: $pink;
+    }
+    .love-cross {
+        width: 100%;
+        position: relative;
+        &.crossed {
+            .img {
+                @include transition-transform(1s ease-in-out);
+            }
+            .img-the-girl {
+                @include translate3d(-10%, 0, 0);
+            }
+            .img-the-boy {
+                @include translate3d(10%, 0, 0);
+            }
+            .heart {
+                opacity: 1;
+                @include transition(.5s ease-in-out .5s);
+            }
+        }
     }
     .img {
         width: 50%;
@@ -170,25 +190,6 @@ $yellow: #bfa260;
         background: url("../img/heart-cross-pink.png") no-repeat center;
         background-size: contain;
     }
-    .love-cross {
-        width: 100%;
-        position: relative;
-        &.crossed {
-            .img {
-                @include transition-transform(1s ease-in-out);
-            }
-            .img-the-girl {
-                @include translate3d(-10%, 0, 0);
-            }
-            .img-the-boy {
-                @include translate3d(10%, 0, 0);
-            }
-            .heart {
-                opacity: 1;
-                @include transition(.5s ease-in-out .5s);
-            }
-        }
-    }
     .hesays {
         padding: 0 20px;
     }
@@ -215,7 +216,7 @@ $yellow: #bfa260;
         position: relative;
         padding: 10px;
         &.animate {
-            @include transition-transform(50s linear 3s);
+            @include transition-transform(50s linear 1s);
             .post { @include translate3d(0, 0, 0); }
         }
     }
