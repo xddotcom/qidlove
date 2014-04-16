@@ -1,8 +1,11 @@
 
 $(function() {
     
+    var audio = new Audio("img/timelinebg.mp3");
+    function playAudio() { audio.play(); }
+    function pauseAudio() { audio.pause(); }
+    
     var scroller;
-    var timelineBg = new Audio("img/timelinebg.mp3");
     
     var SectionView = Backbone.View.extend({
         onEnter: function() {},
@@ -15,7 +18,7 @@ $(function() {
     
     var TheGirlView = new (SectionView.extend({
         onEnter: function() {
-            timelineBg.play();
+            playAudio();
             this.$('.shy-girl').addClass('invisible');
             this.$('.love-cross').addClass('crossed');
         },
@@ -69,12 +72,15 @@ $(function() {
                 current: $img[0].src,
                 urls: _.map($img.siblings('img').andSelf(), function(item) { return item.src; })
             });
+        },
+        onEnter: function() {
+            playAudio();
         }
     }))({el: $('#lavie')});
     
     var WishView = new (SectionView.extend({
         onEnter: function() {
-            timelineBg.pause();
+            pauseAudio();
             this.$('.cover').addClass('flip');
             this.$('.bouquet').addClass('slidein');
             $('.copyright').removeClass('hidden');
