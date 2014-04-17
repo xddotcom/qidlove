@@ -137,7 +137,7 @@ $(function() {
     function autoPlayViews() {
         $('.forbid-gesture').removeClass('hidden');
         $('.forbid-gesture').on('touchmove', function(e) { e.preventDefault(); });
-        var duration = [7, 35, 75, 40, 60, 30];
+        var duration = [7, 35, 75, 40, 65, 30];
         //duration = [1, 1, 1, 1, 10, 1];
         var next = function(i) {
             if (i > 5) {
