@@ -139,6 +139,8 @@ $(function() {
     }
     
     function startApp() {
+        $('.loading-text').addClass('hidden');
+        $('.view-wrapper').removeClass('hidden');
         $('img').each(function() {
             var src = $(this).data('src');
             src && $(this).attr('src', src);
@@ -179,20 +181,24 @@ $(function() {
         "img/bouquet.png", "img/amalfi.jpg", "img/registry.jpg"
     ];
     
-    var l = imageList.length + 1;
+    var limg = imageList.length;
     function imageLoaded() {
-        l--;
-        $('.loading-text>span').text(parseInt((1-l/imageList.length)*100) + '%');
-        if (l == 0) {
-            $('.loading-text').addClass('hidden');
-            $('.view-wrapper').removeClass('hidden');
-            startApp();
+        limg--;
+        $('.loading-text>span').text(parseInt((1-limg/imageList.length)*100) + '%');
+        if (limg == 0) {
+            //startApp();
+            $('.loading-text').text("点击开始播放");
+            $('#audio').removeClass('hidden');
         }
     }
     
-    var audio = window.BACKGROUND_AUDIO = new Audio();
-    audio.autoplay = true;
-    audio.addEventListener('playing', imageLoaded);
+    //var audio = window.BACKGROUND_AUDIO = new Audio();
+    //audio.autoplay = true;
+    audio = document.getElementById('audio');
+    audio.addEventListener('playing', function() {
+        $('#audio').addClass('hidden');
+        startApp();
+    });
     audio.src = "img/timelinebg.mp3";
     
     for (var i=0; i<imageList.length; i++) {

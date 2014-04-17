@@ -69,6 +69,14 @@ $yellow: #bfa260;
     opacity: 0;
 }
 
+#audio {
+    position: relative;
+    z-index: 10000;
+    width: 200px;
+    margin-top: 50px;
+    @include center-block();
+}
+
 .view-wrapper {
     position: fixed;
     top: 0;
