@@ -94,12 +94,26 @@ $(function() {
                 urls: _.map($img.siblings('img').andSelf(), function(item) { return item.src; })
             });
         },
+        onEnter: function() {
+            this.$('.gallery-inner').removeClass('animate').css({
+                '-webkit-transform': 'translate3d(0, 0, 0)',
+                'transform': 'translate3d(0, 0, 0)'
+            });
+        },
+        onLeave: function() {
+            this.$('.gallery-inner').removeClass('animate').css({
+                '-webkit-transform': 'translate3d(0, 0, 0)',
+                'transform': 'translate3d(0, 0, 0)'
+            });
+        },
         play: function() {
             var outerWidth = this.$('.gallery').innerWidth();
-            var innerWidth = _.reduce(this.$('.gallery').children(), function(a,b){return a+$(b).outerWidth();}, 0);
-            this.$('.gallery').animate({
-                scrollLeft: innerWidth - outerWidth
-            }, 60000);
+            var innerWidth = _.reduce(this.$('.gallery-inner').children(), function(a,b){return a+$(b).outerWidth();}, 0);
+            var translate = 'translate3d(' + (outerWidth - innerWidth) + 'px, 0, 0)';
+            this.$('.gallery-inner').addClass('animate').css({
+                '-webkit-transform': translate,
+                'transform': translate
+            });
         }
     }))({el: $('#lavie')});
     
@@ -121,19 +135,18 @@ $(function() {
     var sectionList = [HeroView, TheGirlView, StoryView, WeddingView, LaVieView, WishView];
     
     function autoPlayViews() {
+        $('.forbid-gesture').removeClass('hidden');
         $('.forbid-gesture').on('touchmove', function(e) { e.preventDefault(); });
         var duration = [7, 35, 75, 40, 60, 30];
-        //duration = [3, 3, 3, 3, 3, 3];
+        //duration = [1, 1, 1, 1, 10, 1];
         var next = function(i) {
             if (i > 5) {
                 $('.forbid-gesture').addClass('hidden');
-                return;
+            } else {
+                scroller.goToPage(0, i, 2000, IScroll.utils.ease.quadratic);
+                setTimeout(function() { sectionList[i].play(); }, 2500);
+                setTimeout(function() { next(i+1); }, duration[i] * 1000);
             }
-            scroller.goToPage(0, i, 2000, IScroll.utils.ease.quadratic);
-            sectionList[i].play();
-            setTimeout(function() {
-                next(i+1);
-            }, duration[i] * 1000);
         };
         next(0);
     }
