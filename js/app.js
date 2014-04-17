@@ -265,9 +265,12 @@ $(function() {
         limg--;
         $('.loading-text>span').text(parseInt((1-limg/imageList.length)*100) + '%');
         if (limg == 0) {
-            //startApp();
-            $('.loading-text').text("点击开始播放");
-            $('#audio').removeClass('hidden');
+            if (location.hash == '#noplay') {
+                startApp();
+            } else {
+                $('.loading-text').text("点击开始播放");
+                $('#audio').removeClass('hidden');
+            }
         }
     }
     
