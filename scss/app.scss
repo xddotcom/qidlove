@@ -236,7 +236,7 @@ $yellow: #bfa260;
         position: relative;
         padding: 10px;
         &.animate {
-            @include transition-transform(50s linear 1s);
+            @include transition-transform(60s linear 1s);
             .post { @include translate3d(0, 0, 0); }
         }
     }

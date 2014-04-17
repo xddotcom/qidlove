@@ -9,7 +9,8 @@ $(function() {
     
     var SectionView = Backbone.View.extend({
         onEnter: function() {},
-        onLeave: function() {}
+        onLeave: function() {},
+        play: function() {}
     });
     
     var HeroView = new (SectionView.extend({
@@ -18,13 +19,25 @@ $(function() {
     
     var TheGirlView = new (SectionView.extend({
         onEnter: function() {
-            playAudio();
             this.$('.shy-girl').addClass('invisible');
             this.$('.love-cross').addClass('crossed');
         },
         onLeave: function() {
             this.$('.shy-girl').removeClass('invisible');
             this.$('.love-cross').removeClass('crossed');
+        },
+        play: function() {
+            var lines = this.$('.hesays').children();
+            lines.css('opacity', 0);
+            var next = function(i) {
+                var line = lines[i];
+                if (!line) return;
+                var duration = line.innerText.length * 170;
+                $(line).animate({ opacity: 1 }, duration, function() { next(i+1); });
+            };
+            setTimeout(function() {
+                next(0);
+            }, 3000);
         }
     }))({el: $('#thegirl')});
     
@@ -59,6 +72,19 @@ $(function() {
         onLeave: function() {
             this.$('.rose-cover').removeClass('animate');
             this.$('.the-ring').removeClass('animate');
+        },
+        play: function() {
+            var lines = this.$('>header').children();
+            lines.css('opacity', 0);
+            var next = function(i) {
+                var line = lines[i];
+                if (!line) return;
+                var duration = line.innerText.length * 250;
+                $(line).animate({ opacity: 1 }, duration, function() { next(i+1); });
+            };
+            setTimeout(function() {
+                next(0);
+            }, 4000);
         }
     }))({el: $('#wedding')});
     
@@ -73,22 +99,17 @@ $(function() {
                 urls: _.map($img.siblings('img').andSelf(), function(item) { return item.src; })
             });
         },
-        onEnter: function() {
-            playAudio();
+        play: function() {
             var outerWidth = this.$('.gallery').innerWidth();
             var innerWidth = _.reduce(this.$('.gallery').children(), function(a,b){return a+$(b).outerWidth();}, 0);
             this.$('.gallery').animate({
                 scrollLeft: innerWidth - outerWidth
-            }, 30000);
-        },
-        onLeave: function() {
-            this.$('.gallery').stop().css('scrollLeft', 0);
+            }, 60000);
         }
     }))({el: $('#lavie')});
     
     var WishView = new (SectionView.extend({
         onEnter: function() {
-            pauseAudio();
             this.$('.cover').addClass('flip');
             this.$('.bouquet').addClass('slidein');
             $('.copyright').removeClass('hidden');
@@ -101,6 +122,27 @@ $(function() {
     }))({el: $('#wish')});
     
     /*************************************************************/
+    
+    var sectionList = [HeroView, TheGirlView, StoryView, WeddingView, LaVieView, WishView];
+    
+    function autoPlayViews() {
+        $('.forbid-gesture').on('touchmove', function(e) { e.preventDefault(); });
+        playAudio();
+        var duration = [7, 35, 75, 40, 60, 30];
+        //duration = [3, 3, 3, 3, 3, 3];
+        var next = function(i) {
+            if (i > 5) {
+                $('.forbid-gesture').addClass('hidden');
+                return;
+            }
+            scroller.goToPage(0, i, 2000, IScroll.utils.ease.quadratic);
+            sectionList[i].play();
+            setTimeout(function() {
+                next(i+1);
+            }, duration[i] * 1000);
+        };
+        next(0);
+    }
     
     function startApp() {
         $('img').each(function() {
@@ -117,14 +159,16 @@ $(function() {
             mouseWheel: true,
             eventPassthrough: 'horizontal'
         });
-        var sectionList = [HeroView, TheGirlView, StoryView, WeddingView, LaVieView, WishView];
+        var page;
         scroller.on('scrollEnd', function() {
-            var page = scroller.currentPage.pageY;
+            if (scroller.currentPage.pageY == page) return;
+            page = scroller.currentPage.pageY;
             sectionList[page] && sectionList[page].onEnter();
             sectionList[page+1] && sectionList[page+1].onLeave();
             sectionList[page-1] && sectionList[page-1].onLeave();
         });
-        scroller.goToPage(0, 0);
+        //scroller.goToPage(0, 0);
+        autoPlayViews();
     }
     
     var imageList = [
