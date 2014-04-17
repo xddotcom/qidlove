@@ -190,6 +190,7 @@ $(function() {
             $('.copyright').removeClass('hidden');
         },
         onLeave: function() {
+            this.$('textarea').blur();
             $('.copyright').addClass('hidden');
         }
     }))({el: $('#contact')});
