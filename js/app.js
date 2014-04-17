@@ -180,10 +180,10 @@ $(function() {
         },
         sendMessage: function(e) {
             if (e.preventDefault) e.preventDefault();
-            this.messages.create({
-                site: 1,
-                content: this.$('textarea').val()
-            });
+            var content = this.$('textarea').val();
+            if (content) {
+                this.messages.create({ site: 1, content: content });
+            }
         },
         onEnter: function() {
             this.messages.fetch({reset: true, data: {site: 1}});
