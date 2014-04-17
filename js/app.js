@@ -32,7 +32,7 @@ $(function() {
             };
             setTimeout(function() {
                 next(0);
-            }, 3000);
+            }, 1000);
         }
     }))({el: $('#thegirl')});
     
@@ -40,7 +40,7 @@ $(function() {
         onEnter: function() {
             var $timeline = this.$('.timeline');
             var gap = $timeline.outerHeight() - this.$el.innerHeight();
-            var translate = 'translate3d(0, ' + (-gap) + 'px, 0)';
+            var translate = 'translate3d(0, ' + (-gap-300) + 'px, 0)';
             $timeline.addClass('animate');
             $timeline.css({
                 '-webkit-transform': translate,
@@ -79,7 +79,7 @@ $(function() {
             };
             setTimeout(function() {
                 next(0);
-            }, 4000);
+            }, 2000);
         }
     }))({el: $('#wedding')});
     
