@@ -1,10 +1,5 @@
 
 $(function() {
-    
-    var audio = new Audio("img/timelinebg.mp3");
-    function playAudio() { audio.play(); }
-    function pauseAudio() { audio.pause(); }
-    
     var scroller;
     
     var SectionView = Backbone.View.extend({
@@ -127,7 +122,6 @@ $(function() {
     
     function autoPlayViews() {
         $('.forbid-gesture').on('touchmove', function(e) { e.preventDefault(); });
-        playAudio();
         var duration = [7, 35, 75, 40, 60, 30];
         //duration = [3, 3, 3, 3, 3, 3];
         var next = function(i) {
@@ -185,7 +179,7 @@ $(function() {
         "img/bouquet.png", "img/amalfi.jpg", "img/registry.jpg"
     ];
     
-    var l = imageList.length;
+    var l = imageList.length + 1;
     function imageLoaded() {
         l--;
         $('.loading-text>span').text(parseInt((1-l/imageList.length)*100) + '%');
@@ -195,6 +189,11 @@ $(function() {
             startApp();
         }
     }
+    
+    var audio = window.BACKGROUND_AUDIO = new Audio();
+    audio.autoplay = true;
+    audio.addEventListener('playing', imageLoaded);
+    audio.src = "img/timelinebg.mp3";
     
     for (var i=0; i<imageList.length; i++) {
         var image = new Image();
