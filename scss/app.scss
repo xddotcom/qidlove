@@ -505,12 +505,13 @@ $yellow: #bfa260;
         }
     }
     textarea {
-        background: lighten($pink, 17%);
-        border-color: lighten($pink, 17%);
-        color: $pink;
+        background: lighten($pink, 18%);
+        border-color: lighten($pink, 18%);
+        color: darken($pink, 10%);
         padding: 15px 10px;
         box-shadow: none;
         -webkit-appearance: none;
+        @include placeholder(lighten($pink, 10%));
     }
     .messages {
         color: $pink;
