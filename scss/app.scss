@@ -134,6 +134,7 @@ $yellow: #bfa260;
     position: relative;
     > header {
         padding: 10px 20px;
+        h1 { font-family: titan, sans-serif; }
     }
 }
 
@@ -486,5 +487,38 @@ $yellow: #bfa260;
             @include transition-transform(.5s linear 1.2s);
             @include translate3d(0, 0, 0);
         }
+    }
+}
+
+#contact {
+    background: #fff;
+    padding: 0 20px;
+    .btn {
+        background: lighten($pink, 17%);
+        border-color: lighten($pink, 17%);
+        color: darken($pink, 10%);
+        font-family: $font-family-sans-serif;
+        box-shadow: none;
+        &:active {
+            box-shadow: none;
+            background: lighten($pink, 15%);
+        }
+    }
+    textarea {
+        background: lighten($pink, 17%);
+        border-color: lighten($pink, 17%);
+        color: $pink;
+        padding: 15px 10px;
+        box-shadow: none;
+        -webkit-appearance: none;
+    }
+    .messages {
+        color: $pink;
+        .fa-heart-o {
+            margin-right: 10px;
+        }
+        padding: 10px 20px;
+        height: 90px;
+        overflow: hidden;
     }
 }

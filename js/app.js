@@ -8,6 +8,30 @@ $(function() {
         play: function() {}
     });
     
+    var Collection = Backbone.Collection.extend({
+        parse: function(response) {
+            if (response.results != null) {
+                this.count = response.count;
+                this.previous = response.previous;
+                this.next = response.next;
+                return response.results;
+            } else {
+                return response;
+            }
+        }
+    });
+    
+    var Model = Backbone.Model.extend({
+        url: function() {
+            if (this.attributes.url) {
+                return this.attributes.url;
+            } else {
+                var origUrl = Backbone.Model.prototype.url.call(this);
+                return origUrl + (origUrl.charAt(origUrl.length - 1) == '/' ? '' : '/');
+            }
+        }
+    });
+    
     var HeroView = new (SectionView.extend({
         
     }))({el: $('#hero')});
@@ -130,17 +154,57 @@ $(function() {
         }
     }))({el: $('#wish')});
     
+    var ContactView = new (SectionView.extend({
+        events: {
+            'submit form': 'sendMessage'
+        },
+        initialize: function() {
+            var API = 'http://api.toplist.oatpie.com/lovemessages/message/';
+            var Message = Model.extend({ urlRoot: API });
+            var Messages = Collection.extend({ url: API, model: Message });
+            this.messages = new Messages();
+            this.listenTo(this.messages, 'add', this.addMessage);
+            this.listenTo(this.messages, 'reset', this.renderMessages);
+        },
+        renderMessages: function() {
+            var $list = [];
+            this.messages.forEach(function(item) {
+                $list.push($('<p></p>').text(item.get('content')).prepend('<i class="fa fa-heart-o"></i>'));
+            });
+            this.$('.messages').html($list);
+        },
+        addMessage: function(item) {
+            var $msg = $('<p></p>').text(item.get('content')).prepend('<i class="fa fa-heart-o"></i>')
+                                   .css('opacity', 0).animate({opacity: 1})
+            this.$('.messages').prepend($msg);
+        },
+        sendMessage: function(e) {
+            if (e.preventDefault) e.preventDefault();
+            this.messages.create({
+                site: 1,
+                content: this.$('textarea').val()
+            });
+        },
+        onEnter: function() {
+            this.messages.fetch({reset: true, data: {site: 1}});
+            $('.copyright').removeClass('hidden');
+        },
+        onLeave: function() {
+            $('.copyright').addClass('hidden');
+        }
+    }))({el: $('#contact')});
+    
     /*************************************************************/
     
-    var sectionList = [HeroView, TheGirlView, StoryView, WeddingView, LaVieView, WishView];
+    var sectionList = [HeroView, TheGirlView, StoryView, WeddingView, LaVieView, WishView, ContactView];
     
     function autoPlayViews() {
         $('.forbid-gesture').removeClass('hidden');
         $('.forbid-gesture').on('touchmove', function(e) { e.preventDefault(); });
-        var duration = [7, 35, 75, 40, 65, 30];
-        //duration = [1, 1, 1, 1, 10, 1];
+        var duration = [7, 35, 75, 40, 65, 30, 1];
+        //duration = [1, 1, 1, 1, 1, 1, 1];
         var next = function(i) {
-            if (i > 5) {
+            if (i > 6) {
                 $('.forbid-gesture').addClass('hidden');
             } else {
                 scroller.goToPage(0, i, 2000, IScroll.utils.ease.quadratic);
@@ -172,12 +236,14 @@ $(function() {
         scroller.on('scrollEnd', function() {
             if (scroller.currentPage.pageY == page) return;
             page = scroller.currentPage.pageY;
-            sectionList[page] && sectionList[page].onEnter();
             sectionList[page+1] && sectionList[page+1].onLeave();
             sectionList[page-1] && sectionList[page-1].onLeave();
+            sectionList[page] && sectionList[page].onEnter();
         });
         //scroller.goToPage(0, 0);
-        autoPlayViews();
+        if (location.hash != '#noplay') {
+            autoPlayViews();
+        }
     }
     
     var imageList = [
@@ -225,7 +291,7 @@ $(function() {
             "img_url" : 'http://love.oatpie.com/dolphin/img/avatar.jpg',
             "img_width" : "640",
             "img_height" : "640",
-            "link" : 'http://love.oatpie.com/dolphin/',
+            "link" : 'http://love.oatpie.com/dolphin/#noplay',
             "desc" : "致我们永不褪色的爱情",
             "title" : "我钟爱的女子"
         };
