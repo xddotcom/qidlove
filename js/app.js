@@ -75,6 +75,14 @@ $(function() {
         },
         onEnter: function() {
             playAudio();
+            var outerWidth = this.$('.gallery').innerWidth();
+            var innerWidth = _.reduce(this.$('.gallery').children(), function(a,b){return a+$(b).outerWidth();}, 0);
+            this.$('.gallery').animate({
+                scrollLeft: innerWidth - outerWidth
+            }, 30000);
+        },
+        onLeave: function() {
+            this.$('.gallery').stop().css('scrollLeft', 0);
         }
     }))({el: $('#lavie')});
     
@@ -127,7 +135,7 @@ $(function() {
         "img/thecouple1.jpg", "img/thecouple2.jpg", "img/thecouple3.jpg", "img/thecouple4.jpg", "img/thecouple5.jpg",
         "img/story-cover.jpg", "img/story-cover-text.jpg",
         "img/rose-bottom.jpg", "img/rose-top.jpg",
-        "img/ring.png", "img/ring1.jpg", "img/ring2.jpg", "img/nightsky.jpg",
+        "img/ring1.jpg", "img/ring2.jpg", "img/nightsky.jpg",
         "img/food1.jpg", "img/food2.jpg", "img/food3.jpg", "img/food4.jpg", "img/food5.jpg",
         "img/cover-page-dark.jpg", "img/cover-page-light.jpg",
         "img/bouquet.png", "img/amalfi.jpg", "img/registry.jpg"
