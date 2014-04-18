@@ -217,13 +217,13 @@ $(function() {
     }
     
     function startApp() {
+        $('.view-wrapper,.view').css('height', $(window).height());
         $('.loading-text').addClass('hidden');
         $('.view-wrapper').removeClass('hidden');
         $('img').each(function() {
             var src = $(this).data('src');
             src && $(this).attr('src', src);
         });
-        $('.view').css('height', $('.view-wrapper').innerHeight());
         scroller = new IScroll('.view-wrapper', {
             momentum: false,
             bounce: false,
@@ -266,12 +266,12 @@ $(function() {
         limg--;
         $('.loading-text>span').text(parseInt((1-limg/imageList.length)*100) + '%');
         if (limg == 0) {
-            if (location.hash == '#noplay') {
-                startApp();
-            } else {
+            //if (location.hash == '#noplay') {
+            //    startApp();
+            //} else {
                 $('.loading-text').text("点击开始播放");
                 $('#audio').removeClass('hidden');
-            }
+            //}
         }
     }
     
