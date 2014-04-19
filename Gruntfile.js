@@ -21,21 +21,15 @@ module.exports = function(grunt) {
                 dest: 'js/bootstrap.js'
             }
         },
-        less: {
-            options: {
-                cleancss: true,
-                report: 'min'
-            },
+        sass: {
             bootstrap: {
-                src: 'less/bootstrap.less',
+                options: { style: 'compressed' },
+                src: 'scss/bootstrap.scss',
                 dest: 'css/bootstrap.css'
             },
-            bootstrap_theme: {
-                src: 'less/bootstrap-theme.less',
-                dest: 'css/bootstrap-theme.css'
-            },
             app: {
-                src: ['less/app.less'],
+                options: { style: 'compressed' },
+                src: 'scss/app.scss',
                 dest: 'css/app.css'
             }
         },
@@ -52,13 +46,13 @@ module.exports = function(grunt) {
                 files: ['js/bootstrap/**/*.js'],
                 tasks: ['concat:bootstrap']
             },
-            less: {
-                files: ['less/**/*.less', '!less/app.less'],
-                tasks: ['less']
+            stylesheets_all: {
+                files: ['scss/bootstrap/*.scss', 'scss/_*.scss', 'scss/bootstrap.scss'],
+                tasks: ['sass']
             },
-            less_app: {
-                files: ['less/app.less'],
-                tasks: ['less:app']
+            stylesheets_app: {
+                files: ['scss/font-awesome/*.scss', 'scss/app.scss'],
+                tasks: ['sass:app']
             },
             html: {
                 files: ['html/*.html'],
@@ -92,7 +86,7 @@ module.exports = function(grunt) {
         },
         concurrent: {
             dist: {
-                tasks: ['concat', 'less', 'includes'],
+                tasks: ['concat', 'sass', 'includes'],
                 options: { logConcurrentOutput: true }
             },
             server: {
@@ -108,7 +102,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-includes');
-    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-concurrent');
     
