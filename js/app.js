@@ -91,7 +91,7 @@ $(function() {
             "img_height" : "640",
             "link" : 'http://love.oatpie.com/jimmy/',
             "desc" : "您一定不能错过这场温馨浪漫的婚礼，见证美丽的公主说出那句 Yes, I do !",
-            "title" : "Jimmy &amp; Sherry's Wedding Ceremony"
+            "title" : "Jimmy & Sherry's Wedding Ceremony"
         };
         WeixinJSBridge.on('menu:share:appmessage', function(argv) {
             WeixinJSBridge.invoke('sendAppMessage', message);
