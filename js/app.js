@@ -86,12 +86,12 @@ $(function() {
 
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
         var message = {
-            "img_url" : 'http://love.oatpie.com/dolphin/img/avatar.jpg',
+            "img_url" : 'http://love.oatpie.com/jimmy/img/lu/kiss.png',
             "img_width" : "640",
             "img_height" : "640",
-            "link" : 'http://love.oatpie.com/dolphin/',
-            "desc" : "致我们永不褪色的爱情",
-            "title" : "我钟爱的女子"
+            "link" : 'http://love.oatpie.com/jimmy/',
+            "desc" : "您一定不能错过这场温馨浪漫的婚礼，见证美丽的公主说出那句 Yes, I do !",
+            "title" : "Jimmy &amp; Sherry's Wedding Ceremony"
         };
         WeixinJSBridge.on('menu:share:appmessage', function(argv) {
             WeixinJSBridge.invoke('sendAppMessage', message);
