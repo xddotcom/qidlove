@@ -62,6 +62,8 @@ $(function() {
             var src = $(this).data('src');
             src && $(this).attr('src', src);
         });
+        $('.view-wrapper').removeClass('hidden');
+        $('.loading-text').addClass('hidden');
     }
 
     var imageList = ["img/lu/jimmy.jpg", "img/lu/sherry.jpg", "img/lu/kiss.png", "img/lu/togather.png",
@@ -72,8 +74,6 @@ $(function() {
         l--;
         $('.loading-text>span').text(parseInt((1 - l / imageList.length) * 100) + '%');
         if (l == 0) {
-            $('.loading-text').addClass('hidden');
-            $('.view-wrapper').removeClass('hidden');
             startApp();
         }
     }
