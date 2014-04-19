@@ -86,7 +86,7 @@ $(function() {
 
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
         var message = {
-            "img_url" : 'http://love.oatpie.com/jimmy/img/lu/kiss.png',
+            "img_url" : 'http://love.oatpie.com/jimmy/img/lu/kiss.jpg',
             "img_width" : "640",
             "img_height" : "640",
             "link" : 'http://love.oatpie.com/jimmy/',
