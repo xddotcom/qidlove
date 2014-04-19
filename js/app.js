@@ -1,128 +1,76 @@
 $(function() {
-
-    var scroller;
-    var timelineBg = new Audio("img/timelinebg.mp3");
-
-    var SectionView = Backbone.View.extend({
-        onEnter: function() {},
-        onLeave: function() {}
+    var Collection = Backbone.Collection.extend({
+        parse: function(response) {
+            if (response.results != null) {
+                this.count = response.count;
+                this.previous = response.previous;
+                this.next = response.next;
+                return response.results;
+            } else {
+                return response;
+            }
+        }
     });
-
-    var HeroView = new (SectionView.extend({
-
-    }))({el: $('#hero')});
-
-    var TheGirlView = new (SectionView.extend({
-        onEnter: function() {
-            timelineBg.play();
-            this.$('.shy-girl').addClass('invisible');
-            this.$('.love-cross').addClass('crossed');
-        },
-        onLeave: function() {
-            this.$('.shy-girl').removeClass('invisible');
-            this.$('.love-cross').removeClass('crossed');
+    
+    var Model = Backbone.Model.extend({
+        url: function() {
+            if (this.attributes.url) {
+                return this.attributes.url;
+            } else {
+                var origUrl = Backbone.Model.prototype.url.call(this);
+                return origUrl + (origUrl.charAt(origUrl.length - 1) == '/' ? '' : '/');
+            }
         }
-    }))({el: $('#thegirl')});
-
-    var StoryView = new (SectionView.extend({
-        onEnter: function() {
-            var $timeline = this.$('.timeline');
-            var gap = $timeline.outerHeight() - this.$el.innerHeight();
-            var translate = 'translate3d(0, ' + (-gap) + 'px, 0)';
-            $timeline.addClass('animate');
-            $timeline.css({
-                '-webkit-transform': translate,
-                'transform': translate
-            });
-            //scroller.disable();
-            //setTimeout(function() { scroller.enable(); }, 10000);
-        },
-        onLeave: function() {
-            var $timeline = this.$('.timeline');
-            $timeline.removeClass('animate');
-            $timeline.css({
-                '-webkit-transform': 'translate3d(0, 0, 0)',
-                'transform': 'translate3d(0, 0, 0)'
-            });
-        }
-    }))({el: $('#story')});
-
-    var WeddingView = new (SectionView.extend({
-        onEnter: function() {
-            this.$('.rose-cover').addClass('animate');
-            this.$('.the-ring').addClass('animate');
-        },
-        onLeave: function() {
-            this.$('.rose-cover').removeClass('animate');
-            this.$('.the-ring').removeClass('animate');
-        }
-    }))({el: $('#wedding')});
-
-    var LaVieView = new (SectionView.extend({
+    });
+    
+    var ContactView = new (Backbone.View.extend({
         events: {
-            'click .gallery img': 'previewImage'
+            'submit form': 'sendMessage'
         },
-        previewImage: function(e) {
-            var $img = $(e.currentTarget);
-            window.WeixinJSBridge && window.WeixinJSBridge.invoke('imagePreview', {
-                current: location.origin + location.pathname + $img.attr('src'),
-                urls: _.map($img.siblings('img'), function(item) {
-                    return location.origin + location.pathname + $(item).attr('src');
-                })
+        initialize: function() {
+            var API = 'http://api.toplist.oatpie.com/lovemessages/message/';
+            var Message = Model.extend({ urlRoot: API });
+            var Messages = Collection.extend({ url: API, model: Message });
+            this.messages = new Messages();
+            this.listenTo(this.messages, 'add', this.addMessage);
+            this.listenTo(this.messages, 'reset', this.renderMessages);
+        },
+        renderMessages: function() {
+            var $list = [];
+            this.messages.forEach(function(item) {
+                $list.push($('<p></p>').text(item.get('content')).prepend('<i class="fa fa-heart-o"></i>'));
             });
-        }
-    }))({el: $('#lavie')});
-
-    var WishView = new (SectionView.extend({
-        onEnter: function() {
-            timelineBg.pause();
-            this.$('.cover').addClass('flip');
-            this.$('.bouquet').addClass('slidein');
-            $('.copyright').removeClass('hidden');
+            this.$('.messages').html($list);
         },
-        onLeave: function() {
-            this.$('.cover').removeClass('flip');
-            this.$('.bouquet').removeClass('slidein');
-            $('.copyright').addClass('hidden');
+        addMessage: function(item) {
+            var $msg = $('<p></p>').text(item.get('content')).prepend('<i class="fa fa-heart-o"></i>')
+                                   .css('opacity', 0).animate({opacity: 1})
+            this.$('.messages').prepend($msg);
+        },
+        sendMessage: function(e) {
+            if (e.preventDefault) e.preventDefault();
+            var content = this.$('textarea').val();
+            if (content) {
+                this.messages.create({ site: 2, content: content });
+                this.$('textarea').val('').attr('placeholder', '谢谢你的祝福！');
+            }
         }
-    }))({el: $('#wish')});
-
-    /*************************************************************/
-
+    }))({el: $('#contact')});
+    
     function startApp() {
         $('img').each(function() {
             var src = $(this).data('src');
             src && $(this).attr('src', src);
         });
-//        $('.view').css('height', $('.view-wrapper').innerHeight());
-//        scroller = new IScroll('.view-wrapper', {
-//            momentum: false,
-//            bounce: false,
-//            snap: true,
-//            snapSpeed: 500,
-//            snapThreshold: 0.1,
-//            mouseWheel: true,
-//            eventPassthrough: 'horizontal'
-//        });
-//        var sectionList = [HeroView, TheGirlView, StoryView, WeddingView, LaVieView, WishView];
-//        scroller.on('scrollEnd', function() {
-//            var page = scroller.currentPage.pageY;
-//            sectionList[page] && sectionList[page].onEnter();
-//            sectionList[page+1] && sectionList[page+1].onLeave();
-//            sectionList[page-1] && sectionList[page-1].onLeave();
-//        });
-//        scroller.goToPage(0, 0);
     }
 
-    var imageList = [
-        "img/lu/image001.jpg", "img/lu/image003.jpg", "img/lu/image005.jpg",
-        "img/lu/image007.jpg", "img/lu/image009.jpg", "img/lu/image011.jpg"
-    ];
+    var imageList = ["img/lu/jimmy.jpg", "img/lu/sherry.jpg", "img/lu/kiss.png", "img/lu/togather.png",
+                     "img/etoiles.png", "img/lu/wedding.jpg", "img/lu/xianhengjiudian.jpg"];
 
     var l = imageList.length;
     function imageLoaded() {
         l--;
-        $('.loading-text>span').text(parseInt((1-l/imageList.length)*100) + '%');
+        $('.loading-text>span').text(parseInt((1 - l / imageList.length) * 100) + '%');
         if (l == 0) {
             $('.loading-text').addClass('hidden');
             $('.view-wrapper').removeClass('hidden');
@@ -130,7 +78,7 @@ $(function() {
         }
     }
 
-    for (var i=0; i<imageList.length; i++) {
+    for (var i = 0; i < imageList.length; i++) {
         var image = new Image();
         image.onload = imageLoaded;
         image.src = imageList[i];
@@ -153,4 +101,4 @@ $(function() {
         });
     }, false);
 
-});
+}); 
