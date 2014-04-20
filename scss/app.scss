@@ -156,7 +156,11 @@ $yellow: #bfa260;
 }
 
 #information {
-    background: $violet url(../img/etoiles.png) repeat top center / contain;
+    background-image: url(../img/etoiles.png);
+    background-color: $violet;
+    background-repeat: repeat;
+    background-position: top center;
+    background-size: contain;
     color: #f0f0f0;
     padding-bottom: 30px;
     dl {
