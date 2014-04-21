@@ -70,14 +70,19 @@ $yellow: #bfa260;
     opacity: 0;
 }
 
+body {
+    overflow: hidden;
+}
+
 .view-wrapper {
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
+    //position: fixed;
+    //z-index: 1;
+    //top: 0;
+    //left: 0;
     width: 100%;
     height: 100%;
-    min-height: 500px;
+    overflow: hidden;
+    //min-height: 500px;
 }
 
 .pink-text {
@@ -117,10 +122,11 @@ $yellow: #bfa260;
 #hero {
     width: 100%;
     height: 100%;
-    position: fixed;
-    z-index: 2;
-    top: 0;
-    left: 0;
+    overflow: hidden;
+    //position: fixed;
+    //z-index: 2;
+    //top: 0;
+    //left: 0;
     background-image: url('../img/phone.png');
     background-size:cover;
     background-repeat:no-repeat;

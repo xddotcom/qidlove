@@ -60,25 +60,31 @@ $(function() {
     }))({el: $('#proposal')});
     
     /*************************************************************/
-   
+    
     function startApp() {
+        $('.view,.view-wrapper,#hero').css('height', $(window).height());
+        
         $('img').each(function() {
             var src = $(this).data('src');
             src && $(this).attr('src', src);
         });
-        $('.view').css('height', $('.view-wrapper').innerHeight());
-        $('#hero').css('height', '100%');
+        
         var sectionList = [WeddingView, TheGirlView, TheBigDayView, ProposalView];
-         
-        var initScroll = function() {
-            return new IScroll('.view-wrapper', {
-                momentum : false,
-                bounce : false,
-                snap : true,
-                snapSpeed : 500,
-                mouseWheel : true
-            });
-        };
+        
+        scroller = new IScroll('.view-wrapper', {
+            momentum : false,
+            bounce : false,
+            snap : true,
+            snapSpeed : 500,
+            mouseWheel : true
+        });
+        
+        scroller.on('scrollEnd', function() {
+            var page = scroller.currentPage.pageY;
+            sectionList[page] && sectionList[page].onEnter();
+            sectionList[page + 1] && sectionList[page + 1].onLeave();
+            sectionList[page - 1] && sectionList[page - 1].onLeave();
+        });
         
         if(/android/i.test(navigator.userAgent)){
             $('.phoneScrollBar').css('bottom', $('.phoneScrollBar').css('margin-bottom'));
@@ -102,19 +108,13 @@ $(function() {
                 opacity : 0
             }, 1000, function() {
                 $('#hero').remove();
-                scroller = initScroll();
-                scroller.on('scrollEnd', function() {
-                    var page = scroller.currentPage.pageY;
-                    sectionList[page] && sectionList[page].onEnter();
-                    sectionList[page + 1] && sectionList[page + 1].onLeave();
-                    sectionList[page - 1] && sectionList[page - 1].onLeave();
-                });
             });
         };
         
         phoneScroll.on('scrollEnd', function() {
             if (this.x >= -20) {
                 phoneScroll.scrollToElement('.call-button-dummy', 1000);
+                phoneScroll.destroy();
                 removeHero();
             } else {
                 phoneScroll.scrollToElement('.call-button', 1000);
@@ -147,7 +147,7 @@ $(function() {
         image.onload = imageLoaded;
         image.src = imageList[i];
     }
-
+    
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
         var message = {
             "img_url" : 'http://love.oatpie.com/libra/img/avatar.jpg',
