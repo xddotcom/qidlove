@@ -143,6 +143,8 @@ $yellow: #bfa260;
     }
     address {
         @include square(100%);
+        border-radius: 50%;
+        overflow: hidden;
         padding: 40px 15px;
         background: $pink url(../img/dotted.png) repeat;
         color: #fff;
@@ -202,6 +204,11 @@ $yellow: #bfa260;
         max-width: 500px;
         @include center-block();
     }
+    .copyright {
+        margin: 20px -20px 10px;
+        padding-top: 10px;
+        border-top: 1px solid lighten($pink, 10%);
+    }
     .btn {
         background: lighten($pink, 17%);
         border-color: lighten($pink, 17%);
@@ -227,8 +234,10 @@ $yellow: #bfa260;
         .fa-heart-o {
             margin-right: 10px;
         }
-        padding: 10px 20px;
-        max-height: 90px;
-        overflow: hidden;
+        margin: 10px 20px;
+        max-height: 200px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
     }
 }

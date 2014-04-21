@@ -44,7 +44,7 @@ $(function() {
         },
         addMessage: function(item) {
             var $msg = $('<p></p>').text(item.get('content')).prepend('<i class="fa fa-heart-o"></i>')
-                                   .css('opacity', 0).animate({opacity: 1})
+                                   .css('opacity', 0).animate({opacity: 1});
             this.$('.messages').prepend($msg);
         },
         sendMessage: function(e) {
@@ -64,6 +64,7 @@ $(function() {
         });
         $('.view-wrapper').removeClass('hidden');
         $('.loading-text').addClass('hidden');
+        ContactView.messages.fetch({reset: true, data: {site: 2}});
     }
 
     var imageList = ["img/lu/jimmy.jpg", "img/lu/sherry.jpg", "img/lu/kiss.png", "img/lu/togather.png",
