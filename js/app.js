@@ -84,8 +84,7 @@ $(function() {
             $('.phoneScrollBar').css('bottom', $('.phoneScrollBar').css('margin-bottom'));
             $('.phoneScrollBar').css('margin-bottom', 0);
         }
-
-
+        
         var phoneScroll = new IScroll('.phoneScrollBar', {
             momentum : false,
             scrollX : true,
