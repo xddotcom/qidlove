@@ -129,9 +129,7 @@ $(function() {
         "img/heart-cross-pink.png",
         "img/call.png", "img/phone.png",
         "img/rose-bottom.jpg", "img/rose-top.jpg",
-        "img/nightsky.jpg",
-        "img/cover-page-dark.jpg", "img/cover-page-light.jpg",
-        "img/bouquet.png"
+        "img/dotted.png", "img/bulle_bleue.png", "img/body-bg-gray.jpg"
     ];
     var l = imageList.length, i=0;
     function imageLoaded() {
