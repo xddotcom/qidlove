@@ -10,6 +10,8 @@
 
 //********************************************//
 
+$imageRoot: 'http://oatpie.qiniudn.com/jimmy/';
+
 @font-face {
     font-family: 'titan';
     src: url('../fonts/TitanOne-Regular.ttf');
@@ -91,7 +93,7 @@ $yellow: #bfa260;
 #bigday {
     height: 500px;
     position: relative;
-    background: url(../img/lu/wedding.jpg) no-repeat center;
+    background: url(#{$imageRoot}img/lu/wedding.jpg) no-repeat center;
     background-size: cover;
     background-position: top;
     color: #fff;
@@ -105,7 +107,7 @@ $yellow: #bfa260;
 }
 
 #hero {
-    background: $pink url(../img/dotted.png) repeat;
+    background: $pink url(#{$imageRoot}img/dotted.png) repeat;
     color: #ffffff;
     > img {
         margin-top: 20px
@@ -126,7 +128,7 @@ $yellow: #bfa260;
 
 #where {
     height: 600px;
-    background: url('../img/lu/xianhengjiudian.jpg') no-repeat bottom right;
+    background: url(#{$imageRoot}img/lu/xianhengjiudian.jpg) no-repeat bottom right;
     background-size: cover;
     position: relative;
     padding-bottom: 50px;
@@ -146,7 +148,7 @@ $yellow: #bfa260;
         border-radius: 50%;
         overflow: hidden;
         padding: 40px 15px;
-        background: $pink url(../img/dotted.png) repeat;
+        background: $pink url(#{$imageRoot}img/dotted.png) repeat;
         color: #fff;
         h4 {
             margin-bottom: 30px;
@@ -158,7 +160,7 @@ $yellow: #bfa260;
 }
 
 #information {
-    background-image: url(../img/etoiles.png);
+    background-image: url(#{$imageRoot}img/etoiles.png);
     background-color: $violet;
     background-repeat: repeat;
     background-position: top center;

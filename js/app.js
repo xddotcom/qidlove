@@ -1,4 +1,7 @@
 $(function() {
+    
+    var imageRoot = 'http://oatpie.qiniudn.com/jimmy/';
+    
     var Collection = Backbone.Collection.extend({
         parse: function(response) {
             if (response.results != null) {
@@ -60,7 +63,7 @@ $(function() {
     function startApp() {
         $('img').each(function() {
             var src = $(this).data('src');
-            src && $(this).attr('src', src);
+            src && $(this).attr('src', imageRoot + src);
         });
         $('.view-wrapper').removeClass('hidden');
         $('.loading-text').addClass('hidden');
@@ -82,7 +85,7 @@ $(function() {
     for (var i = 0; i < imageList.length; i++) {
         var image = new Image();
         image.onload = imageLoaded;
-        image.src = imageList[i];
+        image.src = imageRoot + imageList[i];
     }
 
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
