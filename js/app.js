@@ -1,5 +1,6 @@
 
 $(function() {
+    var imageRoot = 'http://oatpie.qiniudn.com/dolphin/';
     var scroller;
     
     var SectionView = Backbone.View.extend({
@@ -175,7 +176,7 @@ $(function() {
         },
         addMessage: function(item) {
             var $msg = $('<p></p>').text(item.get('content')).prepend('<i class="fa fa-heart-o"></i>')
-                                   .css('opacity', 0).animate({opacity: 1})
+                                   .css('opacity', 0).animate({opacity: 1});
             this.$('.messages').prepend($msg);
         },
         sendMessage: function(e) {
@@ -222,7 +223,7 @@ $(function() {
         $('.view-wrapper').removeClass('hidden');
         $('img').each(function() {
             var src = $(this).data('src');
-            src && $(this).attr('src', src);
+            src && $(this).attr('src', imageRoot + src);
         });
         scroller = new IScroll('.view-wrapper', {
             momentum: false,
@@ -266,12 +267,8 @@ $(function() {
         limg--;
         $('.loading-text>span').text(parseInt((1-limg/imageList.length)*100) + '%');
         if (limg == 0) {
-            //if (location.hash == '#noplay') {
-            //    startApp();
-            //} else {
-                $('.loading-text').text("点击开始播放");
-                $('#audio').removeClass('hidden');
-            //}
+            $('.loading-text').text("点击开始播放");
+            $('#audio').removeClass('hidden');
         }
     }
     
@@ -287,7 +284,7 @@ $(function() {
     for (var i=0; i<imageList.length; i++) {
         var image = new Image();
         image.onload = imageLoaded;
-        image.src = imageList[i];
+        image.src = imageRoot + imageList[i];
     }
     
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
