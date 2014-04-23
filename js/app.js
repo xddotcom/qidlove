@@ -1,6 +1,7 @@
 
 $(function() {
-    var imageRoot = 'http://oatpie.qiniudn.com/dolphin/';
+    var imageRoot = 'http://oatpie.qiniudn.com/catking/';
+    //var imageRoot = '/';
     var scroller;
     
     var SectionView = Backbone.View.extend({
@@ -243,9 +244,6 @@ $(function() {
             sectionList[page] && sectionList[page].onEnter();
         });
         //scroller.goToPage(0, 0);
-        if (location.hash != '#noplay') {
-            autoPlayViews();
-        }
     }
     
     var imageList = [
@@ -268,7 +266,8 @@ $(function() {
         $('.loading-text>span').text(parseInt((1-limg/imageList.length)*100) + '%');
         if (limg == 0) {
             $('.loading-text').text("点击开始播放");
-            $('#audio').removeClass('hidden');
+            //$('#audio').removeClass('hidden');
+            startApp();
         }
     }
     
