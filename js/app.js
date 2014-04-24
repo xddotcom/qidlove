@@ -280,10 +280,10 @@ $(function() {
     
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
         var message = {
-            "img_url" : 'http://love.oatpie.com/dolphin/img/avatar.jpg',
+            "img_url" : 'http://love.oatpie.com/catking/img/avatar.jpg',
             "img_width" : "640",
             "img_height" : "640",
-            "link" : 'http://love.oatpie.com/dolphin/#noplay',
+            "link" : 'http://love.oatpie.com/catking/',
             "desc" : "今后只愿将心付与一人",
             "title" : "猫王的故事"
         };
