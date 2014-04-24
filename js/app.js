@@ -1,7 +1,7 @@
 
 $(function() {
     var imageRoot = 'http://oatpie.qiniudn.com/catking/';
-    //var imageRoot = '/';
+    var imageRoot = 'http://192.168.1.99:8080/';
     var scroller;
     
     var SectionView = Backbone.View.extend({
@@ -66,7 +66,7 @@ $(function() {
         onEnter: function() {
             var $timeline = this.$('.timeline');
             var gap = $timeline.outerHeight() - this.$el.innerHeight();
-            var translate = 'translate3d(0, ' + (-gap-300) + 'px, 0)';
+            var translate = 'translate3d(0, ' + (-gap) + 'px, 0)';
             $timeline.addClass('animate');
             $timeline.css({
                 '-webkit-transform': translate,
@@ -143,18 +143,33 @@ $(function() {
         }
     }))({el: $('#lavie')});
     
-    var WishView = new (SectionView.extend({
+    var HoneymoonView = new (SectionView.extend({
+        events: {
+            'click .cover-top .img': 'previewImage'
+        },
+        initialize: function() {
+            this.images = ['img/travel/1.jpg', 'img/travel/2.jpg', 'img/travel/3.jpg',
+                           'img/travel/4.jpg', 'img/travel/5.jpg', 'img/travel/6.jpg'];
+        },
+        previewImage: function(e) {
+            var $img = $(e.currentTarget);
+            window.WeixinJSBridge && window.WeixinJSBridge.invoke('imagePreview', {
+                current: imageRoot + this.images[+$img.data('img')],
+                urls: _.map(this.images, function(item) { return imageRoot + item; })
+            });
+        },
         onEnter: function() {
             this.$('.cover').addClass('flip');
-            this.$('.bouquet').addClass('slidein');
-            $('.copyright').removeClass('hidden');
+            var images = this.images;
+            this.$('.cover-top .img').each(function(index, img) {
+                $(img).css('background-image', 'url(' + imageRoot + images[index] + ')');
+                $(img).data('img', index);
+            });
         },
         onLeave: function() {
             this.$('.cover').removeClass('flip');
-            this.$('.bouquet').removeClass('slidein');
-            $('.copyright').addClass('hidden');
         }
-    }))({el: $('#wish')});
+    }))({el: $('#honeymoon')});
     
     var ContactView = new (SectionView.extend({
         events: {
@@ -184,11 +199,12 @@ $(function() {
             if (e.preventDefault) e.preventDefault();
             var content = this.$('textarea').val();
             if (content) {
-                this.messages.create({ site: 1, content: content });
+                this.messages.create({ site: 3, content: content });
+                this.$('textarea').val('').attr('placeholder', '谢谢你的祝福！');
             }
         },
         onEnter: function() {
-            this.messages.fetch({reset: true, data: {site: 1}});
+            this.messages.fetch({reset: true, data: {site: 3}});
             $('.copyright').removeClass('hidden');
         },
         onLeave: function() {
@@ -199,24 +215,7 @@ $(function() {
     
     /*************************************************************/
     
-    var sectionList = [HeroView, TheGirlView, StoryView, WeddingView, LaVieView, WishView, ContactView];
-    
-    function autoPlayViews() {
-        $('.forbid-gesture').removeClass('hidden');
-        $('.forbid-gesture').on('touchmove', function(e) { e.preventDefault(); });
-        var duration = [7, 35, 75, 40, 65, 30, 1];
-        //duration = [1, 1, 1, 1, 1, 1, 1];
-        var next = function(i) {
-            if (i > 6) {
-                $('.forbid-gesture').addClass('hidden');
-            } else {
-                scroller.goToPage(0, i, 2000, IScroll.utils.ease.quadratic);
-                setTimeout(function() { sectionList[i].play(); }, 2500);
-                setTimeout(function() { next(i+1); }, duration[i] * 1000);
-            }
-        };
-        next(0);
-    }
+    var sectionList = [HeroView, TheGirlView, StoryView, WeddingView, LaVieView, HoneymoonView, ContactView];
     
     function startApp() {
         $('.view-wrapper,.view').css('height', $(window).height());
@@ -243,21 +242,24 @@ $(function() {
             sectionList[page-1] && sectionList[page-1].onLeave();
             sectionList[page] && sectionList[page].onEnter();
         });
-        //scroller.goToPage(0, 0);
+        //scroller.goToPage(0, 5);
     }
     
     var imageList = [
-        "img/angel.jpg", "img/dolphin.jpg", "img/avatar.jpg",
-        "img/thegirl1.jpg", "img/thegirl2.jpg", "img/thegirl3.jpg", "img/thegirl4.jpg", "img/thegirl5.jpg", "img/thegirl6.jpg",
-        "img/thestory1.jpg", "img/thestory2.jpg", "img/thestory3.jpg",
-        "img/heart-cross-pink.png", "img/thecouple.png",
-        "img/thecouple1.jpg", "img/thecouple2.jpg", "img/thecouple3.jpg", "img/thecouple4.jpg", "img/thecouple5.jpg",
+        "img/avatar.jpg",
+        "img/boy/1.jpg",
+        "img/girl/1.jpg", "img/girl/2.jpg", "img/girl/3.jpg", "img/girl/4.jpg", "img/girl/5.jpg", "img/girl/6.jpg",
+        "img/couple/1.jpg", "img/couple/2.jpg", "img/couple/3.jpg", "img/couple/1.png",
+        "img/lavie/1.jpg", "img/lavie/2.jpg", "img/lavie/3.jpg", "img/lavie/4.jpg", "img/lavie/5.jpg", "img/lavie/6.jpg", "img/lavie/7.jpg",
+        "img/proposal/1.jpg", "img/proposal/2.jpg", "img/proposal/3.jpg", "img/proposal/4.jpg", "img/proposal/5.jpg", "img/proposal/6.jpg", "img/proposal/7.jpg", "img/proposal/8.jpg",
+        "img/travel/1.jpg", "img/travel/2.jpg", "img/travel/3.jpg", "img/travel/4.jpg", "img/travel/5.jpg", "img/travel/6.jpg",
+        "img/marriage-cert.jpg", "img/sunset.jpg",
+        "img/body-bg-gray.jpg", "img/rip.png",
+        "img/heart-cross-pink.png",
         "img/story-cover.jpg", "img/story-cover-text.jpg",
         "img/rose-bottom.jpg", "img/rose-top.jpg",
-        "img/ring1.jpg", "img/ring2.jpg", "img/nightsky.jpg",
-        "img/food1.jpg", "img/food2.jpg", "img/food3.jpg", "img/food4.jpg", "img/food5.jpg",
+        "img/nightsky.jpg",
         "img/cover-page-dark.jpg", "img/cover-page-light.jpg",
-        "img/bouquet.png", "img/amalfi.jpg", "img/registry.jpg"
     ];
     
     var limg = imageList.length;
@@ -266,19 +268,9 @@ $(function() {
         $('.loading-text>span').text(parseInt((1-limg/imageList.length)*100) + '%');
         if (limg == 0) {
             $('.loading-text').text("点击开始播放");
-            //$('#audio').removeClass('hidden');
             startApp();
         }
     }
-    
-    //var audio = window.BACKGROUND_AUDIO = new Audio();
-    //audio.autoplay = true;
-    audio = document.getElementById('audio');
-    audio.addEventListener('playing', function() {
-        $('#audio').addClass('hidden');
-        startApp();
-    });
-    audio.src = "img/timelinebg.mp3";
     
     for (var i=0; i<imageList.length; i++) {
         var image = new Image();
@@ -292,8 +284,8 @@ $(function() {
             "img_width" : "640",
             "img_height" : "640",
             "link" : 'http://love.oatpie.com/dolphin/#noplay',
-            "desc" : "致我们永不褪色的爱情",
-            "title" : "我钟爱的女子"
+            "desc" : "今后只愿将心付与一人",
+            "title" : "猫王的故事"
         };
         WeixinJSBridge.on('menu:share:appmessage', function(argv) {
             WeixinJSBridge.invoke('sendAppMessage', message);

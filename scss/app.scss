@@ -11,7 +11,7 @@
 //********************************************//
 
 $imageRoot: 'http://oatpie.qiniudn.com/catking/';
-//$imageRoot: '../';
+$imageRoot: 'http://192.168.1.99:8080/';
 
 @font-face {
     font-family: 'titan';
@@ -115,8 +115,9 @@ body { overflow: hidden; }
     font-family: wide, sans-serif;
     font-size: 18px;
     text-align: center;
-    margin: 5px;
+    padding-top: 10px;
     font-weight: bold;
+    border-top: 1px solid $pink;
 }
 
 .pink-text {
@@ -129,6 +130,10 @@ body { overflow: hidden; }
 
 .script {
     font-family: greatvibes, sans-serif;
+}
+
+.wide-text {
+    font-family: wide, sans-serif;
 }
 
 .img {
@@ -171,7 +176,7 @@ body { overflow: hidden; }
 }
 
 #thegirl {
-    background: $blue;
+    background: $pink;
     color: #fff;
     padding-top: 30px;
     .shy-girl {
@@ -179,7 +184,7 @@ body { overflow: hidden; }
         top: 0;
         z-index: 1;
         @include square(100%);
-        background: url(#{$imageRoot}img/thegirl5.jpg) no-repeat center;
+        background: url(#{$imageRoot}img/girl/2.jpg) no-repeat center;
         background-size: cover;
         @include transition(all 1s ease-in-out .5s);
         padding-top: 50px;
@@ -216,11 +221,11 @@ body { overflow: hidden; }
     }
     .img-the-girl {
         width: 50%;
-        background-image: url(#{$imageRoot}img/angel.jpg);
+        background-image: url(#{$imageRoot}img/girl/1.jpg);
     }
     .img-the-boy {
         width: 50%;
-        background-image: url(#{$imageRoot}img/dolphin.jpg);
+        background-image: url(#{$imageRoot}img/boy/1.jpg);
     }
     .heart {
         opacity: 0;
@@ -238,9 +243,7 @@ body { overflow: hidden; }
 }
 
 #story {
-    //background: #f4f0ed;
-    background: url(#{$imageRoot}img/nightsky.jpg) no-repeat center;
-    background-size: cover;
+    background: #f4f0ed;
     .line {
         z-index: 0;
         position: absolute;
@@ -258,7 +261,7 @@ body { overflow: hidden; }
         position: relative;
         padding: 10px;
         &.animate {
-            @include transition-transform(75s linear 1s);
+            @include transition-transform(30s linear 1s);
             .post { @include translate3d(0, 0, 0); }
         }
     }
@@ -314,11 +317,16 @@ body { overflow: hidden; }
         width: 100%;
         border-radius: 5px;
     }
+    .emphisize {
+        font-size: 2em;
+    }
 }
 
 #wedding {
-    background: url(#{$imageRoot}img/ring2.jpg) no-repeat center;
-    background-size: cover;
+    //background: url(#{$imageRoot}img/ring2.jpg) no-repeat center;
+    background: url(#{$imageRoot}img/couple/1.png) no-repeat center bottom,
+                url(#{$imageRoot}img/nightsky.jpg) no-repeat center;
+    background-size: contain, cover;
     color: #fff;
     > header {
         p { margin-bottom: 5px; }
@@ -365,9 +373,10 @@ body { overflow: hidden; }
 }
 
 #lavie {
-    background: url(#{$imageRoot}img/registry.jpg) no-repeat center top;
-    background-size: cover;
+    background: url(#{$imageRoot}img/lavie/1.jpg) no-repeat center top;
+    background-size: contain;
     > header {
+        opacity: 0.9;
         background: #fafafa;
         position: relative;
         &::after {
@@ -382,8 +391,9 @@ body { overflow: hidden; }
         }
     }
     .gallery {
-        position: relative;
-        top: 15%;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
         height: 50%;
         background: #fff;
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, .7);
@@ -432,7 +442,7 @@ body { overflow: hidden; }
     }
 }
 
-#wish {
+#honeymoon {
     background: url(#{$imageRoot}img/sunset.jpg) no-repeat center;
     background-size: cover;
     .cover {
@@ -450,22 +460,25 @@ body { overflow: hidden; }
         background: url(#{$imageRoot}img/cover-page-dark.jpg) no-repeat;
         background-size: 100% 100%;
         color: #f0f0f0;
-        padding: 40px;
         //box-shadow: 0 0 2px 0 #000;
         @include rotateX(-180deg);
         @include transform-origin(center bottom);
-        img {
-            @include center-block();
-            height: 100%;
+        @include clearfix();
+        .img {
+            float: left;
+            height: 33.333333%;
+            width: 50%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
         }
     }
     .cover-bottom {
         overflow: hidden;
         width: 100%;
         height: 100%;
-        background: url(#{$imageRoot}img/thecouple.png) no-repeat center top,
-                    url(#{$imageRoot}img/cover-page-light.jpg) no-repeat;
-        background-size: auto 90%, 100% 100%;
+        background: url(#{$imageRoot}img/cover-page-light.jpg) no-repeat;
+        background-size: 100% 100%;
         padding: 25px;
         color: #555;
         > p {
@@ -484,19 +497,6 @@ body { overflow: hidden; }
         .cover-top {
             @include transition-transform(1s linear .3s);
             @include rotateX(0deg);
-        }
-    }
-    .bouquet {
-        position: absolute;
-        z-index: 1;
-        height: 300px;
-        width: 150px;
-        left: 0;
-        top: 0;
-        @include translate3d(-100%, 0, 0);
-        &.slidein {
-            @include transition-transform(.5s linear 1.2s);
-            @include translate3d(0, 0, 0);
         }
     }
 }
@@ -529,8 +529,10 @@ body { overflow: hidden; }
         .fa-heart-o {
             margin-right: 10px;
         }
-        padding: 10px 20px;
-        height: 90px;
-        overflow: hidden;
+        margin: 10px 20px;
+        max-height: 150px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
     }
 }
