@@ -72,46 +72,34 @@ $yellow: #bfa260;
     opacity: 0;
 }
 
-#audio {
-    position: relative;
-    z-index: 10000;
-    width: 200px;
-    margin-top: 50px;
-    @include center-block();
-    &.hidden {
-        width: 0;
-        height: 0;
-        margin: 0;
-    }
-}
-
-body { overflow: hidden; }
-
-.view-wrapper {
-    //position: fixed;
-    //top: 0;
-    //left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    //min-height: 500px;
-}
-
-.forbid-gesture {
+.body-background {
     position: fixed;
+    z-index: -1;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 9999;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(#{$imageRoot}img/story-cover-text.jpg);
+    &.scene2 {
+        background-image: url(#{$imageRoot}img/sunset.jpg);
+    }
+}
+
+.view-wrapper {
+    width: 100%;
+    //height: 100%;
+    overflow: hidden;
 }
 
 .copyright {
-    position: absolute;
-    z-index: 1000;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    //position: absolute;
+    //z-index: 1000;
+    //bottom: 0;
+    //left: 0;
+    margin: 0 -20px 10px;
     font-family: wide, sans-serif;
     font-size: 18px;
     text-align: center;
@@ -143,9 +131,10 @@ body { overflow: hidden; }
 }
 
 .view {
-    background: url(#{$imageRoot}img/body-bg-gray.jpg) repeat;
+    //background: url(#{$imageRoot}img/body-bg-gray.jpg) repeat;
     width: 100%;
-    height: 0;
+    //height: 0;
+    min-height: 500px;
     overflow: hidden;
     position: relative;
     > header {
@@ -195,7 +184,7 @@ body { overflow: hidden; }
         position: relative;
         &.crossed {
             .img {
-                @include transition-transform(1s ease-in-out .5s);
+                @include transition-transform(1s ease-in-out);
             }
             .img-the-girl {
                 @include translate3d(-10%, 0, 0);
@@ -205,7 +194,7 @@ body { overflow: hidden; }
             }
             .heart {
                 opacity: 1;
-                @include transition(.5s ease-in-out 1s);
+                @include transition(.5s ease-in-out .5s);
             }
         }
     }
@@ -254,7 +243,7 @@ body { overflow: hidden; }
         background: rgba(150, 150, 150, .3);
     }
     .timeline-wrapper {
-        height: 100%;
+        //height: 100%;
     }
     .timeline {
         @include clearfix();
@@ -443,8 +432,8 @@ body { overflow: hidden; }
 }
 
 #honeymoon {
-    background: url(#{$imageRoot}img/sunset.jpg) no-repeat center;
-    background-size: cover;
+    //background: url(#{$imageRoot}img/sunset.jpg) no-repeat center;
+    //background-size: cover;
     .cover {
         width: 100%;
         height: 50%;
