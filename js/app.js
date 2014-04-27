@@ -1,9 +1,9 @@
 
 $(function() {
     var imageRoot = 'http://oatpie.qiniudn.com/catking/';
-    //var imageRoot = 'http://192.168.1.99:8080/';
+    //var imageRoot = 'http://192.168.0.119:8080/';
     var scroller;
-        
+    
     var SectionView = Backbone.View.extend({
         onEnter: function() {},
         onLeave: function() {}
@@ -47,7 +47,6 @@ $(function() {
                 var winH = $(window).height();
                 $(window).scroll(function() {
                     var dis = $cross.offset().top - $(window).scrollTop();
-                    console.log(dis);
                     if (dis > 0 - 170 && dis < winH - 170) {
                         $cross.addClass('crossed');
                     } else {
@@ -204,6 +203,7 @@ $(function() {
     function startApp() {
         $('.loading-text').addClass('hidden');
         $('.view-wrapper').removeClass('hidden');
+        $('.view').css('min-height', $(window).height());
         $('img').each(function() {
             var src = $(this).data('src');
             src && $(this).attr('src', imageRoot + src);

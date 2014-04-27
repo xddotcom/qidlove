@@ -11,7 +11,7 @@
 //********************************************//
 
 $imageRoot: 'http://oatpie.qiniudn.com/catking/';
-//$imageRoot: 'http://192.168.1.99:8080/';
+//$imageRoot: 'http://192.168.0.119:8080/';
 
 @font-face {
     font-family: 'titan';
@@ -82,7 +82,7 @@ $yellow: #bfa260;
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url(#{$imageRoot}img/story-cover-text.jpg);
+    background-image: url(#{$imageRoot}img/boy/2.jpg);
     &.scene2 {
         background-image: url(#{$imageRoot}img/sunset.jpg);
     }
@@ -95,11 +95,12 @@ $yellow: #bfa260;
 }
 
 .copyright {
-    //position: absolute;
-    //z-index: 1000;
-    //bottom: 0;
-    //left: 0;
-    margin: 0 -20px 10px;
+    position: absolute;
+    z-index: 1000;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    //margin: 0 -20px 10px;
     font-family: wide, sans-serif;
     font-size: 18px;
     text-align: center;
