@@ -1,7 +1,7 @@
 
 $(function() {
     var imageRoot = 'http://oatpie.qiniudn.com/catking/';
-    var imageRoot = 'http://192.168.1.99:8080/';
+    //var imageRoot = 'http://192.168.1.99:8080/';
     var scroller;
     
     var SectionView = Backbone.View.extend({
