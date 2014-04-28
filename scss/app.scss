@@ -399,13 +399,14 @@ $yellow: #bfa260;
 }
 
 #lavie {
-    background: #fff url(#{$imageRoot}img/lavie/1.jpg) no-repeat center top;
-    background-size: contain;
+    background: #fff;
     > header {
         padding: 5px 0 10px;
         opacity: 0.9;
         background: #fafafa;
-        position: relative;
+        position: absolute;
+        top: 0;
+        width: 100%;
         &::after {
             content: "";
             position: absolute;
@@ -415,6 +416,28 @@ $yellow: #bfa260;
             height: 20px;
             background: url(#{$imageRoot}img/rip.png) no-repeat center top;
             background-size: contain;
+        }
+    }
+    .story {
+        
+    }
+    .story-item {
+        @include clearfix();
+        > span, > img {
+            display: block;
+            float: left;
+        }
+    }
+    .story-item {
+        height: 200px;
+        overflow: hidden;
+        > img {
+            display: block;
+            width: 60%;
+        }
+        > span {
+            width: 40%;
+            padding: 10px;
         }
     }
 }

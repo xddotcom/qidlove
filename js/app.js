@@ -64,47 +64,15 @@ $(function() {
                         $scene.removeClass('scene2').addClass('scene1');
                     }
                 });
-            },
-            onEnter: function() {
-                this.$('.shy-girl').addClass('invisible');
-                this.$('.love-cross').addClass('crossed');
-            },
-            onLeave: function() {
-                this.$('.shy-girl').removeClass('invisible');
-                this.$('.love-cross').removeClass('crossed');
             }
         }))({el: $('#thegirl')});
         
         Views.StoryView = new (SectionView.extend({
-            onEnter: function() {
-                var $timeline = this.$('.timeline');
-                var gap = $timeline.outerHeight() - this.$el.innerHeight();
-                var translate = 'translate3d(0, ' + (-gap) + 'px, 0)';
-                $timeline.addClass('animate');
-                $timeline.css({
-                    '-webkit-transform': translate,
-                    'transform': translate
-                });
-            },
-            onLeave: function() {
-                var $timeline = this.$('.timeline');
-                $timeline.removeClass('animate');
-                $timeline.css({
-                    '-webkit-transform': 'translate3d(0, 0, 0)',
-                    'transform': 'translate3d(0, 0, 0)'
-                });
-            }
+            
         }))({el: $('#story')});
         
         Views.WeddingView = new (SectionView.extend({
-            onEnter: function() {
-                this.$('.rose-cover').addClass('animate');
-                this.$('.the-ring').addClass('animate');
-            },
-            onLeave: function() {
-                this.$('.rose-cover').removeClass('animate');
-                this.$('.the-ring').removeClass('animate');
-            }
+            
         }))({el: $('#wedding')});
         
         Views.LaVieView = new (SectionView.extend({
@@ -116,18 +84,6 @@ $(function() {
                 window.WeixinJSBridge && window.WeixinJSBridge.invoke('imagePreview', {
                     current: $img[0].src,
                     urls: _.map($img.siblings('img').andSelf(), function(item) { return item.src; })
-                });
-            },
-            onEnter: function() {
-                this.$('.gallery-inner').removeClass('animate').css({
-                    '-webkit-transform': 'translate3d(0, 0, 0)',
-                    'transform': 'translate3d(0, 0, 0)'
-                });
-            },
-            onLeave: function() {
-                this.$('.gallery-inner').removeClass('animate').css({
-                    '-webkit-transform': 'translate3d(0, 0, 0)',
-                    'transform': 'translate3d(0, 0, 0)'
                 });
             }
         }))({el: $('#lavie')});
@@ -155,9 +111,7 @@ $(function() {
         }))({el: $('#honeymoon')});
         
         Views.ContactView = new (SectionView.extend({
-            events: {
-                'submit form': 'sendMessage'
-            },
+            events: { 'submit form': 'sendMessage' },
             initialize: function() {
                 var API = 'http://api.toplist.oatpie.com/lovemessages/message/';
                 var Message = Model.extend({ urlRoot: API });
