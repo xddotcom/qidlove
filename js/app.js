@@ -1,7 +1,7 @@
 
 $(function() {
     var imageRoot = 'http://oatpie.qiniudn.com/catking/';
-    //var imageRoot = 'http://192.168.1.99:8080/';
+    //var imageRoot = 'http://192.168.0.119:8080/';
     var scroller;
     
     var SectionView = Backbone.View.extend({
@@ -90,22 +90,13 @@ $(function() {
         
         Views.HoneymoonView = new (SectionView.extend({
             events: {
-                'click .gallery .img': 'previewImage'
-            },
-            initialize: function() {
-                this.images = ['img/travel/1.jpg', 'img/travel/2.jpg', 'img/travel/3.jpg',
-                               'img/travel/4.jpg', 'img/travel/5.jpg', 'img/travel/6.jpg'];
-                var images = this.images;
-                this.$('.gallery .img').each(function(index, img) {
-                    $(img).css('background-image', 'url(' + imageRoot + images[index] + ')');
-                    $(img).data('img', index);
-                });
+                'click .gallery img': 'previewImage'
             },
             previewImage: function(e) {
                 var $img = $(e.currentTarget);
                 window.WeixinJSBridge && window.WeixinJSBridge.invoke('imagePreview', {
-                    current: imageRoot + this.images[+$img.data('img')],
-                    urls: _.map(this.images, function(item) { return imageRoot + item; })
+                    current: $img[0].src,
+                    urls: _.map($img.siblings('img').andSelf(), function(item) { return item.src; })
                 });
             }
         }))({el: $('#honeymoon')});
@@ -149,20 +140,24 @@ $(function() {
     function startApp() {
         $('.loading-text').addClass('hidden');
         $('.view-wrapper').removeClass('hidden');
-        $('.view').css('min-height', $(window).height());
+        $('.view').css('min-height', $(window).height() + 50);
         $('img').each(function() {
             var src = $(this).data('src');
             src && $(this).attr('src', imageRoot + src);
+        });
+        $('.img').each(function() {
+            var bg_src = $(this).data('bg-src');
+            bg_src && $(this).css('background-image', 'url(' + imageRoot + bg_src + ')');
         });
         initViews();
     }
     
     var imageList = [
         "img/avatar.jpg",
-        "img/boy/1.jpg",
+        "img/boy/1.jpg", "img/boy/2.jpg", "img/boy/3.jpg", "img/boy/4.jpg",
         "img/girl/1.jpg", "img/girl/2.jpg", "img/girl/3.jpg", "img/girl/4.jpg", "img/girl/5.jpg", "img/girl/6.jpg",
         "img/couple/1.jpg", "img/couple/2.jpg", "img/couple/3.jpg", "img/couple/1.png",
-        "img/lavie/1.jpg", "img/lavie/2.jpg", "img/lavie/3.jpg", "img/lavie/4.jpg", "img/lavie/5.jpg", "img/lavie/6.jpg", "img/lavie/7.jpg",
+        "img/lavie/1.jpg", "img/lavie/2.jpg", "img/lavie/3.jpg", "img/lavie/4.jpg",
         "img/proposal/1.jpg", "img/proposal/2.jpg", "img/proposal/3.jpg", "img/proposal/4.jpg", "img/proposal/5.jpg", "img/proposal/6.jpg", "img/proposal/7.jpg", "img/proposal/8.jpg",
         "img/travel/1.jpg", "img/travel/2.jpg", "img/travel/3.jpg", "img/travel/4.jpg", "img/travel/5.jpg", "img/travel/6.jpg",
         "img/marriage-cert.jpg", "img/sunset.jpg",

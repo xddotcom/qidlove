@@ -11,7 +11,7 @@
 // Image
 
 $imageRoot: 'http://oatpie.qiniudn.com/catking/';
-//$imageRoot: 'http://192.168.1.99:8080/';
+//$imageRoot: 'http://192.168.0.119:8080/';
 
 //****************************************************************************************//
 
@@ -143,12 +143,19 @@ $yellow: #bfa260;
     position: relative;
     > header {
         padding: 20px;
+        &.fixed {
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
     }
     > footer {
-        position: absolute;
-        bottom: 0;
         padding: 20px;
-        width: 100%;
+        &.fixed {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
     }
 }
 
@@ -159,10 +166,16 @@ $yellow: #bfa260;
     background-image: url(#{$imageRoot}img/boy/2.jpg);
     position: relative;
     color: #fff;
+    > header, > footer {
+        text-shadow: 0 0 5px #000;
+    }
 }
 
 #theboy {
     color: #fff;
+    > header, > footer {
+        text-shadow: 0 0 5px #000;
+    }
 }
 
 #thegirl {
@@ -173,7 +186,7 @@ $yellow: #bfa260;
         position: relative;
         &.crossed {
             .img {
-                @include transition-transform(1s ease-in-out);
+                @include transition-transform(1.5s ease-in-out);
             }
             .img-the-girl {
                 @include translate3d(-10%, 0, 0);
@@ -183,7 +196,7 @@ $yellow: #bfa260;
             }
             .heart {
                 opacity: 1;
-                @include transition(.5s ease-in-out .5s);
+                @include transition(.5s ease-in-out 1s);
             }
         }
     }
@@ -216,7 +229,7 @@ $yellow: #bfa260;
         background-size: contain;
     }
     .hesays {
-        padding: 0 20px;
+        padding: 20px;
     }
 }
 
@@ -404,9 +417,6 @@ $yellow: #bfa260;
         padding: 5px 0 10px;
         opacity: 0.9;
         background: #fafafa;
-        position: absolute;
-        top: 0;
-        width: 100%;
         &::after {
             content: "";
             position: absolute;
@@ -418,34 +428,44 @@ $yellow: #bfa260;
             background-size: contain;
         }
     }
-    .story {
-        
-    }
-    .story-item {
-        @include clearfix();
-        > span, > img {
-            display: block;
-            float: left;
+    > footer h2 {
+        margin: 0;
+        &::after {
+            content: "...";
+            position: absolute;
         }
     }
     .story-item {
-        height: 200px;
+        height: 150px;
         overflow: hidden;
-        > img {
-            display: block;
+        color: #fff;
+        text-align: center;
+        > span, > .img {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        > .img {
             width: 60%;
+            height: 100%;
         }
         > span {
+            color: #fff;
             width: 40%;
-            padding: 10px;
+            padding: 5px;
         }
+        &.type1 { background: #16A085; }
+        &.type2 { background: #34495E; }
+        &.type3 { background: #E74C3C; }
+        &.type4 { background: #9B59B6; }
+        &.type5 { background: $pink; }
     }
 }
 
 #honeymoon {
     color: #fff;
-    .gallery {
-        height: 150px;
+    background: rgba(0, 0, 0, .3);
+    > header {
+        padding-top: 30px;
     }
 }
 
