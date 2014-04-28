@@ -1,7 +1,7 @@
 
 $(function() {
     var imageRoot = 'http://oatpie.qiniudn.com/catking/';
-    //var imageRoot = 'http://192.168.0.119:8080/';
+    var imageRoot = 'http://192.168.1.99:8080/';
     var scroller;
     
     var SectionView = Backbone.View.extend({
@@ -40,11 +40,16 @@ $(function() {
             
         }))({el: $('#hero')});
         
+        Views.TheBoyView = new (SectionView.extend({
+            
+        }))({el: $('#theboy')});
+        
         Views.TheGirlView = new (SectionView.extend({
             initialize: function() {
                 var $scene = $('.body-background');
                 var $cross = this.$('.love-cross');
                 var winH = $(window).height();
+                $scene.addClass('scene1');
                 $(window).scroll(function() {
                     var dis = $cross.offset().top - $(window).scrollTop();
                     if (dis > 0 - 170 && dis < winH - 170) {
@@ -53,10 +58,10 @@ $(function() {
                         $cross.removeClass('crossed');
                     }
                     if (dis < 0) {
-                        $scene.addClass('scene2');
+                        $scene.addClass('scene2').removeClass('scene1');
                     }
                     if (dis > -winH) {
-                        $scene.removeClass('scene2');
+                        $scene.removeClass('scene2').addClass('scene1');
                     }
                 });
             },
@@ -129,11 +134,16 @@ $(function() {
         
         Views.HoneymoonView = new (SectionView.extend({
             events: {
-                'click .cover-top .img': 'previewImage'
+                'click .gallery .img': 'previewImage'
             },
             initialize: function() {
                 this.images = ['img/travel/1.jpg', 'img/travel/2.jpg', 'img/travel/3.jpg',
                                'img/travel/4.jpg', 'img/travel/5.jpg', 'img/travel/6.jpg'];
+                var images = this.images;
+                this.$('.gallery .img').each(function(index, img) {
+                    $(img).css('background-image', 'url(' + imageRoot + images[index] + ')');
+                    $(img).data('img', index);
+                });
             },
             previewImage: function(e) {
                 var $img = $(e.currentTarget);
@@ -141,17 +151,6 @@ $(function() {
                     current: imageRoot + this.images[+$img.data('img')],
                     urls: _.map(this.images, function(item) { return imageRoot + item; })
                 });
-            },
-            onEnter: function() {
-                this.$('.cover').addClass('flip');
-                var images = this.images;
-                this.$('.cover-top .img').each(function(index, img) {
-                    $(img).css('background-image', 'url(' + imageRoot + images[index] + ')');
-                    $(img).data('img', index);
-                });
-            },
-            onLeave: function() {
-                this.$('.cover').removeClass('flip');
             }
         }))({el: $('#honeymoon')});
         
@@ -166,6 +165,7 @@ $(function() {
                 this.messages = new Messages();
                 this.listenTo(this.messages, 'add', this.addMessage);
                 this.listenTo(this.messages, 'reset', this.renderMessages);
+                this.messages.fetch({reset: true, data: {site: 3}});
             },
             renderMessages: function() {
                 var $list = [];
@@ -186,14 +186,6 @@ $(function() {
                     this.messages.create({ site: 3, content: content });
                     this.$('textarea').val('').attr('placeholder', '谢谢你的祝福！');
                 }
-            },
-            onEnter: function() {
-                this.messages.fetch({reset: true, data: {site: 3}});
-                $('.copyright').removeClass('hidden');
-            },
-            onLeave: function() {
-                this.$('textarea').blur();
-                $('.copyright').addClass('hidden');
             }
         }))({el: $('#contact')});
     }

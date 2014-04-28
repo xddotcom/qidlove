@@ -8,10 +8,34 @@
 // Font Awesome
 @import "font-awesome/font-awesome";
 
-//********************************************//
+// Image
 
 $imageRoot: 'http://oatpie.qiniudn.com/catking/';
-//$imageRoot: 'http://192.168.0.119:8080/';
+$imageRoot: 'http://192.168.1.99:8080/';
+
+//****************************************************************************************//
+
+@mixin keyframes_of_flow($vendor) {
+    0% { #{$vendor}transform: translate3d(0, 0, 0); }
+    100% { #{$vendor}transform: translate3d(0, 10px, 0); }
+}
+
+@-webkit-keyframes bulle_flow { @include keyframes_of_flow('-webkit-'); }
+        @keyframes bulle_flow { @include keyframes_of_flow(''); }
+
+@mixin keyframes_of_fade($start) {
+    0% { opacity: $start; }
+    33.333% { opacity: $start; }
+    66.667% { opacity: (1-$start); }
+    100% { opacity: (1-$start); }
+}
+
+@-webkit-keyframes fadein  { @include keyframes_of_fade(0); }
+        @keyframes fadein  { @include keyframes_of_fade(0); }
+@-webkit-keyframes fadeout { @include keyframes_of_fade(1); }
+        @keyframes fadeout { @include keyframes_of_fade(1); }
+
+//****************************************************************************************//
 
 @font-face {
     font-family: 'titan';
@@ -41,32 +65,24 @@ $imageRoot: 'http://oatpie.qiniudn.com/catking/';
     font-style: normal;
 }
 
-
-@mixin keyframes_of_flow($vendor) {
-    0% { #{$vendor}transform: translate3d(0, 0, 0); }
-    100% { #{$vendor}transform: translate3d(0, 10px, 0); }
+@font-face {
+    font-family: 'pacifico';
+    src: url('../fonts/Pacifico.ttf');
+    font-weight: normal;
+    font-style: normal;
 }
-
-@-webkit-keyframes bulle_flow { @include keyframes_of_flow('-webkit-'); }
-        @keyframes bulle_flow { @include keyframes_of_flow(''); }
-
-@mixin keyframes_of_fade($start) {
-    0% { opacity: $start; }
-    33.333% { opacity: $start; }
-    66.667% { opacity: (1-$start); }
-    100% { opacity: (1-$start); }
-}
-
-@-webkit-keyframes fadein  { @include keyframes_of_fade(0); }
-        @keyframes fadein  { @include keyframes_of_fade(0); }
-@-webkit-keyframes fadeout { @include keyframes_of_fade(1); }
-        @keyframes fadeout { @include keyframes_of_fade(1); }
-
 
 $pink: #fc9d9a;
 $blue: #506873;
 $violet: #633E54;
 $yellow: #bfa260;
+
+.pink-text { color: lighten($pink, 0%); }
+.signature { font-family: titan, sans-serif; }
+.script-text { font-family: pacifico, sans-serif; line-height: 1.5; }
+.wide-text { font-family: wide, sans-serif; }
+
+//****************************************************************************************//
 
 .invisible {
     opacity: 0;
@@ -83,6 +99,9 @@ $yellow: #bfa260;
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url(#{$imageRoot}img/boy/2.jpg);
+    &.scene1 {
+        background-image: url(#{$imageRoot}img/boy/4.jpg);
+    }
     &.scene2 {
         background-image: url(#{$imageRoot}img/sunset.jpg);
     }
@@ -109,22 +128,6 @@ $yellow: #bfa260;
     border-top: 1px solid $pink;
 }
 
-.pink-text {
-    color: lighten($pink, 0%);
-}
-
-.signature {
-    font-family: titan, sans-serif;
-}
-
-.script {
-    font-family: greatvibes, sans-serif;
-}
-
-.wide-text {
-    font-family: wide, sans-serif;
-}
-
 .img {
     background-size: cover;
     background-repeat: no-repeat;
@@ -139,47 +142,32 @@ $yellow: #bfa260;
     overflow: hidden;
     position: relative;
     > header {
-        padding: 10px 20px;
-        h1 { font-family: titan, sans-serif; }
+        padding: 20px;
+    }
+    > footer {
+        position: absolute;
+        bottom: 0;
+        padding: 20px;
+        width: 100%;
     }
 }
 
 #hero {
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(#{$imageRoot}img/boy/2.jpg);
     position: relative;
-    .carousel {
-        position: absolute;
-        @include square(100%);
-        top: 0;
-        left: 0;
-        background-size: cover;
-        background-position: center bottom;
-        background-repeat: no-repeat;
-    }
-    .carousel-in {
-        background-image: url(#{$imageRoot}img/story-cover-text.jpg);
-        @include animation(fadein 5s alternate infinite);
-    }
-    .carousel-out {
-        background-image: url(#{$imageRoot}img/story-cover.jpg);
-        @include animation(fadeout 5s alternate infinite);
-    }
+    color: #fff;
+}
+
+#theboy {
+    color: #fff;
 }
 
 #thegirl {
-    background: $pink;
-    color: #fff;
-    padding-top: 30px;
-    .shy-girl {
-        position: absolute;
-        top: 0;
-        z-index: 1;
-        @include square(100%);
-        background: url(#{$imageRoot}img/girl/2.jpg) no-repeat center;
-        background-size: cover;
-        @include transition(all 1s ease-in-out .5s);
-        padding-top: 50px;
-        color: $pink;
-    }
+    background: $blue;
+    color: $pink;
     .love-cross {
         width: 100%;
         position: relative;
@@ -233,7 +221,7 @@ $yellow: #bfa260;
 }
 
 #story {
-    background: #f4f0ed;
+    background: #fff;
     .line {
         z-index: 0;
         position: absolute;
@@ -241,7 +229,7 @@ $yellow: #bfa260;
         left: 40px;
         height: 100%;
         width: 2px;
-        background: rgba(150, 150, 150, .3);
+        background: rgba(200, 200, 200, .3);
     }
     .timeline-wrapper {
         //height: 100%;
@@ -265,7 +253,7 @@ $yellow: #bfa260;
     .post-box {
         position: relative;
         background-clip: padding-box;
-        background-color: #fff;
+        background-color: #f0f0f0;
         border-radius: 3px;
         margin-left: 45px;
         padding: 10px;
@@ -273,7 +261,7 @@ $yellow: #bfa260;
             display: block;
             content: "";
             position: absolute;
-            background-color: #fff;
+            background-color: #f0f0f0;
             border-style: solid none none solid;
             border-width: 0 0 1px;
             height: 10px;
@@ -289,19 +277,20 @@ $yellow: #bfa260;
             background-clip: padding-box;
             background-color: $pink;
             border-radius: 50%;
-            height: 8px;
-            width: 8px;
-            top: 11px;
-            left: -18px;
+            border: 4px solid #fff;
+            height: 16px;
+            width: 16px;
+            top: 7px;
+            left: -22px;
         }
     }
     .post-time {
-        display: inline-block;
-        margin: 0 10px;
+        //display: inline-block;
+        display: block;
         padding: 10px 15px;
-        background: $pink;
-        color: #fff;
-        border-radius: 10px;
+        background: #fff;
+        color: $pink;
+        //border-radius: 10px;
     }
     .post-image {
         width: 100%;
@@ -433,27 +422,11 @@ $yellow: #bfa260;
 }
 
 #honeymoon {
-    //background: url(#{$imageRoot}img/sunset.jpg) no-repeat center;
-    //background-size: cover;
-    .cover {
+    padding: 30px;
+    color: #fff;
+    .gallery {
         width: 100%;
-        height: 50%;
-        -webkit-transform-style: preserve-3d;
-        transform-style: preserve-3d;
-        @include perspective(1000px);
-        @include scale(0);
-    }
-    .cover-top {
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
-        background: url(#{$imageRoot}img/cover-page-dark.jpg) no-repeat;
-        background-size: 100% 100%;
-        color: #f0f0f0;
-        //box-shadow: 0 0 2px 0 #000;
-        @include rotateX(-180deg);
-        @include transform-origin(center bottom);
-        @include clearfix();
+        height: 300px;
         .img {
             float: left;
             height: 33.333333%;
@@ -463,37 +436,11 @@ $yellow: #bfa260;
             background-size: cover;
         }
     }
-    .cover-bottom {
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
-        background: url(#{$imageRoot}img/cover-page-light.jpg) no-repeat;
-        background-size: 100% 100%;
-        padding: 25px;
-        color: #555;
-        > p {
-            line-height: 1.5;
-            &::before {
-                content: " ";
-                display: inline-block;
-                width: 2em;
-            }
-        }
-        //box-shadow: 0 -2px 6px 0 #000;
-    }
-    .cover.flip {
-        @include scale(1);
-        @include transition-transform(1s linear .2s);
-        .cover-top {
-            @include transition-transform(1s linear .3s);
-            @include rotateX(0deg);
-        }
-    }
 }
 
 #contact {
     background: #fff;
-    padding: 0 20px;
+    padding: 0 20px 100px;
     .btn {
         background: lighten($pink, 17%);
         border-color: lighten($pink, 17%);
