@@ -33,6 +33,8 @@ $(function() {
         }
     });
     
+    var API = 'http://api.toplist.oatpie.com';
+    
     var HeroView = new (SectionView.extend({
         
     }))({el: $('#hero')});
@@ -160,9 +162,10 @@ $(function() {
             'submit form': 'sendMessage'
         },
         initialize: function() {
-            var API = 'http://api.toplist.oatpie.com/lovemessages/message/';
-            var Message = Model.extend({ urlRoot: API });
-            var Messages = Collection.extend({ url: API, model: Message });
+            var Messages = Collection.extend({
+                url: API + '/sites/story/1/wishes/',
+                model: Model
+            });
             this.messages = new Messages();
             this.listenTo(this.messages, 'add', this.addMessage);
             this.listenTo(this.messages, 'reset', this.renderMessages);
@@ -170,12 +173,12 @@ $(function() {
         renderMessages: function() {
             var $list = [];
             this.messages.forEach(function(item) {
-                $list.push($('<p></p>').text(item.get('content')).prepend('<i class="fa fa-heart-o"></i>'));
+                $list.push($('<p></p>').text(item.get('message')).prepend('<i class="fa fa-heart-o"></i>'));
             });
             this.$('.messages').html($list);
         },
         addMessage: function(item) {
-            var $msg = $('<p></p>').text(item.get('content')).prepend('<i class="fa fa-heart-o"></i>')
+            var $msg = $('<p></p>').text(item.get('message')).prepend('<i class="fa fa-heart-o"></i>')
                                    .css('opacity', 0).animate({opacity: 1});
             this.$('.messages').prepend($msg);
         },
@@ -183,11 +186,17 @@ $(function() {
             if (e.preventDefault) e.preventDefault();
             var content = this.$('textarea').val();
             if (content) {
-                this.messages.create({ site: 1, content: content });
+                this.messages.create({
+                    story: 1,
+                    message: content
+                }, {
+                    url: API + '/sites/wish/'
+                });
+                this.$('textarea').val('').attr('placeholder', '谢谢你的祝福！');
             }
         },
         onEnter: function() {
-            this.messages.fetch({reset: true, data: {site: 1}});
+            this.messages.fetch({reset: true});
             $('.copyright').removeClass('hidden');
         },
         onLeave: function() {
