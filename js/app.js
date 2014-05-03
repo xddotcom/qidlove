@@ -33,6 +33,8 @@ $(function() {
         }
     });
     
+    var API = 'http://api.toplist.oatpie.com';
+    
     var Views = {};
     
     function initViews() {
@@ -104,23 +106,24 @@ $(function() {
         Views.ContactView = new (SectionView.extend({
             events: { 'submit form': 'sendMessage' },
             initialize: function() {
-                var API = 'http://api.toplist.oatpie.com/lovemessages/message/';
-                var Message = Model.extend({ urlRoot: API });
-                var Messages = Collection.extend({ url: API, model: Message });
+                var Messages = Collection.extend({
+                    url: API + '/sites/story/3/wishes/',
+                    model: Model
+                });
                 this.messages = new Messages();
                 this.listenTo(this.messages, 'add', this.addMessage);
                 this.listenTo(this.messages, 'reset', this.renderMessages);
-                this.messages.fetch({reset: true, data: {site: 3}});
+                this.messages.fetch({reset: true});
             },
             renderMessages: function() {
                 var $list = [];
                 this.messages.forEach(function(item) {
-                    $list.push($('<p></p>').text(item.get('content')).prepend('<i class="fa fa-heart-o"></i>'));
+                    $list.push($('<p></p>').text(item.get('message')).prepend('<i class="fa fa-heart-o"></i>'));
                 });
                 this.$('.messages').html($list);
             },
             addMessage: function(item) {
-                var $msg = $('<p></p>').text(item.get('content')).prepend('<i class="fa fa-heart-o"></i>')
+                var $msg = $('<p></p>').text(item.get('message')).prepend('<i class="fa fa-heart-o"></i>')
                                        .css('opacity', 0).animate({opacity: 1});
                 this.$('.messages').prepend($msg);
             },
@@ -128,7 +131,12 @@ $(function() {
                 if (e.preventDefault) e.preventDefault();
                 var content = this.$('textarea').val();
                 if (content) {
-                    this.messages.create({ site: 3, content: content });
+                    this.messages.create({
+                        story: 3,
+                        message: content
+                    }, {
+                        url: API + '/sites/wish/'
+                    });
                     this.$('textarea').val('').attr('placeholder', '谢谢你的祝福！');
                 }
             }
