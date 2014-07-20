@@ -1,7 +1,8 @@
+// Overrides
+@import "custom";
+
 // Core variables and mixins
-@import "variables-custom";
 @import "bootstrap/variables";
-@import "mixins-custom";
 @import "bootstrap/mixins";
 
 // Reset

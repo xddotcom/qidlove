@@ -1,23 +1,27 @@
 
-// Core variables and mixins
-
-@import "variables-custom";
-@import "bootstrap/variables";
-@import "mixins-custom";
-@import "bootstrap/mixins";
-
-
-// Scaffolding
-
 a:hover, a:focus {
     color: $link-hover-color;
     text-decoration: none;
 }
 
-.img-circle {
-    border-radius: 50%;
+.invisible {
+    opacity: 0;
+    visibility: hidden;
 }
 
-@media (max-width: ($screen-xs-min - 1)) {
-    @include responsive-visibility('.hidden-xxs');
+.img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.img-loading {
+    background-color: rgba(255, 255, 255, .9);
+    background-size: 32px 32px !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+.img-circle {
+    border-radius: 50%;
 }
