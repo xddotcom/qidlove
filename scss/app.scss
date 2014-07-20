@@ -6,6 +6,23 @@
 
 //********************************************//
 
+.img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.img-loading {
+    background-color: rgba(255, 255, 255, .9);
+    background-size: 32px 32px !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+.img-circle {
+    border-radius: 50%;
+}
+
 .fullscreen {
     position: fixed;
     z-index: 9999;
