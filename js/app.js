@@ -77,9 +77,11 @@ $(function() {
             setTimeout(function() {
                 self.$('.scene2').removeClass('invisible');
                 self.$('.scene1').addClass('invisible');
+            }, 800);
+            setTimeout(function() {
                 self.$('.scene2 .layer.text>*').removeClass('hidden');
                 self.$('.scene2 .layer.light').removeClass('hidden');
-            }, 800);
+            }, 1600);
         }
     }))({el: $('#view-escalier')});
     

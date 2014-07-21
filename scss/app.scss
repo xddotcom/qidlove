@@ -13,6 +13,20 @@
     //@include animation-timing-function(ease-out);
 }
 
+@include keyframes-transform(slideouttoleft, translate3d(0, 0, 0), translate3d(-100%, 0, 0));
+@include keyframes-transform(slideinfromright, translate3d(100%, 0, 0), translate3d(0, 0, 0));
+
+@include keyframes-transform(slideouttoright, translate3d(0, 0, 0), translate3d(100%, 0, 0));
+@include keyframes-transform(slideinfromleft, translate3d(-100%, 0, 0), translate3d(0, 0, 0));
+
+.bounceInLeft {
+    @include animation-name(slideinfromleft);
+}
+
+.bounceInRight {
+    @include animation-name(slideinfromright);
+}
+
 body {
     color: #fff;
 }
@@ -91,8 +105,15 @@ body {
             padding-top: 170px;
         }
     }
-    &.text > .animated {
-        //@include animation-duration(2s);
+    &.text > .animated { 
+        @include animation-timing-function(ease-in-out);
+        @include animation-duration(0.8s);
+        &:nth-child(2) {
+            @include animation-duration(1s);
+        }
+        &:nth-child(3), &:nth-child(4) {
+            @include animation-duration(1.2s);
+        }
     }
     p, h1, h2, h3, h4, h5, h6 {
         margin: 5px 0;
@@ -100,7 +121,7 @@ body {
 }
 
 .scene1, .scene2 {
-    @include transition(all .35s ease-in-out);
+    @include transition(all 1s ease-in-out);
 }
 
 #view-hero {
@@ -141,10 +162,10 @@ body {
             padding: 80px 15% 0;
         }
         .layer.light {
-            padding-top: 70px;
+            padding-top: 90px;
         }
         .layer.light > .img {
-            margin-left: -60px;
+            //margin-left: -60px;
         }
     }
 }
