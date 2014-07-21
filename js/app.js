@@ -3,43 +3,57 @@ $(function() {
     var CDNURL = '/';
     var scroller;
     
+    var sectionList = [];
+    
     var SectionView = Backbone.View.extend({
         onEnter: function() {},
         onLeave: function() {},
         play: function() {}
     });
     
-    var HeroView = new (SectionView.extend({
-        
-    }))({el: $('#hero')});
-    
-    var TheGirlView = new (SectionView.extend({
+    var HeroView = sectionList[0] = new (SectionView.extend({
         onEnter: function() {},
         onLeave: function() {},
         play: function() {}
-    }))({el: $('#thegirl')});
+    }))({el: $('#view-hero')});
     
-    var StoryView = new (SectionView.extend({
+    var PartyView = sectionList[1] = new (SectionView.extend({
+        onEnter: function() {},
+        onLeave: function() {},
+        play: function() {}
+    }))({el: $('#view-party')});
+    
+    var EscalierView = sectionList[2] = new (SectionView.extend({
         onEnter: function() {},
         onLeave: function() {}
-    }))({el: $('#story')});
+    }))({el: $('#view-escalier')});
     
-    var WeddingView = new (SectionView.extend({
+    var MovieView = sectionList[3] = new (SectionView.extend({
         onEnter: function() {},
         onLeave: function() {},
         play: function() {}
-    }))({el: $('#wedding')});
+    }))({el: $('#view-movie')});
     
-    var LaVieView = new (SectionView.extend({
+    var FoodView = sectionList[4] = new (SectionView.extend({
         onEnter: function() {},
         onLeave: function() {},
         play: function() {}
-    }))({el: $('#lavie')});
+    }))({el: $('#view-food')});
     
-    var WishView = new (SectionView.extend({
+    var PerformView = sectionList[5] = new (SectionView.extend({
         onEnter: function() {},
         onLeave: function() {}
-    }))({el: $('#wish')});
+    }))({el: $('#view-perform')});
+    
+    var FireworkView = sectionList[6] = new (SectionView.extend({
+        onEnter: function() {},
+        onLeave: function() {}
+    }))({el: $('#view-firework')});
+    
+    var ContactView = sectionList[7] = new (SectionView.extend({
+        onEnter: function() {},
+        onLeave: function() {}
+    }))({el: $('#view-contact')});
     
     /*************************************************************/
     
@@ -60,7 +74,7 @@ $(function() {
     function loadBgImage(el, src, options) {
         if (!src) return;
         options = options || {};
-        el.css('background-image', 'url(' + CDNURL + 'images/loading.gif' + ')');
+        el.css('background-image', 'url(' + CDNURL + 'img/loading.gif' + ')');
         var image = new Image(), image_src = imageFullpath(src);
         image.onload = function() {
             el.removeClass('img-loading');
@@ -80,6 +94,7 @@ $(function() {
         });
         imageList = _.compact(imageList);
         var l = imageList.length;
+        if (l == 0) return;
         var $loadingText = $('<h4 class="text-center loading-text fullscreen img">正在加载 <span>1</span>%</h4>');
         $loadingText.prependTo('body');
         var succ = function() {
@@ -115,6 +130,17 @@ $(function() {
         }
     };
     
+    var fillImages = function() {
+        $('img[data-src]').each(function() {
+            var src = $(this).data('src');
+            src && loadImage($(this), src);
+        });
+        $('.img[data-bg-src]').each(function() {
+            var src = $(this).data('bg-src');
+            src && loadBgImage($(this), src);
+        });
+    };
+    
     var bindWxSharing = function() {
         var match = window.location.search.match(/[\?\&]radius=(\d+)(&|$)/);
         var radius = match ? +match[1] : 0;
@@ -142,7 +168,6 @@ $(function() {
     };
     
     function initScroller() {
-        var sectionList = [HeroView, TheGirlView, StoryView, WeddingView, LaVieView, WishView];
         scroller = new IScroll('.views-wrapper', {
             momentum: false,
             bounce: false,
@@ -168,6 +193,7 @@ $(function() {
         $('.views-wrapper,.view').css('height', $(window).height());
         $('.views-wrapper').addClass('hidden');
         cacheImages(function() {
+            fillImages();
             $('.views-wrapper').removeClass('hidden');
             initScroller();
         });
