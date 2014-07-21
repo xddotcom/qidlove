@@ -99,6 +99,10 @@ body {
     }
 }
 
+.scene1, .scene2 {
+    @include transition(all .35s ease-in-out);
+}
+
 #view-hero {
     .layer.text, .layer.light {
         padding-top: 120px;
@@ -186,7 +190,25 @@ body {
 }
 
 #view-firework {
-    
+    .scene1, .scene2 {
+        @include transition(all 1s ease-in-out);
+    }
+    .scene1 {
+        .layer.text {
+            padding: 50px 10% 0;
+        }
+        .layer.action.img {
+            width: 50px;
+            right: 10%;
+            top: 10%;
+            left: auto;
+        }
+    }
+    .scene2 {
+        .layer.text {
+            padding: 50px 10% 0;
+        }
+    }
 }
 
 #view-contact {

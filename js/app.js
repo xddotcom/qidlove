@@ -57,27 +57,29 @@ $(function() {
             'click .layer.action': 'play'
         },
         onEnter: function() {
-            this.$('.scene2').addClass('hidden');
+            this.$('.scene2').addClass('invisible');
             this.$('.scene1 .layer:first-child').removeClass('zoomout');
-            this.$('.scene1').removeClass('hidden');
-            SectionView.prototype.onEnter.call(this);
+            this.$('.scene1').removeClass('invisible');
+            this.$('.scene1 .layer.text>*').removeClass('hidden');
+            this.$('.scene1 .layer.light').removeClass('hidden');
         },
         onLeave: function() {
-            SectionView.prototype.onLeave.call(this);
-            this.$('.scene2').addClass('hidden');
+            this.$('.layer.text>*').addClass('hidden');
+            this.$('.layer.light').addClass('hidden');
+            this.$('.scene2').addClass('invisible');
             this.$('.scene1 .layer:first-child').removeClass('zoomout');
-            this.$('.scene1').removeClass('hidden');
+            this.$('.scene1').removeClass('invisible');
         },
         play: function() {
             SectionView.prototype.play.call(this);
             var self = this;
             this.$('.scene1 .layer:first-child').addClass('zoomout');
             setTimeout(function() {
-                self.$('.scene2').removeClass('hidden');
+                self.$('.scene2').removeClass('invisible');
+                self.$('.scene1').addClass('invisible');
+                self.$('.scene2 .layer.text>*').removeClass('hidden');
+                self.$('.scene2 .layer.light').removeClass('hidden');
             }, 800);
-            setTimeout(function() {
-                self.$('.scene1').addClass('hidden');
-            }, 1000);
         }
     }))({el: $('#view-escalier')});
     
@@ -86,19 +88,23 @@ $(function() {
             'click .layer.action': 'play'
         },
         onEnter: function() {
-            SectionView.prototype.onEnter.call(this);
-            this.$('.scene2').addClass('hidden');
-            this.$('.scene1').removeClass('hidden');
+            this.$('.scene2').addClass('invisible');
+            this.$('.scene1').removeClass('invisible');
+            this.$('.scene1 .layer.text>*').removeClass('hidden');
+            this.$('.scene1 .layer.light').removeClass('hidden');
         },
         onLeave: function() {
-            SectionView.prototype.onLeave.call(this);
-            this.$('.scene2').addClass('hidden');
-            this.$('.scene1').removeClass('hidden');
+            this.$('.layer.text>*').addClass('hidden');
+            this.$('.layer.light').addClass('hidden');
+            this.$('.scene2').addClass('invisible');
+            this.$('.scene1').removeClass('invisible');
         },
         play: function() {
             SectionView.prototype.play.call(this);
-            this.$('.scene2').removeClass('hidden');
-            this.$('.scene1').addClass('hidden');
+            this.$('.scene2').removeClass('invisible');
+            this.$('.scene1').addClass('invisible');
+            this.$('.scene2 .layer.text>*').removeClass('hidden');
+            this.$('.scene2 .layer.light').removeClass('hidden');
         }
     }))({el: $('#view-movie')});
     
@@ -127,14 +133,27 @@ $(function() {
     }))({el: $('#view-perform')});
     
     var FireworkView = sectionList[6] = new (SectionView.extend({
+        events: {
+            'click .layer.action': 'play'
+        },
         onEnter: function() {
-            SectionView.prototype.onEnter.call(this);
+            this.$('.scene2').addClass('invisible');
+            this.$('.scene1').removeClass('invisible');
+            this.$('.scene1 .layer.text>*').removeClass('hidden');
         },
         onLeave: function() {
-            SectionView.prototype.onLeave.call(this);
+            this.$('.layer.text>*').addClass('hidden');
+            this.$('.scene2').addClass('invisible');
+            this.$('.scene1').removeClass('invisible');
         },
         play: function() {
             SectionView.prototype.play.call(this);
+            this.$('.scene2').removeClass('invisible');
+            this.$('.scene1').addClass('invisible');
+            var self = this;
+            setTimeout(function() {
+                self.$('.scene2 .layer.text>*').removeClass('hidden');
+            }, 1000);
         }
     }))({el: $('#view-firework')});
     
