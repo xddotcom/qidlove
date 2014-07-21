@@ -9,6 +9,10 @@
 
 //********************************************//
 
+.animated {
+    //@include animation-timing-function(ease-out);
+}
+
 body {
     color: #fff;
 }
@@ -67,11 +71,16 @@ body {
     &.img {
         background-position: top;
     }
-    &.light .img {
+    &.light>.img {
         background-size: contain;
         margin: 0 auto;
-        width: 80%;
-        padding-top: 80%;
+        width: 300px;
+        padding-top: 170px;
+    }
+    &.light {
+        @include animation-delay(.5s);
+        @include animation-duration(2s);
+        @include animation-timing-function(ease-in-out);
     }
     p, h1, h2, h3, h4, h5, h6 {
         margin: 5px 0;
@@ -82,10 +91,6 @@ body {
     .layer.text, .layer.light {
         padding-top: 30%;
     }
-    .layer.light .img {
-        width: 300px;
-        padding-top: 170px;
-    }
 }
 
 #view-party {
@@ -95,10 +100,6 @@ body {
     .layer.img {
         width: 200%;
         margin-left: -50%;
-    }
-    .layer.light {
-        @include animation-duration(2s);
-        @include animation-timing-function(ease-in-out);
     }
 }
 
@@ -111,11 +112,30 @@ body {
 }
 
 #view-food {
-    
+    .layer.text {
+        padding: 100px 15% 0;
+    }
+    .layer.light {
+        padding-top: 50px;
+    }
+    .layer.light .img {
+        width: 300px;
+        padding-top: 170px;
+    }
 }
 
 #view-perform {
     
+    .layer.text {
+        padding: 80px 15% 0;
+    }
+    .layer.light {
+        padding-top: 30px;
+    }
+    .layer.light .img {
+        width: 300px;
+        padding-top: 170px;
+    }
 }
 
 #view-firework {
@@ -123,5 +143,7 @@ body {
 }
 
 #view-contact {
-    
+    .layer.img {
+        background-position: center;
+    }
 }

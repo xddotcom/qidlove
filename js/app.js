@@ -260,7 +260,7 @@ $(function() {
         setTimeout(function() {
             //scroller.goToPage(0, 0);
             sectionList[0].onEnter();
-        }, 1000);
+        }, 100);
     }
     
     function startApp() {
