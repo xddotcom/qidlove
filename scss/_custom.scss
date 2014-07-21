@@ -1,6 +1,4 @@
 
-$static-url: '' !default;
-
 //== Typography
 $font-family-sans-serif:  "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, sans-serif !default;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
@@ -20,7 +18,7 @@ $font-size-h5:            $font-size-base !default;
 $font-size-h6:            ceil(($font-size-base * 0.85)) !default; // ~12px
 
 //-- Iconography
-$icon-font-path: "#{$static-url}/fonts/" !default;
+$icon-font-path: "../fonts/" !default;
 
 // CSS3 webkit flexbox
 @mixin flexible($flex: 1, $orient: vertical, $defaultSize: 1px) {

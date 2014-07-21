@@ -62,6 +62,7 @@ $(function() {
             this.$('.scene1').removeClass('invisible');
             this.$('.scene1 .layer.text>*').removeClass('hidden');
             this.$('.scene1 .layer.light').removeClass('hidden');
+            this.$('.action').removeClass('invisible');
         },
         onLeave: function() {
             this.$('.layer.text>*').addClass('hidden');
@@ -69,6 +70,7 @@ $(function() {
             this.$('.scene2').addClass('invisible');
             this.$('.scene1 .layer:first-child').removeClass('zoomout');
             this.$('.scene1').removeClass('invisible');
+            this.$('.action').addClass('invisible');
         },
         play: function() {
             SectionView.prototype.play.call(this);
@@ -94,12 +96,14 @@ $(function() {
             this.$('.scene1').removeClass('invisible');
             this.$('.scene1 .layer.text>*').removeClass('hidden');
             this.$('.scene1 .layer.light').removeClass('hidden');
+            this.$('.action').removeClass('invisible');
         },
         onLeave: function() {
             this.$('.layer.text>*').addClass('hidden');
             this.$('.layer.light').addClass('hidden');
             this.$('.scene2').addClass('invisible');
             this.$('.scene1').removeClass('invisible');
+            this.$('.action').addClass('invisible');
         },
         play: function() {
             SectionView.prototype.play.call(this);
@@ -142,11 +146,13 @@ $(function() {
             this.$('.scene2').addClass('invisible');
             this.$('.scene1').removeClass('invisible');
             this.$('.scene1 .layer.text>*').removeClass('hidden');
+            this.$('.action').removeClass('invisible');
         },
         onLeave: function() {
             this.$('.layer.text>*').addClass('hidden');
             this.$('.scene2').addClass('invisible');
             this.$('.scene1').removeClass('invisible');
+            this.$('.action').addClass('invisible');
         },
         play: function() {
             SectionView.prototype.play.call(this);
@@ -155,7 +161,7 @@ $(function() {
             var self = this;
             setTimeout(function() {
                 self.$('.scene2 .layer.text>*').removeClass('hidden');
-            }, 1000);
+            }, 800);
         }
     }))({el: $('#view-firework')});
     

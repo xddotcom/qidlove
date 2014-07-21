@@ -42,7 +42,6 @@ body {
 }
 
 .img-loading {
-    background-color: rgba(255, 255, 255, .9);
     background-size: 32px 32px !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -62,6 +61,12 @@ body {
     height: 100%;
     margin: 0;
     padding: 20px;
+}
+
+.loading-text {
+    color: #000;
+    background: #fff url(/img/loading.gif) no-repeat center;
+    background-size: 64px 64px;
 }
 
 .views-wrapper {
@@ -91,6 +96,7 @@ body {
         background-position: top;
     }
     &.action.img {
+        @include transition(all .35s ease-in-out 1.2s);
         background-size: contain;
         height: 50px;
     }
