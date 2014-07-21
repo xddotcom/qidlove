@@ -53,26 +53,52 @@ $(function() {
     }))({el: $('#view-party')});
     
     var EscalierView = sectionList[2] = new (SectionView.extend({
+        events: {
+            'click .layer.action': 'play'
+        },
         onEnter: function() {
+            this.$('.scene2').addClass('hidden');
+            this.$('.scene1 .layer:first-child').removeClass('zoomout');
+            this.$('.scene1').removeClass('hidden');
             SectionView.prototype.onEnter.call(this);
         },
         onLeave: function() {
             SectionView.prototype.onLeave.call(this);
+            this.$('.scene2').addClass('hidden');
+            this.$('.scene1 .layer:first-child').removeClass('zoomout');
+            this.$('.scene1').removeClass('hidden');
         },
         play: function() {
             SectionView.prototype.play.call(this);
+            var self = this;
+            this.$('.scene1 .layer:first-child').addClass('zoomout');
+            setTimeout(function() {
+                self.$('.scene2').removeClass('hidden');
+            }, 800);
+            setTimeout(function() {
+                self.$('.scene1').addClass('hidden');
+            }, 1000);
         }
     }))({el: $('#view-escalier')});
     
     var MovieView = sectionList[3] = new (SectionView.extend({
+        events: {
+            'click .layer.action': 'play'
+        },
         onEnter: function() {
             SectionView.prototype.onEnter.call(this);
+            this.$('.scene2').addClass('hidden');
+            this.$('.scene1').removeClass('hidden');
         },
         onLeave: function() {
             SectionView.prototype.onLeave.call(this);
+            this.$('.scene2').addClass('hidden');
+            this.$('.scene1').removeClass('hidden');
         },
         play: function() {
             SectionView.prototype.play.call(this);
+            this.$('.scene2').removeClass('hidden');
+            this.$('.scene1').addClass('hidden');
         }
     }))({el: $('#view-movie')});
     

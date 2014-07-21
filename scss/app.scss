@@ -18,7 +18,7 @@ body {
 }
 
 .em {
-    font-size: 1.5em;
+    font-size: 32px;
 }
 
 .img {
@@ -68,19 +68,31 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
+    &.bottom {
+        top: auto;
+        bottom: 0;
+        height: auto;
+    }
     &.img {
         background-position: top;
     }
-    &.light>.img {
+    &.action.img {
         background-size: contain;
-        margin: 0 auto;
-        width: 300px;
-        padding-top: 170px;
+        height: 50px;
     }
     &.light {
         @include animation-delay(.5s);
-        @include animation-duration(2s);
+        @include animation-duration(3s);
         @include animation-timing-function(ease-in-out);
+        >.img {
+            background-size: contain;
+            margin: 0 auto;
+            width: 300px;
+            padding-top: 170px;
+        }
+    }
+    &.text > .animated {
+        //@include animation-duration(2s);
     }
     p, h1, h2, h3, h4, h5, h6 {
         margin: 5px 0;
@@ -89,7 +101,10 @@ body {
 
 #view-hero {
     .layer.text, .layer.light {
-        padding-top: 30%;
+        padding-top: 120px;
+    }
+    .layer.action.img {
+        bottom: 50px;
     }
 }
 
@@ -104,11 +119,52 @@ body {
 }
 
 #view-escalier {
-    
+    .scene1 {
+        .zoomout {
+            @include transition-transform(1s ease-in-out);
+            @include scale(10, 10);
+            @include transform-origin(50% 0);
+        }
+        .layer.text {
+            padding-bottom: 90px;
+        }
+        .layer.action.img {
+            top: 30%;
+        }
+    }
+    .scene2 {
+        .layer.text {
+            padding: 80px 15% 0;
+        }
+        .layer.light {
+            padding-top: 70px;
+        }
+        .layer.light > .img {
+            margin-left: -60px;
+        }
+    }
 }
 
 #view-movie {
-    
+    .scene1 {
+        .layer.text {
+            padding: 90px 20% 0;
+        }
+        .layer.light {
+            padding-top: 40px;
+        }
+        .layer.action.img {
+            top: 200px;
+        }
+    }
+    .scene2 {
+        .layer.text {
+            padding: 60px 10% 0;
+        }
+        .layer.light {
+            padding-top: 50px;
+        }
+    }
 }
 
 #view-food {
@@ -118,23 +174,14 @@ body {
     .layer.light {
         padding-top: 50px;
     }
-    .layer.light .img {
-        width: 300px;
-        padding-top: 170px;
-    }
 }
 
 #view-perform {
-    
     .layer.text {
         padding: 80px 15% 0;
     }
     .layer.light {
         padding-top: 30px;
-    }
-    .layer.light .img {
-        width: 300px;
-        padding-top: 170px;
     }
 }
 
