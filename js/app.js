@@ -287,6 +287,7 @@ $(function() {
         });
         scroller = new IScroll('.views-wrapper', {
             //eventPassthrough: 'horizontal'
+            click: true,
             momentum: false,
             bounce: false,
             snap: true,

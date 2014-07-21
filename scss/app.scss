@@ -126,7 +126,7 @@ body {
     .scene1 {
         .zoomout {
             @include transition-transform(1s ease-in-out);
-            @include scale(10, 10);
+            @include scale(3, 3);
             @include transform-origin(50% 0);
         }
         .layer.text {
