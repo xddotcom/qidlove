@@ -109,8 +109,11 @@ $(function() {
             SectionView.prototype.play.call(this);
             this.$('.scene2').removeClass('invisible');
             this.$('.scene1').addClass('invisible');
-            this.$('.scene2 .layer.text>*').removeClass('hidden');
-            this.$('.scene2 .layer.light').removeClass('hidden');
+            var self = this;
+            setTimeout(function() {
+                self.$('.scene2 .layer.text>*').removeClass('hidden');
+                self.$('.scene2 .layer.light').removeClass('hidden');
+            }, 800);
         }
     }))({el: $('#view-movie')});
     
