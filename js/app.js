@@ -1,6 +1,6 @@
 
 $(function() {
-    var CDNURL = '/';
+    var CDNURL = '';
     var scroller;
     
     var sectionList = [];
