@@ -1,6 +1,6 @@
 
 $(function() {
-    var CDNURL = '';
+    var CDNURL = window.location.origin + window.location.pathname;
     var scroller;
     
     var sectionList = [];
@@ -259,12 +259,12 @@ $(function() {
         var match = window.location.search.match(/[\?\&]radius=(\d+)(&|$)/);
         var radius = match ? +match[1] : 0;
         var message = {
-            "img_url": "",
+            "img_url": imageFullpath('img/cover.jpg'),
             "img_width" : "640",
             "img_height" : "640",
             "link" : [window.location.origin, window.location.pathname, '?radius=', radius + 1].join(''),
-            "desc" : "",
-            "title" : ""
+            "desc" : "新浪之夜“致未来”战略发布酒会",
+            "title" : "中国游戏精英TOP200一起与未来有个约定"
         };
         var onBridgeReady = function () {
             WeixinJSBridge.on('menu:share:appmessage', function(argv) {
