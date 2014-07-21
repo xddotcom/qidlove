@@ -9,6 +9,14 @@
 
 //********************************************//
 
+body {
+    color: #fff;
+}
+
+.em {
+    font-size: 1.5em;
+}
+
 .img {
     background-size: cover;
     background-repeat: no-repeat;
@@ -59,36 +67,61 @@
     &.img {
         background-position: top;
     }
+    &.light .img {
+        background-size: contain;
+        margin: 0 auto;
+        width: 80%;
+        padding-top: 80%;
+    }
+    p, h1, h2, h3, h4, h5, h6 {
+        margin: 5px 0;
+    }
 }
 
 #view-hero {
-    
+    .layer.text, .layer.light {
+        padding-top: 30%;
+    }
+    .layer.light .img {
+        width: 300px;
+        padding-top: 170px;
+    }
 }
 
 #view-party {
+    .layer.text {
+        padding: 20% 10%;
+    }
+    .layer.img {
+        width: 200%;
+        margin-left: -50%;
+    }
+    .layer.light {
+        @include animation-duration(2s);
+        @include animation-timing-function(ease-in-out);
+    }
+}
+
+#view-escalier {
     
 }
 
-#view-hero {
+#view-movie {
     
 }
 
-#view-hero {
+#view-food {
     
 }
 
-#view-hero {
+#view-perform {
     
 }
 
-#view-hero {
+#view-firework {
     
 }
 
-#view-hero {
-    
-}
-
-#view-hero {
+#view-contact {
     
 }

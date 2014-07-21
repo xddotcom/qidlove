@@ -6,53 +6,122 @@ $(function() {
     var sectionList = [];
     
     var SectionView = Backbone.View.extend({
-        onEnter: function() {},
-        onLeave: function() {},
+        initialize: function() {
+            if (this.initSectionView) this.initSectionView();
+        },
+        onEnter: function() {
+            this.$('.layer.text>*').removeClass('hidden');
+            this.$('.layer.light').removeClass('hidden');
+        },
+        onLeave: function() {
+            this.$('.layer.text>*').addClass('hidden');
+            this.$('.layer.light').addClass('hidden');
+        },
         play: function() {}
     });
     
     var HeroView = sectionList[0] = new (SectionView.extend({
-        onEnter: function() {},
-        onLeave: function() {},
-        play: function() {}
+        onEnter: function() {
+            SectionView.prototype.onEnter.call(this);
+        },
+        onLeave: function() {
+            SectionView.prototype.onLeave.call(this);
+        },
+        play: function() {
+            SectionView.prototype.play.call(this);
+        }
     }))({el: $('#view-hero')});
     
     var PartyView = sectionList[1] = new (SectionView.extend({
-        onEnter: function() {},
-        onLeave: function() {},
-        play: function() {}
+        initSectionView: function() {
+            this.$el.parallax({
+                limitY: 0,
+                scalarX: 0,
+                limitX: 100,
+                scalarX: 50
+            });
+        },
+        onEnter: function() {
+            SectionView.prototype.onEnter.call(this);
+        },
+        onLeave: function() {
+            SectionView.prototype.onLeave.call(this);
+        },
+        play: function() {
+            SectionView.prototype.play.call(this);
+        }
     }))({el: $('#view-party')});
     
     var EscalierView = sectionList[2] = new (SectionView.extend({
-        onEnter: function() {},
-        onLeave: function() {}
+        onEnter: function() {
+            SectionView.prototype.onEnter.call(this);
+        },
+        onLeave: function() {
+            SectionView.prototype.onLeave.call(this);
+        },
+        play: function() {
+            SectionView.prototype.play.call(this);
+        }
     }))({el: $('#view-escalier')});
     
     var MovieView = sectionList[3] = new (SectionView.extend({
-        onEnter: function() {},
-        onLeave: function() {},
-        play: function() {}
+        onEnter: function() {
+            SectionView.prototype.onEnter.call(this);
+        },
+        onLeave: function() {
+            SectionView.prototype.onLeave.call(this);
+        },
+        play: function() {
+            SectionView.prototype.play.call(this);
+        }
     }))({el: $('#view-movie')});
     
     var FoodView = sectionList[4] = new (SectionView.extend({
-        onEnter: function() {},
-        onLeave: function() {},
-        play: function() {}
+        onEnter: function() {
+            SectionView.prototype.onEnter.call(this);
+        },
+        onLeave: function() {
+            SectionView.prototype.onLeave.call(this);
+        },
+        play: function() {
+            SectionView.prototype.play.call(this);
+        }
     }))({el: $('#view-food')});
     
     var PerformView = sectionList[5] = new (SectionView.extend({
-        onEnter: function() {},
-        onLeave: function() {}
+        onEnter: function() {
+            SectionView.prototype.onEnter.call(this);
+        },
+        onLeave: function() {
+            SectionView.prototype.onLeave.call(this);
+        },
+        play: function() {
+            SectionView.prototype.play.call(this);
+        }
     }))({el: $('#view-perform')});
     
     var FireworkView = sectionList[6] = new (SectionView.extend({
-        onEnter: function() {},
-        onLeave: function() {}
+        onEnter: function() {
+            SectionView.prototype.onEnter.call(this);
+        },
+        onLeave: function() {
+            SectionView.prototype.onLeave.call(this);
+        },
+        play: function() {
+            SectionView.prototype.play.call(this);
+        }
     }))({el: $('#view-firework')});
     
     var ContactView = sectionList[7] = new (SectionView.extend({
-        onEnter: function() {},
-        onLeave: function() {}
+        onEnter: function() {
+            SectionView.prototype.onEnter.call(this);
+        },
+        onLeave: function() {
+            SectionView.prototype.onLeave.call(this);
+        },
+        play: function() {
+            SectionView.prototype.play.call(this);
+        }
     }))({el: $('#view-contact')});
     
     /*************************************************************/
@@ -168,14 +237,17 @@ $(function() {
     };
     
     function initScroller() {
+        $(document).on('touchmove', function (e) {
+            e.preventDefault();
+        });
         scroller = new IScroll('.views-wrapper', {
+            //eventPassthrough: 'horizontal'
             momentum: false,
             bounce: false,
             snap: true,
             snapSpeed: 500,
             snapThreshold: 0.1,
-            mouseWheel: true,
-            eventPassthrough: 'horizontal'
+            mouseWheel: true
         });
         var page;
         scroller.on('scrollEnd', function() {
@@ -185,7 +257,10 @@ $(function() {
             sectionList[page-1] && sectionList[page-1].onLeave();
             sectionList[page] && sectionList[page].onEnter();
         });
-        //scroller.goToPage(0, 0);
+        setTimeout(function() {
+            //scroller.goToPage(0, 0);
+            sectionList[0].onEnter();
+        }, 1000);
     }
     
     function startApp() {
