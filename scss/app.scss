@@ -13,11 +13,11 @@
     //@include animation-timing-function(ease-out);
 }
 
-@include keyframes-transform(slideouttoleft, translate3d(0, 0, 0), translate3d(-100%, 0, 0));
-@include keyframes-transform(slideinfromright, translate3d(100%, 0, 0), translate3d(0, 0, 0));
+@include keyframes-transform(slideouttoleft, translate3d(0, 0, 0), translate3d(-130%, 0, 0));
+@include keyframes-transform(slideinfromright, translate3d(130%, 0, 0), translate3d(0, 0, 0));
 
-@include keyframes-transform(slideouttoright, translate3d(0, 0, 0), translate3d(100%, 0, 0));
-@include keyframes-transform(slideinfromleft, translate3d(-100%, 0, 0), translate3d(0, 0, 0));
+@include keyframes-transform(slideouttoright, translate3d(0, 0, 0), translate3d(130%, 0, 0));
+@include keyframes-transform(slideinfromleft, translate3d(-130%, 0, 0), translate3d(0, 0, 0));
 
 .bounceInLeft {
     @include animation-name(slideinfromleft);
@@ -193,7 +193,7 @@ body {
             padding: 60px 10% 0;
         }
         .layer.light {
-            padding-top: 50px;
+            padding-top: 40px;
         }
     }
 }
