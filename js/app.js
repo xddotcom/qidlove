@@ -302,7 +302,7 @@ $(function() {
             momentum: false,
             bounce: false,
             snap: true,
-            //snapSpeed: 500,
+            snapSpeed: 1000,
             snapThreshold: 0.1,
             mouseWheel: true
         });
