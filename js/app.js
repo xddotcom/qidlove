@@ -296,21 +296,28 @@ $(function() {
         image.src = imageRoot + imageList[i];
     }
     
-    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-        var message = {
-            "img_url" : 'http://love.oatpie.com/dolphin/img/avatar.jpg',
-            "img_width" : "640",
-            "img_height" : "640",
-            "link" : 'http://love.oatpie.com/dolphin/#noplay',
-            "desc" : "致我们永不褪色的爱情",
-            "title" : "我钟爱的女子"
-        };
+    var match = window.location.search.match(/[\?\&]radius=(\d+)(&|$)/);
+    var radius = match ? +match[1] : 0;
+    var message = {
+        "img_url" : 'http://love.oatpie.com/dolphin/img/avatar.jpg',
+        "img_width" : "640",
+        "img_height" : "640",
+        "link" : ['http://love.oatpie.com/dolphin/#noplay', '?radius=', radius + 1].join(''),
+        "desc" : "致我们永不褪色的爱情",
+        "title" : "我钟爱的女子"
+    };
+    var onBridgeReady = function () {
         WeixinJSBridge.on('menu:share:appmessage', function(argv) {
             WeixinJSBridge.invoke('sendAppMessage', message);
         });
         WeixinJSBridge.on('menu:share:timeline', function(argv) {
             WeixinJSBridge.invoke('shareTimeline', message);
         });
-    }, false);
+    };
+    if (window.WeixinJSBridge) {
+        onBridgeReady();
+    } else {
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    }
     
 });
