@@ -114,7 +114,6 @@ body { overflow: hidden; }
     font-family: wide, sans-serif;
     font-size: 18px;
     text-align: center;
-    margin: 5px;
     font-weight: bold;
 }
 
@@ -503,6 +502,9 @@ body { overflow: hidden; }
 #contact {
     background: #fff;
     padding: 0 20px;
+    > header > h1 {
+        font-size: 24px;
+    }
     .btn {
         background: lighten($pink, 17%);
         border-color: lighten($pink, 17%);
