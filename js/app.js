@@ -26,7 +26,7 @@ $(function() {
         }
     });
     
-    var API = 'http://api.toplist.oatpie.com';
+    var API = 'http://api.wedfairy.com';
     
     var ContactView = new (Backbone.View.extend({
         events: {
@@ -77,10 +77,10 @@ $(function() {
         $('.loading-text').addClass('hidden');
         ContactView.messages.fetch({reset: true});
     }
-
+    
     var imageList = ["img/lu/jimmy.jpg", "img/lu/sherry.jpg", "img/lu/kiss.png", "img/lu/togather.png",
                      "img/etoiles.png", "img/lu/wedding.jpg", "img/lu/xianhengjiudian.jpg"];
-
+    
     var l = imageList.length;
     function imageLoaded() {
         l--;
@@ -89,28 +89,35 @@ $(function() {
             startApp();
         }
     }
-
+    
     for (var i = 0; i < imageList.length; i++) {
         var image = new Image();
         image.onload = imageLoaded;
         image.src = imageRoot + imageList[i];
     }
-
-    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-        var message = {
-            "img_url" : 'http://love.oatpie.com/jimmy/img/lu/kiss.jpg',
-            "img_width" : "640",
-            "img_height" : "640",
-            "link" : 'http://love.oatpie.com/jimmy/',
-            "desc" : "您一定不能错过这场温馨浪漫的婚礼，见证美丽的公主说出那句 Yes, I do !",
-            "title" : "Jimmy & Sherry's Wedding Ceremony"
-        };
+    
+    var match = window.location.search.match(/[\?\&]radius=(\d+)(&|$)/);
+    var radius = match ? +match[1] : 0;
+    var message = {
+        "img_url" : 'http://love.oatpie.com/jimmy/img/lu/kiss.jpg',
+        "img_width" : "640",
+        "img_height" : "640",
+        "link" : ['http://love.oatpie.com/jimmy', '?radius=', radius + 1].join(''),
+        "desc" : "您一定不能错过这场温馨浪漫的婚礼，见证美丽的公主说出那句 Yes, I do !",
+        "title" : "Jimmy & Sherry's Wedding Ceremony"
+    };
+    var onBridgeReady = function () {
         WeixinJSBridge.on('menu:share:appmessage', function(argv) {
             WeixinJSBridge.invoke('sendAppMessage', message);
         });
         WeixinJSBridge.on('menu:share:timeline', function(argv) {
             WeixinJSBridge.invoke('shareTimeline', message);
         });
-    }, false);
-
-}); 
+    };
+    if (window.WeixinJSBridge) {
+        onBridgeReady();
+    } else {
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    }
+    
+});

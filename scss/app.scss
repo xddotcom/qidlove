@@ -71,6 +71,18 @@ $yellow: #bfa260;
     100% { transform: translate3d(0, 10px, 0); }
 }
 
+.loading-text {
+    background: url(#{$imageRoot}img/lu/wedding.jpg) no-repeat center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 30px;
+}
+
 .view-wrapper {
     width: 100%;
 }
@@ -241,5 +253,53 @@ $yellow: #bfa260;
         overflow-y: scroll;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
+    }
+}
+
+
+$aki-red: #c4415d;
+$aki-blue: #372d3b;
+$aki-white: #ffffde;
+#copyright {
+    padding: 0 0 20px;
+    background-color: $aki-red;
+    background-repeat: no-repeat;
+    background-position: center 50px;
+    background-size: contain;
+    color: $aki-white;
+    > header {
+        background-color: $aki-blue;
+        padding: 10px 5px;
+        margin-bottom: 15%;
+    }
+    .logo {
+        background-size: contain;
+        background-image: url(#{$imageRoot}img/logo-text.png);
+        height: 140px;
+        margin: 20px auto;
+        @media (max-width: $screen-xs-max) {
+            height: 100px;
+        }
+    }
+    em, .em {
+        display: inline-block;
+        font-size: 150%;
+        font-style: normal;
+        padding: 0 .2em;
+    }
+    .contact-item {
+        margin: 30px auto;
+    }
+    .btn {
+        color: $aki-white;
+        width: 70%;
+        margin: 30px auto;
+        border-radius: 5px;
+        background-color: transparent;
+        border-color: $aki-white;
+        &:hover, &:focus {
+            background-color: $aki-white;
+            color: $aki-blue;
+        }
     }
 }
