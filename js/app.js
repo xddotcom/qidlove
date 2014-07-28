@@ -192,21 +192,28 @@ $(function() {
         image.src = imageRoot + imageList[i];
     }
     
-    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-        var message = {
-            "img_url" : 'http://love.oatpie.com/catking/img/avatar.jpg',
-            "img_width" : "640",
-            "img_height" : "640",
-            "link" : 'http://love.oatpie.com/catking/',
-            "desc" : "今后只愿将心付与一人",
-            "title" : "猫王的故事"
-        };
+    var match = window.location.search.match(/[\?\&]radius=(\d+)(&|$)/);
+    var radius = match ? +match[1] : 0;
+    var message = {
+        "img_url": 'http://love.oatpie.com/catking/img/avatar.jpg',
+        "img_width" : "640",
+        "img_height" : "640",
+        "link" : ['http://love.oatpie.com/catking', '?radius=', radius + 1].join(''),
+        "desc" : "今后只愿将心付与一人",
+        "title" : "猫王的故事"
+    };
+    var onBridgeReady = function () {
         WeixinJSBridge.on('menu:share:appmessage', function(argv) {
             WeixinJSBridge.invoke('sendAppMessage', message);
         });
         WeixinJSBridge.on('menu:share:timeline', function(argv) {
             WeixinJSBridge.invoke('shareTimeline', message);
         });
-    }, false);
+    };
+    if (window.WeixinJSBridge) {
+        onBridgeReady();
+    } else {
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    }
     
 });

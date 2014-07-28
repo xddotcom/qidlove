@@ -471,7 +471,7 @@ $yellow: #bfa260;
 
 #contact {
     background: #fff;
-    padding: 0 20px 100px;
+    padding: 0 20px;
     .btn {
         background: lighten($pink, 17%);
         border-color: lighten($pink, 17%);
@@ -498,9 +498,56 @@ $yellow: #bfa260;
             margin-right: 10px;
         }
         margin: 10px 20px;
-        max-height: 150px;
+        max-height: 250px;
         overflow-y: scroll;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
+    }
+}
+
+$aki-red: #c4415d;
+$aki-blue: #372d3b;
+$aki-white: #ffffde;
+#copyright {
+    padding-bottom: 20px;
+    background-color: $aki-red;
+    background-repeat: no-repeat;
+    background-position: center 50px;
+    background-size: contain;
+    color: $aki-white;
+    > header {
+        background-color: $aki-blue;
+        padding: 10px 5px;
+        margin-bottom: 15%;
+    }
+    .logo {
+        background-size: contain;
+        background-image: url(#{$imageRoot}img/logo-text.png);
+        height: 140px;
+        margin: 20px auto;
+        @media (max-width: $screen-xs-max) {
+            height: 100px;
+        }
+    }
+    em, .em {
+        display: inline-block;
+        font-size: 150%;
+        font-style: normal;
+        padding: 0 .2em;
+    }
+    .contact-item {
+        margin: 30px auto;
+    }
+    .btn {
+        color: $aki-white;
+        width: 70%;
+        margin: 30px auto;
+        border-radius: 5px;
+        background-color: transparent;
+        border-color: $aki-white;
+        &:hover, &:focus {
+            background-color: $aki-white;
+            color: $aki-blue;
+        }
     }
 }
