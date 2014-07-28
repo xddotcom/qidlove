@@ -302,7 +302,7 @@ $(function() {
         "img_url" : 'http://love.oatpie.com/dolphin/img/avatar.jpg',
         "img_width" : "640",
         "img_height" : "640",
-        "link" : ['http://love.oatpie.com/dolphin/#noplay', '?radius=', radius + 1].join(''),
+        "link" : ['http://love.oatpie.com/dolphin/', '?radius=', radius + 1, '#noplay'].join(''),
         "desc" : "致我们永不褪色的爱情",
         "title" : "我钟爱的女子"
     };
