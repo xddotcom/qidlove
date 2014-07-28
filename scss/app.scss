@@ -273,8 +273,8 @@ $aki-white: #ffffde;
         margin-bottom: 15%;
     }
     .logo {
+        background: url(#{$imageRoot}img/logo-text.png) no-repeat center;
         background-size: contain;
-        background-image: url(#{$imageRoot}img/logo-text.png);
         height: 140px;
         margin: 20px auto;
         @media (max-width: $screen-xs-max) {
