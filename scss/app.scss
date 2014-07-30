@@ -510,23 +510,22 @@ $aki-blue: #372d3b;
 $aki-white: #ffffde;
 #copyright {
     padding-bottom: 20px;
-    background-color: $aki-red;
+    background-color: $aki-blue;
     background-repeat: no-repeat;
     background-position: center 50px;
     background-size: contain;
     color: $aki-white;
     > header {
-        background-color: $aki-blue;
         padding: 10px 5px;
         margin-bottom: 15%;
     }
     .logo {
         background-size: contain;
-        background-image: url(#{$imageRoot}img/logo-text.png);
-        height: 140px;
+        background-image: url(#{$imageRoot}img/logo.png);
+        height: 80px;
         margin: 20px auto;
         @media (max-width: $screen-xs-max) {
-            height: 100px;
+            height: 60px;
         }
     }
     em, .em {
