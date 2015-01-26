@@ -33,7 +33,7 @@ $(function() {
         }
     });
     
-    var API = 'http://api.toplist.oatpie.com';
+    var API = 'http://api.wedfairy.com/api';
     
     var HeroView = new (SectionView.extend({
         
