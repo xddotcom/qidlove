@@ -33,7 +33,7 @@ $(function() {
         }
     });
     
-    var API = 'http://api.wedfairy.com';
+    var API = 'http://api.wedfairy.com/api';
     
     var Views = {};
     
