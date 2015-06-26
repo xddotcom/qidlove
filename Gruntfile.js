@@ -2,31 +2,9 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
-            options: { },
-            bootstrap: {
-                src: [
-                    'js/bootstrap/transition.js',
-                    'js/bootstrap/alert.js',
-                    'js/bootstrap/button.js',
-                    'js/bootstrap/carousel.js',
-                    'js/bootstrap/collapse.js',
-                    'js/bootstrap/dropdown.js',
-                    'js/bootstrap/modal.js',
-                    'js/bootstrap/tooltip.js',
-                    'js/bootstrap/popover.js',
-                    'js/bootstrap/scrollspy.js',
-                    'js/bootstrap/tab.js',
-                    'js/bootstrap/affix.js'
-                ],
-                dest: 'js/bootstrap.js'
-            }
+            options: { }
         },
         sass: {
-            bootstrap: {
-                options: { style: 'compressed' },
-                src: 'scss/bootstrap.scss',
-                dest: 'css/bootstrap.css'
-            },
             app: {
                 options: { style: 'compressed' },
                 src: 'scss/app.scss',
@@ -42,17 +20,9 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            scripts_bootstrap: {
-                files: ['js/bootstrap/**/*.js'],
-                tasks: ['concat:bootstrap']
-            },
-            stylesheets_all: {
+            stylesheets: {
                 files: ['scss/bootstrap/*.scss', 'scss/_*.scss', 'scss/bootstrap.scss'],
                 tasks: ['sass']
-            },
-            stylesheets_app: {
-                files: ['scss/font-awesome/*.scss', 'scss/app.scss'],
-                tasks: ['sass:app']
             },
             html: {
                 files: ['html/*.html'],
@@ -97,8 +67,7 @@ module.exports = function(grunt) {
             }
         }
     });
-
-    grunt.loadTasks('tasks');
+    
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-includes');

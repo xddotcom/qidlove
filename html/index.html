@@ -1,60 +1,25 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>QiQi &amp; XD's Wedding Ceremony</title>
-    <meta name="description" content="QiQi & XD's Wedding Ceremony">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <meta http-equiv="cleartype" content="on">
-    
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    
-    <!-- For iOS web apps. Delete if not needed. https://github.com/h5bp/mobile-boilerplate/issues/94 -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="">
-    
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/app.css">
 
-    <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-    <script>
-        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-            var message = {
-                "img_url" : 'http://qidlove.ukisama.com/img/thebigday.jpg',
-                "img_width" : "640",
-                "img_height" : "640",
-                "link" : 'http://qidlove.ukisama.com/',
-                "desc" : "QiQi&XD非常高兴的宣布他们坠入了爱河！他们无意间发现生活是如此美妙，于是悄悄地开始筹划一场空前盛(jiǎn)大(dān)的婚礼……",
-                "title" : "QiQi & XD's Wedding Ceremony"
-            };
-            WeixinJSBridge.on('menu:share:appmessage', function(argv) {
-                WeixinJSBridge.invoke('sendAppMessage', message);
-            });
-            WeixinJSBridge.on('menu:share:timeline', function(argv) {
-                WeixinJSBridge.invoke('shareTimeline', message);
-            });
-            WeixinJSBridge.on('menu:share:weibo', function(argv) {
-                WeixinJSBridge.invoke('shareWeibo', {
-                    "content" : descContent,
-                    "url" : lineLink,
-                });
-            });
-        }, false);
+    include "metadata.html"
 
-    </script>
+    <title>八音盒轻故事 - 我们在创造一种爱的语言，让你和这个世界聊天</title>
+
+    <meta name="description" content="八音盒轻故事官方网站。DIY自己的故事，爱情，友情，个人，宝贝，宠物，旅行……精美的模板选择，自定义音乐，多平台分享，实时与好友互动。">
+    
+    <link rel="stylesheet" href="http://static.wedfairy.com/stylesheets/bootstrap.css">
+    
+    <link rel="stylesheet" href="http://static.wedfairy.com/stylesheets/iconfont.css">
+    <link rel="stylesheet" href="http://static.wedfairy.com/stylesheets/font-awesome.css">
+    <link rel="stylesheet" href="http://static.wedfairy.com/stylesheets/animate.min.css">
+    <link rel="stylesheet" href="http://static.wedfairy.com/stylesheets/amour.css">
+    
+    <link rel="stylesheet" href="/assets/stylesheets/app.css">
+    
+    <script src="http://static.wedfairy.com/javascripts/vendor/modernizr-2.7.1.min.js"></script>
 </head>
 <body>
-<!--[if lt IE 7]>
-    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-<![endif]-->
 
 <div class="view-wrapper">
     <div class="view-wrapper-inner">
@@ -70,16 +35,18 @@
     </div>
 </div>
 
-<script src="js/vendor/jquery-1.10.2.min.js"></script>
-<script src="js/vendor/underscore-min.js"></script>
-<script src="js/vendor/mustache.js"></script>
-<script src="js/vendor/backbone-min.js"></script>
+<script src="http://static.wedfairy.com/javascripts/vendor/jquery-2.1.1.min.js"></script>
+<script src="http://static.wedfairy.com/javascripts/vendor/underscore.min.js"></script>
+<script src="http://static.wedfairy.com/javascripts/vendor/mustache.min.js"></script>
+<script src="http://static.wedfairy.com/javascripts/vendor/backbone.min.js"></script>
 
-<script src="js/bootstrap.js"></script>
-<script src="js/plugins/jquery.pin.min.js"></script>
-<script src="js/plugins/iscroll.js"></script>
+<script src="http://static.wedfairy.com/javascripts/plugins/fastclick.js"></script>
+<script src="http://static.wedfairy.com/javascripts/plugins/iscroll-probe.js"></script>
 
-<!--<script src="http://api.map.baidu.com/api?v=2.0&ak=D8b53e29c40828bb6b29865e8131db68"></script>-->
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script src="http://static.wedfairy.com/javascripts/amour.js?"></script>
+
 <script src="js/app.js"></script>
 
 <script>
