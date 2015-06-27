@@ -1,0 +1,14 @@
+
+#view-prologue {
+    article {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        margin-top: -100px;
+        color: #fff;
+        text-shadow: 2px 2px 5px $cyan, -2px -2px 5px $cyan;
+        line-height: 2;
+        font-size: 1.2em;
+    }
+}

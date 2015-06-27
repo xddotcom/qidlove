@@ -1,0 +1,36 @@
+
+#loading-screen {
+    @include position(fixed, 0 0 0 0);
+    z-index: 9999;
+    color: $cyan;
+    .circles-wrapper {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        margin: 25% auto 20px;
+    }
+    .circle {
+        @include position(absolute, 0 0 0 0);
+        @include animation-name(rotate);
+        @include animation-timing-function(linear);
+        @include animation-iteration-count(infinite);
+    }
+    .circle:nth-child(1) { @include animation-duration(2.5s); }
+    .circle:nth-child(2) { @include animation-duration(4.0s); }
+    .circle:nth-child(3) { @include animation-duration(2.0s); }
+    .circle:nth-child(4) { @include animation-duration(1.0s); }
+    .circle:nth-child(5) { @include animation-duration(3.0s); }
+    .circle:nth-child(6) { @include animation-duration(6.0s); }
+    .progress-wrapper {
+        margin: 0 auto;
+        width: 70%;
+        border: 2px solid $cyan;
+        padding: 2px;
+    }
+    .progress-fill {
+        width: 0;
+        height: 2px;
+        background-color: $cyan;
+        @include transition(width 1s linear);
+    }
+}

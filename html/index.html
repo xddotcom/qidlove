@@ -15,22 +15,27 @@
     <link rel="stylesheet" href="http://static.wedfairy.com/stylesheets/animate.min.css">
     <link rel="stylesheet" href="http://static.wedfairy.com/stylesheets/amour.css">
     
-    <link rel="stylesheet" href="/assets/stylesheets/app.css">
+    <link rel="stylesheet" href="assets/stylesheets/app.css">
     
     <script src="http://static.wedfairy.com/javascripts/vendor/modernizr-2.7.1.min.js"></script>
 </head>
 <body>
 
-<div class="view-wrapper">
-    <div class="view-wrapper-inner">
+<div id="halo" class="img" data-bg-src="images/bg-halo.jpg"></div>
+<canvas id="starfield"></canvas>
+
+include "loading.html"
+
+<div id="metallic-top"></div>
+<div id="metallic-bottom"></div>
+
+<div class="views-wrapper hidden">
+    <div class="views-wrapper-inner">
         include "hero.html"
-        include "thegirl.html"
-        include "thebigday.html"
-        include "proposal.html"
-        include "goodnight.html"
-        include "goodmorning.html"
-        include "lavie.html"
-        include "honeymoon.html"
+        include "prologue.html"
+        include "start.html"
+        include "dashboard.html"
+        include "ending.html"
         include "contact.html"
     </div>
 </div>
@@ -47,7 +52,7 @@
 
 <script src="http://static.wedfairy.com/javascripts/amour.js?"></script>
 
-<script src="js/app.js"></script>
+<script src="assets/javascripts/app.js"></script>
 
 <script>
     //(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -2,13 +2,16 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
-            options: { }
+            options: {}
         },
         sass: {
             app: {
-                options: { style: 'compressed' },
-                src: 'scss/app.scss',
-                dest: 'css/app.css'
+                options: {
+                    style: 'compressed',
+                    sourcemap: 'none'
+                },
+                src: 'assets/stylesheets/app.scss',
+                dest: 'assets/stylesheets/app.css'
             }
         },
         includes: {
@@ -21,7 +24,7 @@ module.exports = function(grunt) {
         },
         watch: {
             stylesheets: {
-                files: ['scss/bootstrap/*.scss', 'scss/_*.scss', 'scss/bootstrap.scss'],
+                files: ['assets/stylesheets/**/*.scss'],
                 tasks: ['sass']
             },
             html: {
@@ -33,31 +36,16 @@ module.exports = function(grunt) {
             server: {
                 options: {
                     port: 8080,
-                    base: '.',
-                    keepalive: true,
-                    hostname: null,
-                    middleware: function(connect, options){
-                        var appcache = grunt.option('appcache');
-                        return [
-                            function(req, res, next){
-                                if (req.url == '/manifest.appcache' && !appcache){
-                                    res.writeHead(404);
-                                    res.end();
-                                } else {
-                                    next();
-                                }
-                            },
-                            connect.static(options.base),
-                            connect.directory(options.base)
-                        ];
-                    }
+                    keepalive: true
                 }
             }
         },
         concurrent: {
             dist: {
                 tasks: ['concat', 'sass', 'includes'],
-                options: { logConcurrentOutput: true }
+                options: {
+                    logConcurrentOutput: true
+                }
             },
             server: {
                 tasks: ['watch', 'connect'],
@@ -74,11 +62,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-concurrent');
+    grunt.loadNpmTasks('grunt-contrib-connect');
     
     // Configurable port number
-    var port = grunt.option('port');
-    if (port) grunt.config('connect.server.options.port', port);
-    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.registerTask('server', 'concurrent:server');
     grunt.registerTask('dist', 'concurrent:dist');
 

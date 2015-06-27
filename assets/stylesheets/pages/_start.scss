@@ -1,0 +1,48 @@
+
+#view-start {
+    article {
+        text-shadow: 2px 2px 5px $cyan, -2px -2px 5px $cyan;
+        margin: 30% 10%;
+        strong {
+            display: inline-block;
+            font-weight: normal;
+            padding: 0 0.2em;
+            font-size: 1.2em;
+        }
+    }
+    .circles-wrapper {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 50%;
+        left: 50%;
+        margin-left: -50px;
+        margin-top: -50px;
+    }
+    .circle {
+        @include position(absolute, 0 0 0 0);
+        @include animation-name(rotate);
+        @include animation-timing-function(linear);
+        @include animation-iteration-count(infinite);
+    }
+    .circle:nth-child(1) { @include animation-duration(2.0s); }
+    .circle:nth-child(2) { @include animation-duration(2.0s); @include animation-direction(reverse); }
+    .circle:nth-child(3) { @include animation-name(none); }
+    .circles-wrapper:active .circle:nth-child(3) {
+        opacity: 0.5;
+    }
+    .horizon {
+        @include position(absolute, auto 0 0 0);
+        padding-bottom: 25%;
+        background-position: bottom;
+    }
+    .car {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 300px;
+        height: 120px;
+        background-size: 300px 240px;
+        background-position: top;
+    }
+}
