@@ -1,4 +1,9 @@
 
+@include keyframes(car-anim) {
+      0% { background-position: top; }
+     50% { background-position: bottom; }
+}
+
 #view-start {
     article {
         text-shadow: 2px 2px 5px $cyan, -2px -2px 5px $cyan;
@@ -7,7 +12,7 @@
             display: inline-block;
             font-weight: normal;
             padding: 0 0.2em;
-            font-size: 1.2em;
+            font-size: 1.1em;
         }
     }
     .circles-wrapper {
@@ -42,7 +47,21 @@
         bottom: 0;
         width: 300px;
         height: 120px;
+        @include transform-origin(100% 100%);
+        &.gone {
+            @include transform(translate3d(-150%,-60%,0));
+            @include transition(transform .35s linear);
+            .car-inner {
+                @include transform(scale(0.4));
+                @include transition(transform .35s linear);
+            }
+        }
+    }
+    .car-inner {
+        @include position(absolute, 0 0 0 0);
         background-size: 300px 240px;
-        background-position: top;
+        @include animation(car-anim .3s step-end infinite);
+        @include transform(scale(0.8));
+        @include transform-origin(100% 100%);
     }
 }

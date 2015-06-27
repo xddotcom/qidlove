@@ -1,0 +1,42 @@
+
+@include keyframes(qr-ball-anim) {
+     0% { @include transform(translate3d(0,0,0)); }
+    25% { @include transform(translate3d(220px,0,0)); }
+    50% { @include transform(translate3d(220px,220px,0)); }
+    75% { @include transform(translate3d(0,220px,0)); }
+}
+
+#view-contact {
+    article {
+        position: absolute;
+        bottom: 65%;
+        left: 0;
+        right: 0;
+    }
+    .qr {
+        display: block;
+        width: 180px;
+        height: 180px;
+    }
+    .qr-wrapper {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        padding: 20px;
+        border: 1px solid $cyan-halo;
+        margin-left: -111px;
+        border-radius: 5px;
+        box-shadow: 0 0 1px $cyan-halo, inset 0 0 1px $cyan-halo;
+    }
+    .ball {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        top: -5px;
+        left: -5px;
+        border-radius: 50%;
+        background-color: $cyan-halo;
+        box-shadow: 0 0 1px $cyan-halo;
+        @include animation(qr-ball-anim 4s linear infinite);
+    }
+}

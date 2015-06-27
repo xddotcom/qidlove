@@ -36,11 +36,11 @@ function dispatchLoadingScreen(callback) {
 function initScroll() {
     var scroller = new IScroll('.views-wrapper', {
         snap: true,
-        momentum: false,
         snapThreshold: 0.1,
         snapSpeed: 500,
         bounceEasing: 'quadratic',
-        eventPassthrough: 'horizontal'
+        //eventPassthrough: 'horizontal',
+        momentum: false
     });
     var switchActive = function() {
         var page = scroller.currentPage.pageY;
@@ -53,6 +53,10 @@ function initScroll() {
     scroller.on('scrollStart', function() {});
     scroller.on('scrollEnd', switchActive);
     _.delay(switchActive, 1800);
+    Amour.on('next-view', function() {
+        scroller.goToPage(0, scroller.currentPage.pageY + 1);
+        //scroller.goToPage(0, scroller.currentPage.pageY - 1);
+    });
 }
 
 (function() {
@@ -65,11 +69,25 @@ function initScroll() {
         $style.text('.view,.views-wrapper{height:'+$(window).height()+'px;}')
     }, 100));
 
-    function start() {
-        initScroll();
-    }
+    // #view-start
+    $('#view-start .circles-wrapper').on('click', function() {
+        $('#view-start .car').addClass('gone');
+        _.delay(function() {
+            Amour.trigger('next-view');
+        }, 500);
+    });
+    $('#view-start').on('active', function() {
+        $(this).find('.car').removeClass('gone');
+    });
 
-    Amour.on('StorytellAppReady', start);
+    //#view-ending
+
+
+    // start
+    Amour.on('StorytellAppReady', function start() {
+        initScroll();
+    });
+
     dispatchLoadingScreen();
 
 })();

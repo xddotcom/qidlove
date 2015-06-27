@@ -1,0 +1,80 @@
+
+$dashboard-width: 150px;
+$dashboard-height: 120px;
+
+@include keyframes(screen-anim) {
+      0.0% { background-position: 0 (-$dashboard-height); }
+     33.3% { background-position: 0 0; }
+     66.6% { background-position: 0 (-$dashboard-height * 2); }
+}
+
+#view-dashboard {
+    .dashboard {
+        position: absolute;
+        width: $dashboard-width;
+        height: $dashboard-height;
+        left: 50%;
+        top: 45%;
+        margin-left: -$dashboard-width / 2;
+        margin-top: -$dashboard-height / 2;
+        > .img {
+            @include position(absolute, 0 0 0 0);
+        }
+        > .screen {
+            background-size: $dashboard-width ($dashboard-height * 3);
+            @include animation(screen-anim 1s step-end infinite);
+        }
+    }
+    .display-items {
+        //
+    }
+    .item {
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        svg {
+            display: block;
+            width: 100%;
+        }
+    }
+    .item:nth-child(1) {
+        bottom: 55%;
+        margin-bottom: $dashboard-height / 2;
+    }
+    .item:nth-child(2) {
+        top: 45%;
+        margin-top: $dashboard-height / 2;
+    }
+    .item:nth-child(3) {
+        top: 45%;
+        margin-top: $dashboard-height / 2;
+    }
+    .text {
+        padding: 3px 0;
+        > span {
+            display: inline-block;
+            opacity: 0;
+            &::before {
+                content: "";
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: $cyan-halo;
+                margin-right: 10px;
+                box-shadow: 0 0 3px 1px $cyan-halo;
+                margin-bottom: 3px;
+            }
+        }
+    }
+    &.active {
+        .item path {
+            stroke-dashoffset: 0;
+            @include transition(stroke-dashoffset 1s ease-in-out);
+        }
+        .text > span {
+            opacity: 1;
+            @include transition(opacity .1s ease-in-out 1s);
+        }
+    }
+}
