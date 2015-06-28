@@ -2,6 +2,8 @@
 $cyan: #00a2e3;
 $cyan-halo: #00e1ff;
 
+$screen-lg-min: 360px;
+
 @function image-url($path) {
     @return url("../images/" + $path);
 }

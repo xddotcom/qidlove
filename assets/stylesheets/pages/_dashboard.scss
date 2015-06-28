@@ -52,7 +52,10 @@ $dashboard-height: 120px;
     .text {
         > span {
             display: inline-block;
+            text-align: left;
             opacity: 0;
+            width: 200px;
+            @media (min-width: $screen-lg-min) { width: 220px; }
             &::before {
                 content: "";
                 display: inline-block;

@@ -1,0 +1,84 @@
+
+@include keyframes(fingerprint-flash) {
+      0% { opacity: 1.0; }
+     50% { opacity: 0.3; }
+    100% { opacity: 1.0; }
+}
+
+#view-rewards {
+    .scan {
+        position: absolute;
+        left: 45%;
+        right: 6%;
+        bottom: 0;
+        padding-bottom: 15%;
+    }
+    .fingerprint {
+        width: 50%;
+        padding-top: 70%;
+        @include animation(fingerprint-flash .5s linear infinite);
+        &.stop {
+            @include animation(none);
+        }
+    }
+    .scan-bars {
+        width: 40%;
+        .scan-bar {
+            border: 2px solid $cyan-halo;
+            padding-top: 30%;
+            margin: 3px auto;
+            @include transition(background-color .5s ease-in-out);
+            &.fill {
+                background-color: $cyan-halo;
+            }
+        }
+    }
+    &.scaning {
+        .tip {
+            opacity: 0;
+            @include transition(opacity 1s ease-in-out);
+        }
+        .dashboard {
+            opacity: 1;
+            @include transition(opacity 1s ease-in-out);
+        }
+    }
+    .dashboard-wrapper {
+        position: relative;
+        margin-top: 15%;
+        .tip {
+            @include position(absolute, 0 0 0 0);
+            background-size: 50% auto;
+        }
+    }
+    .dashboard {
+        width: 180px;
+        height: 280px;
+        margin-left: 20px;
+        opacity: 0;
+        position: relative;
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: transparent;
+            @include transform(scale(0.18));
+            @include transform-origin(0 0);
+        }
+        article {
+            p { margin-bottom: 1em; }
+            @include position(absolute, 0 0 0 0);
+            padding: 30% 10%;
+            opacity: 0;
+            @include transition(opacity 1s ease-in-out);
+            &.show {
+                opacity: 1;
+            }
+        }
+        @media (min-width: $screen-lg-min) {
+            width: 200px;
+            height: 320px;
+            canvas { @include transform(scale(0.2)); }
+        }
+    }
+}

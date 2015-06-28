@@ -59,6 +59,17 @@ function initScroll() {
     });
 }
 
+function initDashboard() {
+    var canvas, stage, exportRoot;
+    canvas = document.getElementById("canvas-dashboard");
+    exportRoot = new lib.Dashboard();
+    stage = new createjs.Stage(canvas);
+    stage.addChild(exportRoot);
+    stage.update();
+    createjs.Ticker.setFPS(lib.properties.fps);
+    createjs.Ticker.addEventListener("tick", stage);
+}
+
 (function() {
 
     $('.views-wrapper').addClass('hidden');
@@ -80,11 +91,67 @@ function initScroll() {
         $(this).find('.car').removeClass('gone');
     });
 
-    //#view-ending
+    //#view-prologue
+    $('#view-prologue').on('active', function() {
+        var i=0, j=0;
+        var tick = function() {
+            var $text = $($('#view-prologue .text')[i]);
+            if ($text.length == 0 || !$('#view-prologue').hasClass('active')) return;
+            var text = $text.data('text');
+            if (j >= text.length) {
+                i++; j=0;
+            } else {
+                $text.text(text.substr(0,j+1));
+                j++;
+            }
+            _.delay(tick, 150);
+        };
+        tick();
+    }).on('inactive', function() {
+        $(this).find('.text').empty();
+    });
 
+    //#view-dashboard
+    $('#view-dashboard').on('active', function() {
+        var j=0;
+        var $text = $('#view-dashboard .display-items .text > span');
+        var tick = function() {
+            if (j >= 10 || !$('#view-dashboard').hasClass('active')) return;
+            $text.each(function() {
+                var text = $(this).data('text');
+                $(this).text(text.substr(0,j+1));
+            });
+            j++;
+            _.delay(tick, 150);
+        };
+        _.delay(tick, 1000);
+    }).on('inactive', function() {
+        $(this).find('.display-items .text > span').empty();
+    });
+
+    //#view-rewards
+    var step = 0;
+    $('#view-rewards .fingerprint').on('touchstart', function() {
+        if (step > 3) return;
+        $('#view-rewards').addClass('scaning');
+        var $bar = $($('#view-rewards .scan-bar')[3-step]);
+        $bar.addClass('fill');
+        var $bar = $($('#view-rewards article')[step]);
+        $bar.addClass('show').siblings().removeClass('show');
+        step++;
+        if (step > 3) $(this).addClass('stop');
+    });
+    $('#view-rewards').on('inactive', function() {
+        $(this).removeClass('scaning');
+        step = 0;
+        $(this).find('.fingerprint').removeClass('stop');
+        $(this).find('.scan-bar').removeClass('fill');
+        $(this).find('article').removeClass('show');
+    });
 
     // start
     Amour.on('StorytellAppReady', function start() {
+        initDashboard();
         initScroll();
     });
 

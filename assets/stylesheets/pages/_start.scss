@@ -11,7 +11,15 @@
             display: inline-block;
             font-weight: normal;
             padding: 0 0.2em;
-            font-size: 1.1em;
+            font-size: 1.5em;
+            @include transform(translate3d(0,0,0) scale(0.7));
+            @include transform-origin(50% 100%);
+        }
+    }
+    &.active {
+        article strong, .circles-wrapper {
+            @include transform(translate3d(0,0,0) scale(1));
+            @include transition(transform 1s ease-in-out);
         }
     }
     .circles-wrapper {
@@ -21,7 +29,8 @@
         top: 50%;
         left: 50%;
         margin-left: -50px;
-        margin-top: -50px;
+        //margin-top: -50px;
+        @include transform(translate3d(0,100%,0) scale(0));
     }
     .circle {
         @include position(absolute, 0 0 0 0);

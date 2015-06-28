@@ -75,6 +75,8 @@
 </div>
 
 
+<div id="metallic-left"></div>
+<div id="metallic-right"></div>
 <div id="metallic-top"></div>
 <div id="metallic-bottom"></div>
 
@@ -101,10 +103,10 @@
 
         <section class="view" id="view-prologue">
             <article class="text-center text-halo">
-                <div>谁不想坐进赛车，</div>
-                <div>体验风驰电掣的生死时速？</div>
-                <div>就像谁不想当老板，</div>
-                <div>自己决定自己的人生轨迹。</div>
+                <div class="text" data-text='谁不想坐进赛车，'></div>
+                <div class="text" data-text='体验风驰电掣的生死时速？'></div>
+                <div class="text" data-text='就像谁不想当老板，'></div>
+                <div class="text" data-text='自己决定自己的人生轨迹。'></div>
             </article>
         </section>
 
@@ -129,12 +131,12 @@
 
         <section class="view" id="view-dashboard">
             <div class="dashboard">
-                <div class="img text" data-bg-src="images/dashboard/text.png"></div>
+                <div class="img screen-text" data-bg-src="images/dashboard/text.png"></div>
                 <div class="img screen" data-bg-src="images/dashboard/screen.png"></div>
             </div>
             <div class="display-items">
                 <div class="item">
-                    <div class="text text-right text-halo"><span>一年及以上工作经验</span></div>
+                    <div class="text text-halo text-right"><span data-text="一年及以上工作经验"></span></div>
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
                         x="0px" y="0px" viewBox="0 0 1000 200" preserveAspectRatio="xMidYMax meet">
                         <path fill="none" stroke="#57C9E8" stroke-width="5" stroke-dasharray="369" stroke-dashoffset="369"
@@ -147,7 +149,7 @@
                         <path fill="none" stroke="#57C9E8" stroke-width="5" stroke-dasharray="342" stroke-dashoffset="342"
                             d="M350 20 L200 20 L50 140" />
                     </svg>
-                    <div class="text text-halo"><span>技惊四座的创业想法</span></div>
+                    <div class="text text-halo"><span data-text="技惊四座的创业想法"></span></div>
                 </div>
                 <div class="item">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -155,12 +157,45 @@
                         <path fill="none" stroke="#57C9E8" stroke-width="5" stroke-dasharray="624" stroke-dashoffset="624"
                             d="M600 20 L850 20 L950 380" />
                     </svg>
-                    <div class="text text-right text-halo"><span>特别能吃苦特别不怕累</span></div>
+                    <div class="text text-halo text-right"><span data-text="特别能吃苦特别不怕累"></span></div>
                 </div>
             </div>
         </section>
 
-        <section class="view" id="view-ending"></section>
+
+        <section class="view" id="view-rewards">
+            <div class="dashboard-wrapper">
+                <div class="tip img" data-bg-src="images/rewards/tip.png"></div>
+                <div class="dashboard">
+                    <canvas id="canvas-dashboard" width="1000" height="1550"></canvas>
+                    <article class="text-center text-halo">
+                        <p>赛事标准配置<br>“赛车一辆”</p>
+                        <p>20-50w种子基金</p>
+                    </article>
+                    <article class="text-center text-halo">
+                        <p>全程服务站</p>
+                        <p>互联网大师级导师一对一指导，有更多对接资源</p>
+                    </article>
+                    <article class="text-center text-halo">
+                        <p>贴心加油站</p>
+                        <p>梅花天使创投基金300w-500w投资</p>
+                    </article>
+                    <article class="text-center text-halo">
+                        <p>赛事终点</p>
+                        <p>创业没有输赢，只有经历和成长</p>
+                    </article>
+                </div>
+            </div>
+            <div class="scan clearfix">
+                <div class="pull-left fingerprint img img-contain" data-bg-src="images/rewards/fingerprint.png"></div>
+                <div class="pull-right scan-bars">
+                    <div class="scan-bar"></div>
+                    <div class="scan-bar"></div>
+                    <div class="scan-bar"></div>
+                    <div class="scan-bar"></div>
+                </div>
+            </div>
+        </section>
 
 
         <section class="view" id="view-contact">
@@ -183,7 +218,8 @@
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
                         x="0px" y="0px" viewBox="0 0 1000 150" preserveAspectRatio="xMidYMin meet">
                         <path fill="none" stroke="#57C9E8" stroke-width="5" stroke-dasharray="1064" stroke-dashoffset="0"
-                            d="M995 5 L100 5 L5 145" />
+                            d="M5 145 L100 5 L995 5" />
+                        <circle cx="16" cy="131" r="19" fill="#57C9E8" />
                     </svg>
                 </div>
                 <article class="slogan text-center text-halo">
@@ -209,6 +245,7 @@
 
 <script src="http://static.wedfairy.com/javascripts/amour.js?"></script>
 
+<script src="assets/javascripts/dashboard.js"></script>
 <script src="assets/javascripts/app.js"></script>
 
 <script>
