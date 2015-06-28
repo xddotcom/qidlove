@@ -1,4 +1,6 @@
 
+@include font-face(Halo, '../fonts/halo');
+
 .img-loading, .img-broken {
     background-color: rgba(255, 255, 255, 0) !important;
     background-image: none !important;
@@ -7,7 +9,17 @@
 body {
     background-color: #000;
     color: #fff;
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 2;
+    font-family: "Halo",
+                 "Helvetica Neue", Arial,
+                 "Hiragino Sans GB", "Hiragino Sans GB W3",
+                 "Microsoft YaHei", "Wenquanyi Micro Hei",
+                 sans-serif;
+}
+
+.text-halo {
+    text-shadow: 2px 2px 5px $cyan, -2px -2px 5px $cyan;
 }
 
 .views-wrapper,

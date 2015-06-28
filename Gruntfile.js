@@ -22,6 +22,11 @@ module.exports = function(grunt) {
                 flatten: true
             }
         },
+        'font-spider': {
+            main: {
+                src: 'index.html'
+            }
+        },
         watch: {
             stylesheets: {
                 files: ['assets/stylesheets/**/*.scss'],

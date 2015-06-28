@@ -7,7 +7,7 @@
 }
 
 #view-contact {
-    article {
+    .follow {
         position: absolute;
         bottom: 65%;
         left: 0;
@@ -38,5 +38,32 @@
         background-color: $cyan-halo;
         box-shadow: 0 0 1px $cyan-halo;
         @include animation(qr-ball-anim 4s linear infinite);
+    }
+    .qr-wrapper, .follow { opacity: 0; }
+    &.active {
+        .qr-wrapper, .follow {
+            opacity: 1;
+            @include transition(opacity 1s ease-in-out 2s);
+        }
+        .intro {
+            opacity: 0;
+            @include transition(opacity 1s ease-in-out 1s);
+        }
+    }
+    .intro {
+        margin: 30% 15%;
+    }
+    .earth {
+        display: inline-block;
+        margin: 5px;
+        width: 30px;
+        height: 30px;
+        @include animation(rotate 1s linear infinite);
+    }
+    .svg-wrapper {
+        width: 100%;
+        svg {
+            width: 100%;
+        }
     }
 }
