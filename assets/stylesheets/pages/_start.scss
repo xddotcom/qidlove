@@ -11,7 +11,7 @@
             display: inline-block;
             font-weight: normal;
             padding: 0 0.2em;
-            font-size: 1.5em;
+            font-size: 1.2em;
             @include transform(translate3d(0,0,0) scale(0.7));
             @include transform-origin(50% 100%);
         }

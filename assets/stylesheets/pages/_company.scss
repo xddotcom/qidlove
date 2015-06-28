@@ -1,0 +1,41 @@
+
+@include keyframes(layer-anim) {
+     0% { @include transform(translate3d(0,  0%,0)); }
+    50% { @include transform(translate3d(0,-50%,0)); }
+}
+
+#view-company {
+    > header {
+        @include linear-gradient(#000, #000, rgba(#000,0), $fallback: transparent);
+        padding: 20% 5%;
+        position: relative;
+        z-index: 2;
+        > .img {
+            padding-top: 20%;
+        }
+    }
+    .layers {
+        padding-top: 200%;
+        position: relative;
+        z-index: 1;
+    }
+    .layer {
+        @include position(absolute, 0 0 0 0);
+        @include animation-name(layer-anim);
+        @include animation-iteration-count(infinite);
+        @include animation-timing-function(ease-in-out);
+        &:nth-child(3) {
+            opacity: 0.9;
+            @include animation-duration(20s);
+        }
+        &:nth-child(2) {
+            opacity: 0.8;
+            @include animation-duration(15s);
+            @include animation-direction(reverse);
+        }
+        &:nth-child(1) {
+            opacity: 0.5;
+            @include animation-duration(10s);
+        }
+    }
+}
