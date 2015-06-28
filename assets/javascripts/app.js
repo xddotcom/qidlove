@@ -48,6 +48,12 @@ function initScroll() {
                 .siblings().removeClass('active').trigger('inactive');
         //$('#metallic-top,#metallic-bottom').toggleClass('fold', (page > 1));
         Star[page==1?'start':'end']();
+        if (page == 1) {
+            window.prologueAudio.currentTime = 0;
+            window.prologueAudio.play();
+        } else {
+            window.prologueAudio.pause();
+        }
         $('#starfield').toggleClass('hidden', (page != 1));
     };
     scroller.on('scrollStart', function() {});
@@ -69,6 +75,19 @@ function initDashboard() {
     createjs.Ticker.setFPS(lib.properties.fps);
     createjs.Ticker.addEventListener("tick", stage);
 }
+
+var dispatchMusic = function() {
+    if (window.Audio) {
+        if (!window.prologueAudio) {
+            window.prologueAudio = new Audio();
+            window.prologueAudio.src = 'assets/audios/xd.mp3';
+        }
+        var audio = window.prologueAudio;
+        var play = function() { audio.play(); };
+        //$('body').one('touchstart', play);
+        //_.defer(play);
+    }
+};
 
 (function() {
 
@@ -93,6 +112,7 @@ function initDashboard() {
 
     //#view-prologue
     $('#view-prologue').on('active', function() {
+        dispatchMusic();
         var i=0, j=0;
         var tick = function() {
             var $text = $($('#view-prologue .text')[i]);
@@ -109,6 +129,7 @@ function initDashboard() {
         tick();
     }).on('inactive', function() {
         $(this).find('.text').empty();
+        window.prologueAudio.pause();
     });
 
     //#view-dashboard
@@ -152,6 +173,7 @@ function initDashboard() {
     // start
     Amour.on('StorytellAppReady', function start() {
         initDashboard();
+        dispatchMusic();
         initScroll();
     });
 
