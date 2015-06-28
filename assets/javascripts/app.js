@@ -66,14 +66,14 @@ function initScroll() {
 }
 
 function initDashboard() {
-    var canvas, stage, exportRoot;
-    canvas = document.getElementById("canvas-dashboard");
+    var canvasDash, stage, exportRoot;
+    canvasDash = document.getElementById("canvas-dashboard");
     exportRoot = new lib.Dashboard();
-    stage = new createjs.Stage(canvas);
+    stage = new createjs.Stage(canvasDash);
     stage.addChild(exportRoot);
     stage.update();
-    createjs.Ticker.setFPS(lib.properties.fps);
-    createjs.Ticker.addEventListener("tick", stage);
+    //createjs.Ticker.setFPS(lib.properties.fps);
+    //createjs.Ticker.addEventListener("tick", stage);
 }
 
 var dispatchMusic = function() {
