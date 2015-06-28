@@ -172,7 +172,7 @@ var dispatchMusic = function() {
 
     // start
     Amour.on('StorytellAppReady', function start() {
-        initDashboard();
+        //initDashboard();
         dispatchMusic();
         initScroll();
     });
