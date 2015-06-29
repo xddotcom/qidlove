@@ -77,4 +77,26 @@
             width: 100%;
         }
     }
+    .power {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        height: 30px;
+        width: 200px;
+        margin-bottom: 13%;
+        margin-left: -100px;
+        background: image-url('contact/bg.png') no-repeat center;
+        background-size: 100% 100%;
+        .text, .logo {
+            display: inline-block;
+            height: 30px;
+        }
+        .text {
+            width: 100px;
+        }
+        .logo {
+            width: 60px
+        }
+    }
 }

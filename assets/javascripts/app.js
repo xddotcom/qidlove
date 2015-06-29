@@ -48,12 +48,6 @@ function initScroll() {
                 .siblings().removeClass('active').trigger('inactive');
         //$('#metallic-top,#metallic-bottom').toggleClass('fold', (page > 1));
         Star[page==1?'start':'end']();
-        if (page == 1) {
-            window.prologueAudio.currentTime = 0;
-            window.prologueAudio.play();
-        } else {
-            window.prologueAudio.pause();
-        }
         $('#starfield').toggleClass('hidden', (page != 1));
     };
     scroller.on('scrollStart', function() {});
@@ -80,7 +74,7 @@ var dispatchMusic = function() {
     if (window.Audio) {
         if (!window.prologueAudio) {
             window.prologueAudio = new Audio();
-            window.prologueAudio.src = 'assets/audios/xd.mp3';
+            window.prologueAudio.src = 'assets/audios/sound-plum.mp3';
         }
         var audio = window.prologueAudio;
         var play = function() { audio.play(); };
@@ -113,6 +107,8 @@ var dispatchMusic = function() {
     //#view-prologue
     $('#view-prologue').on('active', function() {
         dispatchMusic();
+        window.prologueAudio.currentTime = 0;
+        window.prologueAudio.play();
         var i=0, j=0;
         var tick = function() {
             var $text = $($('#view-prologue .text')[i]);
@@ -129,7 +125,7 @@ var dispatchMusic = function() {
         tick();
     }).on('inactive', function() {
         $(this).find('.text').empty();
-        window.prologueAudio.pause();
+        //window.prologueAudio.pause();
     });
 
     //#view-dashboard
@@ -152,7 +148,7 @@ var dispatchMusic = function() {
 
     //#view-rewards
     var step = 0;
-    $('#view-rewards .fingerprint').on('touchstart', function() {
+    var rewardStep = function() {
         if (step > 3) return;
         $('#view-rewards').addClass('scaning');
         var $bar = $($('#view-rewards .scan-bar')[3-step]);
@@ -160,14 +156,25 @@ var dispatchMusic = function() {
         var $bar = $($('#view-rewards article')[step]);
         $bar.addClass('show').siblings().removeClass('show');
         step++;
-        if (step > 3) $(this).addClass('stop');
-    });
+        if (step > 3) $('#view-rewards .fingerprint').addClass('stop');
+        _.delay(rewardStep, 2000);
+    };
     $('#view-rewards').on('inactive', function() {
+        $('#view-rewards .fingerprint').off('touchstart');
         $(this).removeClass('scaning');
         step = 0;
         $(this).find('.fingerprint').removeClass('stop');
         $(this).find('.scan-bar').removeClass('fill');
         $(this).find('article').removeClass('show');
+    }).on('active', function() {
+        step = 0;
+        $('#view-rewards .fingerprint').one('touchstart', rewardStep);
+    });
+
+    $('#view-contact').on('inactive', function() {
+        $('body').removeClass('lastpage');
+    }).on('active', function() {
+        $('body').addClass('lastpage');
     });
 
     // start
