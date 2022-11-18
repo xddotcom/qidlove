@@ -1,6 +1,7 @@
 
 $(function() {
-    var imageRoot = 'http://oatpie.qiniudn.com/catking/';
+    // var imageRoot = 'http://oatpie.qiniudn.com/catking/';
+    var imageRoot = '/catking/';
     //var imageRoot = 'http://192.168.0.119:8080/';
     var scroller;
     
@@ -33,7 +34,7 @@ $(function() {
         }
     });
     
-    var API = 'http://api.wedfairy.com/api';
+    var API = 'https://api.wedfairy.com/api';
     
     var Views = {};
     
@@ -195,10 +196,10 @@ $(function() {
     var match = window.location.search.match(/[\?\&]radius=(\d+)(&|$)/);
     var radius = match ? +match[1] : 0;
     var message = {
-        "img_url": 'http://love.oatpie.com/catking/img/avatar.jpg',
+        "img_url": 'https://love.wedfairy.com/catking/img/avatar.jpg',
         "img_width" : "640",
         "img_height" : "640",
-        "link" : ['http://love.oatpie.com/catking', '?radius=', radius + 1].join(''),
+        "link" : ['https://love.wedfairy.com/catking', '?radius=', radius + 1].join(''),
         "desc" : "今后只愿将心付与一人",
         "title" : "猫王的故事"
     };
