@@ -1,6 +1,7 @@
 
 $(function() {
-    var imageRoot = 'http://oatpie.qiniudn.com/dolphin/';
+    // var imageRoot = 'http://oatpie.qiniudn.com/dolphin/';
+    var imageRoot = '/dolphin/';
     var scroller;
     
     var SectionView = Backbone.View.extend({
@@ -33,7 +34,7 @@ $(function() {
         }
     });
     
-    var API = 'http://api.wedfairy.com/api';
+    var API = 'https://api.wedfairy.com/api';
     
     var HeroView = new (SectionView.extend({
         
@@ -299,10 +300,10 @@ $(function() {
     var match = window.location.search.match(/[\?\&]radius=(\d+)(&|$)/);
     var radius = match ? +match[1] : 0;
     var message = {
-        "img_url" : 'http://love.oatpie.com/dolphin/img/avatar.jpg',
+        "img_url" : 'https://love.wedfairy.com/dolphin/img/avatar.jpg',
         "img_width" : "640",
         "img_height" : "640",
-        "link" : ['http://love.oatpie.com/dolphin/', '?radius=', radius + 1, '#noplay'].join(''),
+        "link" : ['https://love.wedfairy.com/dolphin/', '?radius=', radius + 1, '#noplay'].join(''),
         "desc" : "致我们永不褪色的爱情",
         "title" : "我钟爱的女子"
     };
