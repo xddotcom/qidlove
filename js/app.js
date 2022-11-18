@@ -27,7 +27,7 @@ $(function() {
         }
     });
     
-    var API = 'http://api.wedfairy.com/api';
+    var API = 'https://api.wedfairy.com/api';
     
     var ContactView = new (Backbone.View.extend({
         events: {
@@ -100,10 +100,10 @@ $(function() {
     var match = window.location.search.match(/[\?\&]radius=(\d+)(&|$)/);
     var radius = match ? +match[1] : 0;
     var message = {
-        "img_url" : 'http://love.oatpie.com/jimmy/img/lu/kiss.jpg',
+        "img_url" : 'https://love.wedfairy.com/jimmy/img/lu/kiss.jpg',
         "img_width" : "640",
         "img_height" : "640",
-        "link" : ['http://love.oatpie.com/jimmy', '?radius=', radius + 1].join(''),
+        "link" : ['https://love.wedfairy.com/jimmy', '?radius=', radius + 1].join(''),
         "desc" : "您一定不能错过这场温馨浪漫的婚礼，见证美丽的公主说出那句 Yes, I do !",
         "title" : "Jimmy & Sherry's Wedding Ceremony"
     };
