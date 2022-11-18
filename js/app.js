@@ -150,10 +150,10 @@ $(function() {
     
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
         var message = {
-            "img_url" : 'http://love.oatpie.com/libra/img/avatar.jpg',
+            "img_url" : 'https://love.wedfairy.com/libra/img/avatar.jpg',
             "img_width" : "640",
             "img_height" : "640",
-            "link" : 'http://love.oatpie.com/libra/',
+            "link" : 'https://love.wedfairy.com/libra/',
             "desc" : "这是@Libra_雪er和@王禹清的婚礼邀请，我们喜欢你来见证我们的故事",
             "title" : "有关爱情的故事"
         };
