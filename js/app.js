@@ -1,6 +1,7 @@
 $(function() {
     
-    var imageRoot = 'http://oatpie.qiniudn.com/jimmy/';
+    // var imageRoot = 'http://oatpie.qiniudn.com/jimmy/';
+    var imageRoot = '/jimmy/';
     
     var Collection = Backbone.Collection.extend({
         parse: function(response) {
